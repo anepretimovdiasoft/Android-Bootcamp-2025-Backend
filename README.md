@@ -142,5 +142,5 @@
     - [ ] Ошибки сервера.
 
 ## Схема БД
-<img src="https://raw.githubusercontent.com/indx0/Android-Bootcamp-2025-Backend/refs/heads/team-pantyushslancy/media/database_image.svg"></img>
+<img src="https://raw.githubusercontent.com/indx0/Android-Bootcamp-2025-Backend/refs/heads/team-pantyushslancy/media/database_image2.svg"></img>
 
