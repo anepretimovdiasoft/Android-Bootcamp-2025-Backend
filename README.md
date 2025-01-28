@@ -270,5 +270,4 @@
 ## 8.Настроить Spring Security для разграничения доступа
 
 # Сущности в БД
-
-![Screenshot_19](https://github.com/user-attachments/assets/e04aeaa2-657b-4ea8-8fec-dc38f73f038e)
+![Screenshot_5](https://github.com/user-attachments/assets/1228c0af-4ddd-474e-a13d-3859067f9c8b)
