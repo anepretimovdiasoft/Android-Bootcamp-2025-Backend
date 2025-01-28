@@ -141,3 +141,6 @@
     - [ ] Пользователь не является администратором.
     - [ ] Ошибки сервера.
 
+## Схема БД
+<img src="https://raw.githubusercontent.com/indx0/Android-Bootcamp-2025-Backend/refs/heads/team-pantyushslancy/media/database_image.svg"></img>
+
