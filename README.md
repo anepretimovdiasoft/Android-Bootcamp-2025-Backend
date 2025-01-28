@@ -224,3 +224,8 @@
 1. Реализовать возможность редактирования волонтерского центра
 2. Реализовать логику удаления волонтерского центра
 3. Реализовать систему уведомлений для пользователей
+
+## СХЕМА БАЗЫ ДАННЫХ
+https://dbdiagram.io/d/DB-for-VolunteerApp-67992a52263d6cf9a053f0d4
+
+![DB for VolunteerApp](https://github.com/user-attachments/assets/82071fca-3f95-48ff-a00c-78cfcf19ebde)
