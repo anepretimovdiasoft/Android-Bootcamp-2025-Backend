@@ -11,7 +11,7 @@
         </not>
     </preConditions>
 
-    <changeSet id="1738170455683-1" author="okalugin">
+    <changeSet id="2025-01-29--0004-preference" author="okalugin">
         <createTable tableName="preference">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
