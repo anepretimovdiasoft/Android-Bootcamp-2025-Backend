@@ -1,0 +1,56 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    
+    <preConditions>
+        <not>
+            <tableExists tableName="users"/>
+        </not>
+    </preConditions>
+    
+    <changeSet id="1738168685797-1" author="okalugin">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_role" referencedTableName="role"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone_number" type="varchar(30)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="telegram_username" type="varchar(32)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="organization_id" type="bigint">
+                <constraints nullable="true" foreignKeyName="fk_user_organization" referencedTableName="organization"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="profile_picture" type="blob">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <include file="db.changelog/1.0/2025-01-29--0001-role.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0002-organization.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0003-users.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0004-preference.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0005-skill.xml"/>
+
+    <include file="db.changelog/data/2025-01-29--0001-role-data.xml"/>
+    <include file="db.changelog/data/2025-01-29--0002-organization-data.xml"/>
+    <include file="db.changelog/data/2025-01-29--0003-users-data.xml"/>
+    <include file="db.changelog/data/2025-01-29--0004-preference-data.xml"/>
+    <include file="db.changelog/data/2025-01-29--0005-skill-data.xml"/>
+
+</databaseChangeLog>
