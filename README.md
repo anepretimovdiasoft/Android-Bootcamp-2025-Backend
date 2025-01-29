@@ -89,3 +89,5 @@
 Настроить Spring_Security для разграничения доступа
 
 Создать схему БД по волонтерским центрам и предзаполнить данными (liquibase)
+
+![image](https://github.com/user-attachments/assets/f2de9a3f-336a-40aa-bab6-b9fbc383e505)
