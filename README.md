@@ -138,3 +138,10 @@ c.	Фон
 Просмотр волонтёрских центров
 1)	Сделать красивый выбор между разными волонтерскими центрами
 
+### БД 
+
+https://dbdiagram.io/d/BaseData_VolonteerProg-6798d5a8263d6cf9a04a7e3d
+
+## Набросток дизайна в figme
+
+https://www.figma.com/design/jg9DEIoovLrcZYGtuRmLDh/Untitled?m=auto&t=ysWlBbQZZcZxBFo5-6
