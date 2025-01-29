@@ -720,5 +720,4 @@
 
 
 # Структура БД
-
-[Жмякни тут](https://dbdiagram.io/d/679a1e82263d6cf9a066d6f6)
+https://dbdiagram.io/d/679a1e82263d6cf9a066d6f6
