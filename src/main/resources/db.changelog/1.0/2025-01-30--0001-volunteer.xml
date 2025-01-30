@@ -1,0 +1,47 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                   http://www.liquibase.org/xml/ns/dbchangelog-ext  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    
+    <changeSet id="2025-01-30--0001-volunteer" author="mabubakirova">
+        <preConditions>
+            <not>
+                <tableExists tableName="volunteer"/>
+
+            </not>
+        </preConditions>
+        <createTable tableName="volunteer">
+            <column name = "id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name = "username" type="VARCHAR(50)" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name = "mail" type="VARCHAR(100)" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="phone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="isbusy" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
