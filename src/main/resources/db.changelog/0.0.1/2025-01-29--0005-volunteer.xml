@@ -1,0 +1,55 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="2025-01-29--0005-volunteer" author="Petr Rudichev">
+        <preConditions>
+            <not>
+                <tableExists tableName="volunteer"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="volunteer">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="VARCHAR(100)"/>
+            <column name="about_me" type="VARCHAR(300)"/>
+            <column name="telephone" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telegram_link" type="VARCHAR(300)"/>
+            <column name="vk_link" type="VARCHAR(300)"/>
+            <column name="role" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_volunteer_roles"
+                             referencedTableName="roles" referencedColumnNames="id" deleteCascade="false"/>
+            </column>
+            <column name="center_id" type="BIGINT">
+                <constraints foreignKeyName="fk_volunteer_center" referencedTableName="center"
+                             referencedColumnNames="id" deleteCascade="false"/>
+            </column>
+            <column name="profile_image_url" type="VARCHAR(100)"/>
+            <column name="medical_book" type="BOOLEAN"/>
+            <column name="driver_license" type="BOOLEAN"/>
+            <column name="created_at" type="DATETIME" valueDate="current_datetime" defaultValueDate="current_datetime"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

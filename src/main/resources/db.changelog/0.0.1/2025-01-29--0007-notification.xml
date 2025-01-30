@@ -1,0 +1,31 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="2025-01-29--0007-notification" author="Petr Rudichev">
+        <preConditions>
+            <not>
+                <tableExists tableName="notification"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="notification">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+
+            <column name="to_whom" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_notification_to_whom_volunteer"
+                             referencedTableName="volunteer" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+            <column name="from_whom" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_notification_from_whom_volunteer"
+                             referencedTableName="volunteer" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+            <column name="message" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_dispatch" type="DATE" valueDate="current_datetime" defaultValueDate="current_datetime"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
