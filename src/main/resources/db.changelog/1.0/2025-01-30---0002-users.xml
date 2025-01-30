@@ -34,7 +34,7 @@
             <column name="event" type="VARCHAR(200)">
                 <constraints/>
             </column>
-            <column name="geolocation" type="VARCHAR(150)">
+            <column name="geolocation" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
