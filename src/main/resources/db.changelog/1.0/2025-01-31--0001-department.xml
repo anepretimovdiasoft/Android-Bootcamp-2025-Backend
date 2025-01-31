@@ -1,0 +1,95 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-01-31--0001-users" author="dgold">
+        <createTable tableName="users">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="username" type="varchar(255)" />
+            <column name="email" type="varchar(255)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="phone_number" type="varchar(20)" />
+            <column name="password_hash" type="varchar(255)" />
+            <column name="role" type="varchar(50)" />
+            <column name="volunteer_center_id" type="integer" />
+            <column name="status" type="varchar(50)" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-01-31--0002-volunteer_centers" author="dgold">
+        <createTable tableName="volunteer_centers">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)" />
+            <column name="location" type="varchar(255)" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-01-31--0003-messages" author="dgold">
+        <createTable tableName="messages">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="sender_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="receiver_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="content" type="text" />
+            <column name="is_admin_message" type="boolean" />
+            <column name="status" type="varchar(50)" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-01-31--0004-notifications" author="dgold">
+        <createTable tableName="notifications">
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="message" type="text" />
+            <column name="read_status" type="boolean" defaultValue="false" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2025-01-31--0005-foreign-keys" author="dgold">
+        <addForeignKeyConstraint baseTableName="users"
+                                 baseColumnNames="volunteer_center_id"
+                                 referencedTableName="volunteer_centers"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_users_volunteer_centers" />
+
+        <addForeignKeyConstraint baseTableName="messages"
+                                 baseColumnNames="sender_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_messages_sender" />
+
+        <addForeignKeyConstraint baseTableName="messages"
+                                 baseColumnNames="receiver_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_messages_receiver" />
+
+        <addForeignKeyConstraint baseTableName="notifications"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_notifications_users" />
+    </changeSet>
+
+</databaseChangeLog>
+
