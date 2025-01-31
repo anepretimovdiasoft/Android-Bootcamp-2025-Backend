@@ -1,0 +1,49 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-01-31-0002-volunteers" author="gnazarov">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="volunteers"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="volunteers">
+
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="password" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="activestatus" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="adminrights" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="volunteercenter_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_volunteer_volunteercenters" referencedTableName="volunteercenters"
+                             referencedColumnNames="id"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

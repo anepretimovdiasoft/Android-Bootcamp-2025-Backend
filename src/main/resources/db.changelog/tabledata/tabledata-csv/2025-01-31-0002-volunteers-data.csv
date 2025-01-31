@@ -1,0 +1,5 @@
+name;email;password;activestatus;adminrights;volunteercenter_id
+Иванов Иван Иванович;iivanov@gmail.com;Iva234_-+235;true;false;3
+Сергеев Сергей Сергеевич;ssergeev@yandex.ru;SerG34_256;false;false;1
+Никитин Никита Константинович;nnikitin@yandex.ru;NikNikitich5362671;true;false;2
+Николаев Сергей Владимирович;nikolay.sergey23@yandex.ru;SergBladiMir732743;false;true;1
