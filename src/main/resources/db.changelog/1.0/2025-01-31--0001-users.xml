@@ -1,13 +1,11 @@
+
+
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <preConditions onFail="WARN">
-        <not>
-            <tableExists tableName="users"/>
-        </not>
-    </preConditions>
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
     <changeSet id="2025-01-31--0001-users" author="IgraM">
         <createTable tableName="users">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -15,6 +13,18 @@
             </column>
             <column name="credentials_id" type="INT">
                 <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="role_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="TIMESTAMP">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
