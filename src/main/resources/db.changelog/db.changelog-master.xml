@@ -4,10 +4,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="/db.changelog/1.0/2025-01-30--0001-group.xml"/>
+    <include file="/db.changelog/1.0/2025-01-30--0001-center.xml"/>
     <include file="db.changelog/1.0/2025-01-30--0002-user.xml"/>
     <include file="db.changelog/1.0/2025-01-30--0003-enrollment.xml"/>
-    <include file="/db.changelog/data/2025-01-30--0001-group-data.xml"/>
+    <include file="/db.changelog/data/2025-01-30--0001-center-data.xml"/>
     <include file="db.changelog/data/2025-01-30--0002-user-data.xml"/>
 </databaseChangeLog>
 <!--        #https://i.pinimg.com/736x/74/50/b2/7450b27aefa67d3ba126dab3023d3a4f.jpg-->

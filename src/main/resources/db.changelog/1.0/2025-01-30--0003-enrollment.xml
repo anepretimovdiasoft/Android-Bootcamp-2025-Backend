@@ -15,8 +15,8 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="group_id"  type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_enrollment_group" referencedTableName="group"
+            <column name="center_id"  type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_enrollment_center" referencedTableName="center"
                 referencedColumnNames="id"/>
             </column>
             <column name="user_id"  type="BIGINT">
