@@ -11,7 +11,6 @@
                 <tableExists tableName="user"/>
             </not>
         </preConditions>
-
         <createTable tableName="user">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -25,12 +24,18 @@
             <column name="password" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(200)"/>
-            <column name="avatar" type="blob"/>
-            <column name="created_at" type="timestamp">
+            <column name="description" type="VARCHAR(200)"/>
+            <column name="birth_date" type="VARCHAR(10)"/>
+            <column name="avatar_url" type="VARCHAR"/>
+            <column name="center_id" type="BIGINT">
+                <constraints foreignKeyName="fk_user_centre" referencedTableName="center"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="joined_at" type="TIMESTAMP"/>
+            <column name="created_at" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="admin_rights" type="bool">
+            <column name="admin_rights" type="BOOL">
                 <constraints nullable="false"/>
             </column>
         </createTable>

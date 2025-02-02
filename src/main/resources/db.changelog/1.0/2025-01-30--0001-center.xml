@@ -15,14 +15,17 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="VARCHAR(100)">
+            <column name="name" type="VARCHAR">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="coords" type="varchar">
+            <column name="lat" type="DOUBLE">
                 <constraints nullable="false"/>
             </column>
-            <column name="avatar" type="blob"/>
-            <column name="description" type="VARCHAR(100)"/>
+            <column name="lng" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="distance" type="DOUBLE"/>
+            <column name="description" type="VARCHAR"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

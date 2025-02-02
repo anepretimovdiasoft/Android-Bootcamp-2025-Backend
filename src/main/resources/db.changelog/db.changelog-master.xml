@@ -6,9 +6,6 @@
 
     <include file="/db.changelog/1.0/2025-01-30--0001-center.xml"/>
     <include file="db.changelog/1.0/2025-01-30--0002-user.xml"/>
-    <include file="db.changelog/1.0/2025-01-30--0003-enrollment.xml"/>
     <include file="/db.changelog/data/2025-01-30--0001-center-data.xml"/>
     <include file="db.changelog/data/2025-01-30--0002-user-data.xml"/>
 </databaseChangeLog>
-<!--        #https://i.pinimg.com/736x/74/50/b2/7450b27aefa67d3ba126dab3023d3a4f.jpg-->
-<!--        #https://s2.hostingkartinok.com/uploads/images/2013/08/9b22035204e381ee2b54d10b9251d9e1.png-->
