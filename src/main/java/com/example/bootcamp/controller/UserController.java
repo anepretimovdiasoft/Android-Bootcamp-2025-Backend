@@ -45,11 +45,10 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserStatus(id));
     }
 
-    /* Doesn't work
-    @PutMapping("/{id}/{status}")
-    public @ResponseBody Boolean updateUser(@PathVariable Long id, @PathVariable boolean status) {
-        return userService.updateUserStatus(id, status);
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Boolean> updateUser(@PathVariable Long id, @RequestBody boolean status) {
+        return ResponseEntity.ok(userService.updateUserStatus(id, status));
     }
-     */
 
 }

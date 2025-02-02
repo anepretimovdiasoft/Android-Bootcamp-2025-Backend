@@ -16,7 +16,7 @@ public interface UserService {
 
     boolean getUserStatus(Long id);
 
-    //boolean updateUserStatus(Long id, boolean status);
+    boolean updateUserStatus(Long id, boolean status);
 
     void deleteUser(Long id);
 }

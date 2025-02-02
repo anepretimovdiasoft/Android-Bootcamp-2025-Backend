@@ -82,7 +82,6 @@ public class UserServiceImpl implements UserService {
         return user.isStatusWork();
     }
 
-    /* Doesn't work
     @Override
     public boolean updateUserStatus(Long id, boolean status) {
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
@@ -91,5 +90,4 @@ public class UserServiceImpl implements UserService {
 
         return user.isStatusWork();
     }
-    */
 }
