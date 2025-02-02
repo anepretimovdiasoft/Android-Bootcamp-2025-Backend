@@ -3,35 +3,28 @@
                    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                    http://www.liquibase.org/xml/ns/dbchangelog-ext  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    
-    <changeSet id="db.changelog/1.0/2025-01-30--0002-volunteer_centers" author="mabubakirova">
+
+
+
+    <changeSet id="2025-01-30--0004-roles" author="mabubakirova">
         <preConditions>
             <not>
-                <tableExists tableName="volunteer_centers"/>
+                <tableExists tableName="roles"/>
+
             </not>
         </preConditions>
-        <createTable tableName="volunteer_centers">
+        <createTable tableName="roles">
+
             <column name = "id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="title" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
+
+            <column name="role" type="VARCHAR(255)">
+                <constraints  nullable="false"/>
             </column>
-
-            <column name="address" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-
-
-            <column name="contacts" type="VARCHAR(15)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-
 
         </createTable>
-
-
 
     </changeSet>
 </databaseChangeLog>

@@ -4,14 +4,14 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                    http://www.liquibase.org/xml/ns/dbchangelog-ext  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="2025-01-30--0004-admins-data" author="mabubakirova">
-        <loadData tableName="admins" file="db.changelog/data/csv/2025-01-30--0004-admins-data.csv"
-                  separator=";"
-                  quotchar="*"
-                  encoding="UTF-8"/>
+<changeSet id="2025-01-30--0001-volunteer_status-data" author="mabubakirova">
+    <loadData tableName="volunteer_status" file="db.changelog/data/csv/2025-01-30--0001-volunteer_status-data.csv"
+              separator=";"
+              quotchar="*"
+              encoding="UTF-8"/>
 
 
-    </changeSet>
-
+</changeSet>
+    
 
 </databaseChangeLog>

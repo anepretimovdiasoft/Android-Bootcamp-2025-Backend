@@ -6,41 +6,24 @@
 
 
     
-    <changeSet id="2025-01-30--0001-volunteer" author="mabubakirova">
+    <changeSet id="2025-01-30--0001-volunteer_status" author="mabubakirova">
         <preConditions>
             <not>
-                <tableExists tableName="volunteer"/>
+                <tableExists tableName="volunteer_status"/>
 
             </not>
         </preConditions>
-        <createTable tableName="volunteer">
+        <createTable tableName="volunteer_status">
+
             <column name = "id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name = "username" type="VARCHAR(50)" >
-                <constraints nullable="false"/>
-            </column>
-
-            <column name = "mail" type="VARCHAR(100)" >
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="phone" type="VARCHAR(15)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="password" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-
+            <column name="photo_url" type="VARCHAR(100)"/>
             <column name="isbusy" type="BOOL">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
 
     </changeSet>
