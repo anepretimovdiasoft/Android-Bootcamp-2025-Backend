@@ -24,6 +24,6 @@ public class VolunteerCenter {
     private float latitude;
     @Column(name = "longitude")
     private float longitude;
-    @OneToMany(mappedBy = "volunteer_centers", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "volunteerCenter", cascade = CascadeType.ALL)
     private List<User> volunteers;
 }
