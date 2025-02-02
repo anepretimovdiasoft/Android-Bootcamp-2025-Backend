@@ -75,4 +75,21 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public boolean getUserStatus(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
+        return user.isStatusWork();
+    }
+
+    /* Doesn't work
+    @Override
+    public boolean updateUserStatus(Long id, boolean status) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
+        user.setStatusWork(status);
+        userRepository.save(user);
+
+        return user.isStatusWork();
+    }
+    */
 }
