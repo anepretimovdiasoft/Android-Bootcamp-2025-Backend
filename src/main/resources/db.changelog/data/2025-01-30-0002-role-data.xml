@@ -5,7 +5,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog-ext.xsd">
 
     <changeSet id="2025-01-30-0002-role-data" author="dshilyaev">
-        <loadData tableName="Role" file="db.changelog/data/csv/2025-01-30-0002-role-data.csv"
+        <loadData tableName="role" file="db.changelog/data/csv/2025-01-30-0002-role-data.csv"
                   separator=";"
                   quotchar='*'
                   encoding="UTF-8"/>

@@ -7,10 +7,10 @@
     <changeSet id="2025-01-30-0001-volunteercentre" author="dshilyaev">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="VolunteerCentre"/>
+                <tableExists tableName="volunteer"/>
             </not>
         </preConditions>
-        <createTable tableName="VolunteerCentre">
+        <createTable tableName="volunteer">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -20,8 +20,11 @@
             <column name="Description" type="VARCHAR(1000)">
                 <constraints nullable="true"/>
             </column>
-            <column name="Coordinates" type="DECIMAL(5,2)">
-                <constraints nullable="false" unique="true"/>
+            <column name="Coordinate_x" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Coordinate_y" type="FLOAT">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

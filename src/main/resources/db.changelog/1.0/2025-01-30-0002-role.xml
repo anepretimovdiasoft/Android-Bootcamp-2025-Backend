@@ -7,11 +7,11 @@
     <changeSet id="2025-01-30-0002-role" author="dshilyaev">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="Role"/>
+                <tableExists tableName="role"/>
             </not>
         </preConditions>
 
-        <createTable tableName="Role">
+        <createTable tableName="role">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
