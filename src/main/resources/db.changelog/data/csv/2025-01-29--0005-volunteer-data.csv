@@ -1,3 +1,0 @@
-name;surname;patronymic;about_me;telephone;email;password;birthday;city;telegram_link;vk_link;role;center_id;profile_image_url;medical_book;driver_license
-Иван;Иванович;Иванов;Я люблю волонтерство!;+792623321231;example1@gmail.com;password;now;Ульяновск;@examole;58774463;2;1;profiles/1.jpg;false;true
-Василий;Васильевич;Андреевич;Я люблю кошек!;+792623321232;example2@gmail.com;password;now;Ульяновск;@dio;58774446;2;2;profiles/2.jpg;true;false
