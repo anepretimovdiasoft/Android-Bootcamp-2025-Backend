@@ -26,7 +26,6 @@
             </column>
             <column name="about" type="VARCHAR(10)" defaultValue="-"> </column>
             <column name="status_work" type="BOOLEAN" defaultValue="true"> </column>
-            <column name="center_id" type="INT" defaultValue="null"> </column>
         </createTable>
     </changeSet>
 
