@@ -283,4 +283,4 @@
 	
 	
 #### Ссылка на бд
-	https://app.quickdatabasediagrams.com/#/d/aOSd5i
+	https://app.quickdatabasediagrams.com/#/d/nvBwOK

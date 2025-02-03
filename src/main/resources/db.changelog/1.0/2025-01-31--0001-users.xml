@@ -1,0 +1,50 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-01-31--0001-users" author="mprokhorov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="Users"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="Users">
+            <column name="Id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="RoleId" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="Login" type="VARCHAR(20)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+
+            <column name="Password" type="varchar(300)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="Name" type="VARCHAR(30)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="SecondName" type="VARCHAR(30)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="LastName" type="VARCHAR(30)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="Info" type="VARCHAR(300)">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
