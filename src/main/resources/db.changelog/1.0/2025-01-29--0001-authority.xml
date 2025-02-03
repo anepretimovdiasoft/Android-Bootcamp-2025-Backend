@@ -6,16 +6,16 @@
     
     <preConditions>
         <not>
-            <tableExists tableName="role"/>
+            <tableExists tableName="authority"/>
         </not>
     </preConditions>
     
-    <changeSet id="2025-01-29--0001-role" author="okalugin">
-        <createTable tableName="role">
+    <changeSet id="1738167960392-1" author="okalugin">
+        <createTable tableName="authority">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="role" type="varchar(50)">
+            <column name="authority" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>

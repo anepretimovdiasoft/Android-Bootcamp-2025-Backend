@@ -13,13 +13,33 @@ public class UserMapper {
         userDTO.setEmail(user.getEmail());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
-        userDTO.setBirthDate(user.getBirthDate());
-        userDTO.setPhoneNumber(user.getPhoneNumber());
-        userDTO.setTelegramUsername(user.getTelegramUsername());
-        userDTO.setOrganizationName(user.getOrganization().getName());
-        userDTO.setAbout(user.getAbout());
-        userDTO.setPhotoUrl(user.getPhotoUrl());
+        userDTO.setRole(user.getAuthorities().iterator().next().getAuthority());
+
+        if(user.getBirthDate() != null) {
+            userDTO.setBirthDate(user.getBirthDate());
+        }
+
+        if(user.getPhoneNumber() != null) {
+            userDTO.setPhoneNumber(user.getPhoneNumber());
+        }
+
+        if(user.getTelegramUsername() != null) {
+            userDTO.setTelegramUsername(user.getTelegramUsername());
+        }
+
+        if(user.getOrganization() != null) {
+            userDTO.setOrganizationName(user.getOrganization().getName());
+        }
+
+        if(user.getAbout() != null) {
+            userDTO.setAbout(user.getAbout());
+        }
+
+        if(user.getPhotoUrl() != null) {
+            userDTO.setPhotoUrl(user.getPhotoUrl());
+        }
 
         return userDTO;
     }
 }
+

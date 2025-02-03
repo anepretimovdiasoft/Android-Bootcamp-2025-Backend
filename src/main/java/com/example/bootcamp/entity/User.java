@@ -2,15 +2,19 @@ package com.example.bootcamp.entity;
 
 import javax.persistence.*;
 import lombok.Data;
-import java.sql.Date;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@Data
+import java.sql.Date;
+import java.util.Set;
+
 @Entity
+@Data
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     Long id;
 
     @Column(name = "email", nullable = false, unique = true)
@@ -25,9 +29,8 @@ public class User {
     @Column(name = "last_name", nullable = false)
     String lastName;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<Authority> authorities;
 
     @Column(name = "birth_date")
     Date birthDate;
@@ -48,5 +51,28 @@ public class User {
     @Column(name = "photo_url")
     String photoUrl;
 
+    @Override
+    public String getUsername() {
+        return this.getEmail();
+    }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

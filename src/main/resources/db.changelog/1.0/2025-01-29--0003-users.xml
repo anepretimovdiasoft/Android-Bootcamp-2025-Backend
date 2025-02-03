@@ -3,17 +3,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-
+    
     <preConditions>
         <not>
             <tableExists tableName="users"/>
         </not>
     </preConditions>
-
+    
     <changeSet id="1738168685797-1" author="okalugin">
         <createTable tableName="users">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+                    <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="email" type="varchar(100)">
                 <constraints nullable="false" unique="true"/>
@@ -26,10 +26,6 @@
             </column>
             <column name="last_name" type="varchar(100)">
                 <constraints nullable="false"/>
-            </column>
-            <column name="role_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_role" referencedTableName="role"
-                             referencedColumnNames="id"/>
             </column>
             <column name="birth_date" type="date">
                 <constraints nullable="true"/>
@@ -52,5 +48,5 @@
             </column>
         </createTable>
     </changeSet>
-
+    
 </databaseChangeLog>

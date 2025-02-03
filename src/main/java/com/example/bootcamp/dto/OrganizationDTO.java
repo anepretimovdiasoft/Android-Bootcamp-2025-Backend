@@ -9,4 +9,5 @@ public class OrganizationDTO {
     private String address;
     private float latitude;
     private float longitude;
+    private long peopleCount;
 }

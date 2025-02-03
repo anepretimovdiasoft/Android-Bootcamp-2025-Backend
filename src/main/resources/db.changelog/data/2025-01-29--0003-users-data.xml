@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="2025-01-29--0003-users-data" author="okalugin">
+    <changeSet id="173181713373001-1" author="okalugin">
         <loadData tableName="users" file="db.changelog/data/csv/2025-01-29--0003-users-data.csv"
                   separator=";"
                   quotchar='"'

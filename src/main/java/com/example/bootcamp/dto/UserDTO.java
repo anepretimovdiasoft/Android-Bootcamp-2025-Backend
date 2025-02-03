@@ -10,6 +10,7 @@ public class UserDTO {
     private String email;
     private String firstName;
     private String lastName;
+    private String role;
     private Date birthDate;
     private String phoneNumber;
     private String telegramUsername;
