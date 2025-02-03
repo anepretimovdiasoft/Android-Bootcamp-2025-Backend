@@ -10,7 +10,6 @@ import javax.persistence.*;
 public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @OneToMany(mappedBy = "Contacts", cascade = CascadeType.ALL)
     @Column(name = "Id")
     private long id;
 

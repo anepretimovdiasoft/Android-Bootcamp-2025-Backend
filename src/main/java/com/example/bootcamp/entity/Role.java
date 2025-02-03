@@ -9,8 +9,7 @@ import javax.persistence.*;
 @Table(name="Roles")
 public class Role {
     @Id
-//    @OneToOne
-//    @JoinColumn(name = "Id", nullable = false)
+    @Column(name = "Id")
     private long id;
 
     @Column(name = "Status")

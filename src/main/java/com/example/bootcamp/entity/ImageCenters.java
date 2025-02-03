@@ -8,8 +8,7 @@ import javax.persistence.*;
 @Table(name = "ImageCenters")
 public class ImageCenters {
     @Id
-//    @ManyToOne
-//    @JoinColumn(name = "Id", nullable = false)
+    @JoinColumn(name = "Id", nullable = false)
     private long id;
 
     @Column(name = "LinkImage")

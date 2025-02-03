@@ -13,7 +13,6 @@ public class User {
     @Column(name = "Id")
     private long id;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RoleId")
     private long roleId;
 
