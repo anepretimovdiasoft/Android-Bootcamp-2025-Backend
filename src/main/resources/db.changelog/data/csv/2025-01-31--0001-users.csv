@@ -1,0 +1,6 @@
+id;username;email;phone_number;volunteer_center_id;role;status;created_at;avatar_url
+1;"Иван Иванов";"ivan@example.com";"+79001112233";1;"USER";"active";2025-01-01 09:00:00;"https://example.com/avatars/ivan.jpg"
+2;"Мария Петрова";"maria@example.com";"+79004445566";2;"USER";"active";2025-01-02 10:00:00;"https://example.com/avatars/ivan.jpg"
+3;"Алексей Сидоров";"alexey@example.com";"+79007778899";3;"USER";"active";2025-01-03 11:00:00;"https://example.com/avatars/ivan.jpg"
+4;"Даня Сидоров";"danya@example.com";"+79001234567";4;"USER";"active";2025-01-03 12:00:00;"https://example.com/avatars/ivan.jpg"
+5;"Игорь Сидоров";"igor@example.com";"+79009876543";5;"USER";"active";2025-01-04 01:00:00;"https://example.com/avatars/ivan.jpg"

@@ -1,0 +1,6 @@
+user_id;content;is_admin_message;status;created_at
+1;*"здарова как дела?"*;false;pending;2025-01-31 12:00:00
+2;*"добро пожаловать в систему!"*;true;delivered;2025-01-31 12:05:00
+3;*"ваша заявка обработана"*;true;pending;2025-01-31 12:10:00
+4;*"sdfdfsfds sdfdsffdsfsddsf обработана"*;true;pending;2025-01-31 12:10:00
+5;*"sdfdfsfds 5 обработана"*;true;pending;2025-01-31 12:10:00
