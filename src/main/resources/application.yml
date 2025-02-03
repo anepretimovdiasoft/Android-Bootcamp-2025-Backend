@@ -12,12 +12,9 @@ spring:
 
   jpa:
     generate-ddl: false
-    hibernate:
-      ddl-auto: none
     show-sql: true
 
   spring-doc:
     swagger-ui:
       path: /swagger-ui.html
       operationsSorter: method
-  port : 8081
