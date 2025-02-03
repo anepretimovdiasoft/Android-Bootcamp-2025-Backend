@@ -1,0 +1,30 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-01-30--0001-volunteera" author="agavrilov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="link"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="link">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="id_volunteer_center" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_link_volunteer_center"
+                             referencedTableName="volunteer_center" referencedColumnNames="id"/>
+            </column>
+            <column name="id_volunteer" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_link_volunteer"
+                             referencedTableName="volunteer" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
