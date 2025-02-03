@@ -2,3 +2,5 @@ id;username;email;created_at;role
 1;"Иван Иванов";"ivan@example.com";2025-01-01 09:00:00;"USER"
 2;"Мария Петрова";"maria@example.com";2025-01-02 10:00:00;"USER"
 3;"Алексей Сидоров";"alexey@example.com";2025-01-03 11:00:00;"USER"
+4;"даня Сидоров";"danya@example.com";2025-01-03 12:00:00;"USER"
+5;"игорь Сидоров";"igor@example.com";2025-01-04 01:00:00;"USER"
