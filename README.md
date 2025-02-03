@@ -173,15 +173,15 @@
 	- Для пользователя (User) таблица (id, name, phone_number, email, password, status, center_id, isAdmin)
 	- Для волонтерских центров (VolunteerCenter) таблица (id, name, location, volunteers, contact)
 	- Предзаполнение с помощью Liquibase
-1. Для таблицы пользователя:
+2. Для таблицы пользователя:
 	- Реализовать хранение паролей в зашифрованном виде
 	- Реализовать изменение статуса ("active", "inactive")
 	  `PUT /api/users/{id}/status` 
 	- Получение статуса ("active", "inactive")
 	  `GET /api/users/{id}/status`
-1. Для таблицы волонтерских центров:
+3. Для таблицы волонтерских центров:
 	- Реализовать создание и редактирование волонтерских центров через API.
-2. API для регистрации:
+4. API для регистрации:
 	- `POST /api/users/register`
 	  (name, phone_number, email, password)
 	- Проверять пароль на запрещенные символы
@@ -219,6 +219,10 @@
 	  (id)
 	- Реализовать поиск в базе данных с использованием Spring Data JPA и методов `findByNameContaining` или `findByLocationContaining`, чтобы искать волонтерские центры по частичному совпадению имени или местоположения.
 	- Обработать отсутствие результатов поиска
+12. API для получения информации об админских аккаунтах отлично от юзеров
+	- При попытке получения ABOUT влзвращает " - "
+ 	- При попытке получения STATUS_WORK возвращает true
+ 	- При попытке получения центра возвращает " - "
 
 Низкий приоритет:
 1. Реализовать возможность редактирования волонтерского центра
@@ -228,4 +232,4 @@
 ## СХЕМА БАЗЫ ДАННЫХ
 https://dbdiagram.io/d/DB-for-VolunteerApp-67992a52263d6cf9a053f0d4
 
-![DB for VolunteerApp](https://github.com/user-attachments/assets/82071fca-3f95-48ff-a00c-78cfcf19ebde)
+![DB for VolunteerApp (1)](https://github.com/user-attachments/assets/318cab36-66ed-4035-a472-482181bed43d)

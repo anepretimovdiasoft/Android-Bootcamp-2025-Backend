@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-01-31--0002-volunteer_centers" author="agrachev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="volunteer_centers"/>
+            </not>
+        </preConditions>
+        <createTable tableName="volunteer_centers">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"> </column>
+            <column name="address" type="VARCHAR(50)"> </column>
+            <column name="phone_number" type="VARCHAR(20)">
+                <constraints unique="true"/>
+            </column>
+            <column name="about" type="VARCHAR(100)"> </column>
+            <column name="latitude" type="DECIMAL(9,6)"> </column>
+            <column name="longitude" type="DECIMAL(9,6)"> </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

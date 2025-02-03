@@ -1,2 +1,23 @@
-server:
-  port : 8081
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db.changelog/db.changelog-master.xml
+
+  jps:
+    generate-dbl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  spring-doc:
+    swagger-ui:
+      path: /swagger-ui.html
+      operationsSorter: method

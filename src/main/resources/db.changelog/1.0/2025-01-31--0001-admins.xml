@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-01-31--0001-admins" author="agrachev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="admins"/>
+            </not>
+        </preConditions>
+        <createTable tableName="admins">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"> </column>
+            <column name="phone_number" type="VARCHAR(20)" defaultValue="+79998887755">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)" defaultValue="supportmail@mail.ru">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="about" type="VARCHAR(10)" defaultValue="-"> </column>
+            <column name="status_work" type="BOOLEAN" defaultValue="true"> </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
