@@ -1,0 +1,3 @@
+role;first_name;last_name;email;password;contact_info;biography;photo;status
+admin;Иван;Иванов;ivan@gmail.com;123456qwerty;88005553535;Описание профиля;https://funnyducks.ru/upload/iblock/bec/bec0e919e8568d5f55ae3713889926c6.jpg;null
+volunteer;Андрей;Адреев;andry@gmail.com;qwerty123456;81234567890;Волонтер;https://funnyducks.ru/upload/iblock/bec/bec0e919e8568d5f55ae3713889926c6.jpg;1
