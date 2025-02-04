@@ -8,7 +8,7 @@ import com.example.bootcamp.exception.UserNotFoundException;
 import com.example.bootcamp.repository.CenterRepository;
 import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.UserService;
-import com.example.bootcamp.util.UserConvert;
+import com.example.bootcamp.util.ConverterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,23 +25,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll().stream()
-                .map(UserConvert::convertToDTO)
+                .map(ConverterDTO::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public UserDTO getUserById(Long id) {
         return userRepository.findById(id)
-                .map(UserConvert::convertToDTO)
+                .map(ConverterDTO::convertToDTO)
                 .orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
     }
 
     @Override
     public UserDTO createUser(UserDTO dto) {
-        Optional<VolunteerCenter> center = centerRepository.findByName(dto.getCenterName());
-        if (center.isEmpty()) {
-            throw new CenterNotFoundException("Department not found");
-        }
+        VolunteerCenter center = centerRepository.findByName(dto.getCenterName())
+                .orElseThrow(() -> new CenterNotFoundException("Department not found"));
 
         User user = new User();
         user.setName(dto.getName());
@@ -50,13 +48,15 @@ public class UserServiceImpl implements UserService {
         user.setAbout(dto.getAbout());
         user.setPassword(dto.getPassword());
         user.setStatusWork(dto.isStatusWork());
+        user.setVolunteerCenter(center);
 
-        return UserConvert.convertToDTO(userRepository.save(user));
+        return ConverterDTO.convertToDTO(userRepository.save(user));
     }
 
     @Override
     public UserDTO updateUser(Long id, UserDTO dto) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
 
         user.setName(dto.getName());
         user.setPhoneNumber(dto.getPhone_number());
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
         Optional<VolunteerCenter> center = centerRepository.findByName(dto.getCenterName());
         center.ifPresent(user::setVolunteerCenter);
 
-        return UserConvert.convertToDTO(userRepository.save(user));
+        return ConverterDTO.convertToDTO(userRepository.save(user));
     }
 
     @Override

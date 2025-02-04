@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public UserDTO createUser(@RequestBody UserDTO dto) {
-        return userService.createUser(dto);
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO dto) {
+        return ResponseEntity.ok(userService.createUser(dto));
     }
 
     @PutMapping("/{id}/update")
