@@ -2,17 +2,14 @@ package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.VolunteerCentre;
-import com.example.bootcamp.exception.UserNotFoundException;
 import com.example.bootcamp.exception.VolunteerCentreNotFoundException;
 import com.example.bootcamp.repository.VolunteerCentreRepository;
 import com.example.bootcamp.service.VolunteerCentreService;
-import com.example.bootcamp.util.UserMapper;
 import com.example.bootcamp.util.VolunteerCentreMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
