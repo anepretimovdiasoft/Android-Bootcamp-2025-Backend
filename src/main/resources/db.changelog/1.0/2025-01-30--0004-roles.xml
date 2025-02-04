@@ -7,7 +7,7 @@
 
 
     <changeSet id="2025-01-30--0004-roles" author="mabubakirova">
-        <preConditions>
+        <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="roles"/>
 
@@ -21,7 +21,7 @@
 
 
             <column name="role" type="VARCHAR(255)">
-                <constraints  nullable="false"/>
+                <constraints  nullable="false" unique="true"/>
             </column>
 
         </createTable>

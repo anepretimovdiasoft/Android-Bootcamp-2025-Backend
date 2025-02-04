@@ -11,11 +11,12 @@ public class UserMapper {
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
         userDTO.setName(user.getName());
+        userDTO.setUsername(user.getUsername());
         userDTO.setMail(user.getMail());
         userDTO.setPhone(user.getPhone());
         userDTO.setCenters(user.getCenters().getTitle());
-        userDTO.setRoles(user.getRoles().getRole());
-//        userDTO.setStatus(user.getStatus().getIsbusy());
+
+
         return userDTO;
     }
 }

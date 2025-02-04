@@ -1,13 +1,14 @@
 package com.example.bootcamp.entity;
 
 import javax.persistence.*;
-import java.util.List;
+
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
 @Data
 @Entity
 @Table(name="roles")
-public class Roles {
+public class Roles implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,8 @@ public class Roles {
     @Column(name="role")
     private String role;
 
-    @OneToOne(mappedBy = "roles", cascade = CascadeType.ALL)
-    private User user;
+    @Override
+    public String getAuthority() {
+        return "";
+    }
 }
