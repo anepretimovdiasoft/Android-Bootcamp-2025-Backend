@@ -17,5 +17,10 @@ spring:
   jpa:
     generate-ddl: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
+
+  spring-doc:
+    swagger-ui:
+      path: /swagger-ui.html
+      operationsSorter: method
