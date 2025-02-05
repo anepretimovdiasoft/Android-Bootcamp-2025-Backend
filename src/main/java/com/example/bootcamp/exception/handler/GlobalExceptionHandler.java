@@ -1,15 +1,12 @@
 package com.example.bootcamp.exception.handler;
 
-import com.example.bootcamp.exception.UserNotFoundException;
+import com.example.bootcamp.exception.PersonAlreadyExistException;
+import com.example.bootcamp.exception.PersonNotFoundException;
 import com.example.bootcamp.exception.VolunteerCentreNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import java.util.ResourceBundle;
-
-import static liquibase.pro.license.keymgr.e.e;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -18,8 +15,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e) {
+    @ExceptionHandler(PersonNotFoundException.class)
+    public ResponseEntity<String> handlePersonNotFoundException(PersonNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PersonAlreadyExistException.class)
+    public ResponseEntity<String> handlerPersonAlreadyExistException(PersonAlreadyExistException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
     }
 }

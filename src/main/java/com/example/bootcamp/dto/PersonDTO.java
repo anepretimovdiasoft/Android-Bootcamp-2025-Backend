@@ -2,14 +2,11 @@ package com.example.bootcamp.dto;
 
 import lombok.Data;
 
-import java.text.DecimalFormat;
-
 @Data
-public class UserDTO {
-    private int role;
+public class PersonDTO {
     private String name;
+    private String username;
     private String email;
-    private String password;
     private int phone;
     private String volunteer;
     private String photoUrl;

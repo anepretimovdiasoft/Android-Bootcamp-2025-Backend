@@ -1,10 +1,8 @@
 package com.example.bootcamp.entity;
 
-import jdk.jfr.DataAmount;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.text.DecimalFormat;
 import java.util.List;
 
 @Data
@@ -27,5 +25,5 @@ public class VolunteerCentre {
     private float coordinate_y;
 
     @OneToMany(mappedBy = "volunteer", cascade = CascadeType.ALL)
-    private List<User> people;
+    private List<Person> people;
 }
