@@ -21,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
+
         if (optionalUser.isEmpty()) throw new UsernameNotFoundException("User not found");
 
         return optionalUser.get();
