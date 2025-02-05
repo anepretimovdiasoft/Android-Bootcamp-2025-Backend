@@ -10,8 +10,6 @@ public class EventMapper {
     public static EventDTO convertToDTO(Event event) {
         EventDTO eventDTO = new EventDTO();
 
-
-
         eventDTO.setId(event.getId());
         eventDTO.setName(event.getName());
         eventDTO.setDescription(event.getDescription());
@@ -20,6 +18,8 @@ public class EventMapper {
         eventDTO.setLatitude(event.getLatitude());
         eventDTO.setLongitude(event.getLongitude());
         eventDTO.setCenter(event.getCenter().getId());
+        eventDTO.setCenterImageLink(event.getCenter().getLinkLogo());
+        eventDTO.setCenterName(event.getCenter().getName());
 
         return eventDTO;
     }

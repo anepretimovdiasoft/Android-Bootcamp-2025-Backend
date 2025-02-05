@@ -17,5 +17,7 @@ public class EventDTO {
     private String address;
     private Double latitude;
     private Double longitude;
+    private String centerImageLink;
+    private String centerName;
     private long center;
 }

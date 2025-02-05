@@ -16,7 +16,7 @@ public class VolunteerRegisterDTO {
     // Не совсем понимаю, как можно сохранить пользователя без пароля,
     // поэтому создал класс, который используется только при регистрации.
 
-    private long id;
+    // private long id;
     private String name;
     private String surname;
     private String patronymic;
@@ -31,10 +31,10 @@ public class VolunteerRegisterDTO {
     private String telegramLink;
     private String vkLink;
 
-    private String role;  // строка либо user, либо admin
-    private Long center = null;  // id центра, в котором зарегистрирован
+    // private String role;  // строка либо user, либо admin
+    // private Long center = null;  // id центра, в котором зарегистрирован
 
-    private String profileImageUrl;
+    // private String profileImageUrl;
     private boolean medicalBook;
     private boolean driverLicense;
 }

@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class VolunteerRegisterMapper {
-    public static Volunteer convertFromDTO(VolunteerRegisterDTO volunteerDTO, Role role, Center center) {
+    public static Volunteer convertFromDTO(VolunteerRegisterDTO volunteerDTO, String password, Role role, Center center) {
         Volunteer volunteer = new Volunteer();
 
         volunteer.setName(volunteerDTO.getName());
@@ -17,14 +17,14 @@ public class VolunteerRegisterMapper {
         volunteer.setAboutMe(volunteerDTO.getAboutMe());
         volunteer.setTelephone(volunteerDTO.getTelephone());
         volunteer.setEmail(volunteerDTO.getEmail());
-        volunteer.setPassword(volunteerDTO.getPassword());
+        volunteer.setPassword(password);
         volunteer.setBirthday(volunteerDTO.getBirthday());
         volunteer.setCity(volunteerDTO.getCity());
         volunteer.setTelegramLink(volunteerDTO.getTelegramLink());
         volunteer.setVkLink(volunteerDTO.getVkLink());
         volunteer.setRole(role);
         volunteer.setCenter(center);
-        volunteer.setProfileImageUrl(volunteerDTO.getProfileImageUrl());
+        volunteer.setProfileImageUrl(null);
         volunteer.setMedicalBook(volunteerDTO.isMedicalBook());
         volunteer.setDriverLicense(volunteerDTO.isDriverLicense());
 

@@ -1,10 +1,12 @@
 package com.example.bootcamp.controller;
 
-import com.example.bootcamp.service.VolunteerService;
 import com.example.bootcamp.dto.entity.volunteer.VolunteerDTO;
 import com.example.bootcamp.dto.entity.volunteer.VolunteerRegisterDTO;
+import com.example.bootcamp.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +27,16 @@ public class VolunteersController {
         return ResponseEntity.ok(volunteerService.getById(id));
     }
 
+    @GetMapping("/check/email/{email}")
+    public ResponseEntity<String> getCheckVolunteerByEmail(@PathVariable String email) {
+        return ResponseEntity.ok("Volunteer " + email + " is register!");
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<VolunteerDTO> login(Authentication authentication) {
+        return ResponseEntity.ok(volunteerService.getByEmail(authentication.getName()));
+    }
+
     @GetMapping("/email/{email}")
     public ResponseEntity<VolunteerDTO> getVolunteerByEmail(@PathVariable String email) {
         return ResponseEntity.ok(volunteerService.getByEmail(email));
@@ -40,9 +52,14 @@ public class VolunteersController {
         return ResponseEntity.ok(volunteerService.free());
     }
 
-    @PostMapping
+    @GetMapping("/free/not")
+    public ResponseEntity<List<VolunteerDTO>> getNotFreeVolunteers() {
+        return ResponseEntity.ok(volunteerService.notFree());
+    }
+
+    @PostMapping("/register")
     public ResponseEntity<VolunteerDTO> createVolunteer(@RequestBody VolunteerRegisterDTO volunteerRegisterDTO) {
-        return ResponseEntity.ok(volunteerService.create(volunteerRegisterDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(volunteerService.create(volunteerRegisterDTO));
     }
 
     @PutMapping("/{id}")
