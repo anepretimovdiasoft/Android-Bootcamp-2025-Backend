@@ -12,6 +12,7 @@ public class ConverterDTO {
         UserDTO dto = new UserDTO();
         dto.setId(user.getId());
         dto.setName(user.getName());
+        dto.setUsername(user.getUsername());
         dto.setPhone_number(user.getPhoneNumber());
         dto.setEmail(user.getEmail());
         dto.setAbout(user.getAbout());

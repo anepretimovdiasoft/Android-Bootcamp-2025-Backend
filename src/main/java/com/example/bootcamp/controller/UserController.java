@@ -1,9 +1,12 @@
 package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.UserDTO;
+import com.example.bootcamp.dto.UserRegisterDto;
 import com.example.bootcamp.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +27,14 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> createPerson(@RequestBody UserRegisterDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(dto));
+    }
+
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO dto) {
-        return ResponseEntity.ok(userService.createUser(dto));
+    public ResponseEntity<UserDTO> login(Authentication authentication) {
+        return ResponseEntity.ok(userService.getUserByUsername(authentication.getName()));
     }
 
     @PutMapping("/{id}/update")
@@ -43,6 +51,12 @@ public class UserController {
     @GetMapping("/{id}/status")
     public ResponseEntity<Boolean> getUserStatus(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserStatus(id));
+    }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<String> getByUsername(@PathVariable String username) {
+        UserDTO personDTO = userService.getUserByUsername(username);
+        return ResponseEntity.ok("User " + personDTO.getUsername() + " is registered");
     }
 
 
