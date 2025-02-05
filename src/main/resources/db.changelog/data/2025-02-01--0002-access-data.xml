@@ -4,12 +4,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="db.changelog/1.0/2025-02-01--0003-access.xml"/>
-    <include file="db.changelog/1.0/2025-01-30--0002-volunteer_center.xml"/>
-    <include file="db.changelog/1.0/2025-02-01--0001-user.xml"/>
-
-    <include file="db.changelog/data/2025-01-31--0001-volunteer_center-data.xml"/>
-    <include file="db.changelog/data/2025-02-01--0002-access-data.xml"/>
-    <include file="db.changelog/data/2025-02-01--0003-user-data.xml"/>
+    <changeSet id="2025-02-01--0002-access-data" author="agavrilov">
+        <loadData tableName="access" file="db.changelog/data/csv/2025-02-01--0002-access-data.csv"
+                  separator=";"
+                  encoding="UTF-8"/>
+    </changeSet>
 
 </databaseChangeLog>

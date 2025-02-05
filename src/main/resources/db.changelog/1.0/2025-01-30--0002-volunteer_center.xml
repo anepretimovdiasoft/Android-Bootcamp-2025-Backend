@@ -15,7 +15,7 @@
             <column name="id" type="INT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="adress" type="VARCHAR(100)">
+            <column name="address" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="latitude" type="FLOAT">
@@ -31,9 +31,6 @@
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
-
     </changeSet>
-
-
 
 </databaseChangeLog>
