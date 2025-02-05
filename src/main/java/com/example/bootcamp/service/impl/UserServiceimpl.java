@@ -41,7 +41,6 @@ public class UserServiceimpl implements UserService {
         Optional<User> userOptional = userRepository.findByUsername(username);
 
         if (userOptional.isEmpty()) throw new UserNotFoundException("User with username " + username + " not found");
-
         return UserMapper.convertToDto(userOptional.get());
     }
 
@@ -50,6 +49,24 @@ public class UserServiceimpl implements UserService {
         return userRepository.findAll().stream()
                 .map(UserMapper::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<UserDTO> getActiveUsers() {
+
+        return userRepository.findByActive(true).stream()
+                .map(UserMapper::convertToDto)
+                .collect(Collectors.toList());
+
+    }
+
+    public List<UserDTO> getInactiveUsers() {
+
+        return userRepository.findByActive(false).stream()
+                .map(UserMapper::convertToDto)
+                .collect(Collectors.toList());
+
     }
 
     @Override

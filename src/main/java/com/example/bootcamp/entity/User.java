@@ -19,6 +19,9 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "active")
+    private boolean active;;
+
     @Column(name = "name")
     private String name;
 
@@ -47,19 +50,10 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+        System.out.println("getAuthorities()");
+        return roles;
 
-    @Override
-    public String getPassword() {
-        return "";
     }
-
-    @Override
-    public String getUsername() {
-        return "";
-    }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;

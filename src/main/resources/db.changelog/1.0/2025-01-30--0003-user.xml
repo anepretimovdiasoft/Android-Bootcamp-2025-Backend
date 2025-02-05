@@ -23,6 +23,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="active" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="mail" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>

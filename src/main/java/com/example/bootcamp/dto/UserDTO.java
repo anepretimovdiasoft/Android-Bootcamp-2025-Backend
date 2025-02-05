@@ -12,7 +12,7 @@ public class UserDTO {
     private String phone;
     private String centers;
     private String photo_url;
-
+    private String active;
 
 
 }
