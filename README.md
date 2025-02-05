@@ -293,4 +293,4 @@
 
 
 #### Ссылка на схему БД: 
-https://dbdiagram.io/d/679a2061263d6cf9a06712cd
+https://dbdiagram.io/d/Copy-of-Copy-of-Copy-of-Copy-of-Copy-of-Copy-of-Copy-of-Copy-of-Untitled-Diagram-679cdcce263d6cf9a0a5a726
