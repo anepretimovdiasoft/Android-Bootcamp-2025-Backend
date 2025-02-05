@@ -6,6 +6,9 @@ import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.utils.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +23,9 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping
-    List<UserDTO> getAllUsers() {
-        return userService.getAllUsers();
+    Page<UserDTO> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userService.getAllUsers(pageable);
     }
 
     @GetMapping("/{id}")

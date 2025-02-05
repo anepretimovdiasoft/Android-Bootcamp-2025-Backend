@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/register").permitAll()
                 .antMatchers("/api/authority/**").hasAuthority("ADMIN")
                 .antMatchers("/api/user/**").hasAnyAuthority("USER", "ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers("/api/organization/**").hasAnyAuthority("USER", "ADMIN")
                 .and()
                 .httpBasic()
                 .and()

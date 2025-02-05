@@ -12,6 +12,8 @@ import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.utils.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +31,8 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public List<UserDTO> getAllUsers() {
-        return userRepository.findAll().stream()
-                .map(UserMapper::convertToDTO)
-                .collect(Collectors.toList());
+    public Page<UserDTO> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable).map(UserMapper::convertToDTO);
     }
 
     @Override
