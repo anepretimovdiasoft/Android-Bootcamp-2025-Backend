@@ -295,4 +295,4 @@
     в качестве ответа возвращает код ошибки или код 204 если все ок
 
 # Сущности в БД
-![Screenshot_10](https://github.com/user-attachments/assets/dd1ee303-90b5-4734-9bd3-28c1d3d1e820)
+![Screenshot_3](https://github.com/user-attachments/assets/a4a0f21d-3fd2-4e14-9d8a-a1c8dd3b61f5)
