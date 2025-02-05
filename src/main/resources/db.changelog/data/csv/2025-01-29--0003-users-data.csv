@@ -1,3 +1,3 @@
-email;password;first_name;last_name;role_id;birth_date;phone_number;telegram_username;organization_id;photo_url;about
-i@indexzero.su;{noop}HelloWorld1234;Oleg;Kalugin;1;2010-01-17;+79959211467;@index_zero;1;https://funnyducks.ru/upload/iblock/561/q603cs2h1pdnxq6s9m3k8sd6df3odrc1.jpg;Тест
-i@salmonmail.ru;{noop}Fish9128;Yan;Pugachev;2;2010-02-23;+79217830987;@salmon;1;https://funnyducks.ru/upload/iblock/561/q603cs2h1pdnxq6s9m3k8sd6df3odrc1.jpg;Тестк
+email;password;first_name;last_name;birth_date;phone_number;telegram_username;organization_id;photo_url;about
+i@indexzero.su;$2a$10$Jzb9I5eeHC0UIn/q5Rhq..wkI7KicBEZKB2u5BvnH8.n12d4alTOK;Oleg;Kalugin;2010-01-17;+79959211467;@index_zero;;https://funnyducks.ru/upload/iblock/561/q603cs2h1pdnxq6s9m3k8sd6df3odrc1.jpg;Тест
+i@salmonmail.ru;$2a$10$Jzb9I5eeHC0UIn/q5Rhq..wkI7KicBEZKB2u5BvnH8.n12d4alTOK;Yan;Pugachev;2010-02-23;+79217830987;@salmon;1;https://funnyducks.ru/upload/iblock/561/q603cs2h1pdnxq6s9m3k8sd6df3odrc1.jpg;Тестк

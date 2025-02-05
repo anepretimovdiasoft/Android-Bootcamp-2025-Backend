@@ -10,13 +10,13 @@
         </not>
     </preConditions>
     
-    <changeSet id="2025-01-29--0002-organization" author="okalugin">
+    <changeSet id="1738168283872-1" author="okalugin">
         <createTable tableName="organization">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(200)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="address" type="varchar(500)">
                 <constraints nullable="false"/>

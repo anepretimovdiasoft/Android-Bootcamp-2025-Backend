@@ -1,20 +1,25 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.UserDTO;
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.entity.Organization;
 import com.example.bootcamp.entity.User;
 import com.example.bootcamp.exception.OrganizationNotFoundException;
 import com.example.bootcamp.exception.UserNotFoundException;
+import com.example.bootcamp.repository.AuthorityRepository;
 import com.example.bootcamp.repository.OrganizationRepository;
-import com.example.bootcamp.repository.RoleRepository;
 import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.utils.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,13 +27,12 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final OrganizationRepository organizationRepository;
-    private final RoleRepository roleRepository;
+    private final AuthorityRepository authorityRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public List<UserDTO> getAllUsers() {
-        return userRepository.findAll().stream()
-                .map(UserMapper::convertToDTO)
-                .collect(Collectors.toList());
+    public Page<UserDTO> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable).map(UserMapper::convertToDTO);
     }
 
     @Override
@@ -39,25 +43,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO createUser(UserDTO dto) {
-        Optional<Organization> organization = organizationRepository.findByName(dto.getOrganizationName());
-        if(organization.isEmpty()) {
-            throw new OrganizationNotFoundException("Organization with name " + dto.getOrganizationName() + " not found");
-        }
+    public UserDTO createUser(UserRegisterDTO dto) {
         User user = new User();
-
-        user.setPassword("HelloWorld");
-        user.setRole(roleRepository.getById(2L));
 
         user.setEmail(dto.getEmail());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
-        user.setBirthDate(dto.getBirthDate());
-        user.setPhoneNumber(dto.getPhoneNumber());
-        user.setTelegramUsername(dto.getTelegramUsername());
-        user.setOrganization(organization.get());
-        user.setAbout(dto.getAbout());
-        user.setPhotoUrl(dto.getPhotoUrl());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setAuthorities(Set.of(
+                authorityRepository.findByAuthority("USER").get()
+        ));
 
         return UserMapper.convertToDTO(userRepository.save(user));
     }
@@ -85,4 +80,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+
 }

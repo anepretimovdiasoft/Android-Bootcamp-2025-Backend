@@ -3,6 +3,8 @@ package com.example.bootcamp.entity;
 import javax.persistence.*;
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
 @Entity
@@ -29,4 +31,3 @@ public class Organization {
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
     private List<User> users;
 }
-

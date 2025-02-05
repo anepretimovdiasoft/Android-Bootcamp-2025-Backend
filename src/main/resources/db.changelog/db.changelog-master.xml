@@ -5,12 +5,14 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
 
-    <include file="db.changelog/1.0/2025-01-29--0001-role.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0001-authority.xml"/>
     <include file="/db.changelog/1.0/2025-01-29--0002-organization.xml"/>
     <include file="/db.changelog/1.0/2025-01-29--0003-users.xml"/>
+    <include file="/db.changelog/1.0/2025-02-03--0004-users-authorities.xml"/>
 
-    <include file="db.changelog/data/2025-01-29--0001-role-data.xml"/>
+    <include file="/db.changelog/data/2025-01-29--0001-authority-data.xml"/>
     <include file="db.changelog/data/2025-01-29--0002-organization-data.xml"/>
     <include file="db.changelog/data/2025-01-29--0003-users-data.xml"/>
+    <include file="db.changelog/data/2025-02-03--0004-users-authorities-data.xml"/>
 
 </databaseChangeLog>
