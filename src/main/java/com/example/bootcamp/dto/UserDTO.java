@@ -6,19 +6,17 @@ import lombok.Data;
 import com.example.bootcamp.entity.VolunteerCenter;
 
 public class UserDTO {
+
     private long id;
     private String username;
     private String email;
     private String phoneNumber;
-//    private String passwordHash;
     private String avatarUrl;
     private String role;
     private String status;
     private Long volunteerCenterId;
-//    private LocalDateTime createdAt;
-    private VolunteerCenter volunteerCenter; // ??? связь с VolunteerCenter
+    private VolunteerCenter volunteerCenter;
 
-    // Геттеры и сеттеры
     public long getId() {
         return id;
     }
@@ -51,14 +49,6 @@ public class UserDTO {
         this.phoneNumber = phoneNumber;
     }
 
-//    public String getPasswordHash() {
-//        return passwordHash;
-//    }
-//
-//    public void setPasswordHash(String passwordHash) {
-//        this.passwordHash = passwordHash;
-//    }
-
     public String getAvatarUrl() {
         return avatarUrl;
     }
@@ -89,5 +79,13 @@ public class UserDTO {
 
     public void setVolunteerCenterId(long volunteerCenterId) {
         this.volunteerCenterId = volunteerCenterId;
+    }
+
+    public VolunteerCenter getVolunteerCenter() {
+        return volunteerCenter;
+    }
+
+    public void setVolunteerCenter(VolunteerCenter volunteerCenter) {
+        this.volunteerCenter = volunteerCenter;
     }
 }

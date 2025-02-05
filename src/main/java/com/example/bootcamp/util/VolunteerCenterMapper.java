@@ -2,13 +2,17 @@ package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.VolunteerCenterDTO;
 import com.example.bootcamp.entity.VolunteerCenter;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Data;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class VolunteerCenterMapper {
 
+    //статический метод для конвертации Entity в DTO
     public static VolunteerCenterDTO convertToDto(VolunteerCenter volunteerCenter) {
+        if (volunteerCenter == null) {
+            return null;
+        }
+
         VolunteerCenterDTO dto = new VolunteerCenterDTO();
         dto.setId(volunteerCenter.getId());
         dto.setName(volunteerCenter.getName());
@@ -16,7 +20,12 @@ public class VolunteerCenterMapper {
         return dto;
     }
 
+    //статический метод для конвертации DTO в Entity
     public static VolunteerCenter convertToEntity(VolunteerCenterDTO volunteerCenterDTO) {
+        if (volunteerCenterDTO == null) {
+            return null;
+        }
+
         VolunteerCenter volunteerCenter = new VolunteerCenter();
         volunteerCenter.setId(volunteerCenterDTO.getId());
         volunteerCenter.setName(volunteerCenterDTO.getName());

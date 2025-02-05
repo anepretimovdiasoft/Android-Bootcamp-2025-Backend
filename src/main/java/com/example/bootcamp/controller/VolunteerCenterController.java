@@ -7,20 +7,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Data;
 
 @RestController
-@RequestMapping("/volunteer-centers")
-@RequiredArgsConstructor
+@RequestMapping("/api/volunteer-centers")
 public class VolunteerCenterController {
-
     private final VolunteerCenterService volunteerCenterService;
 
+    public VolunteerCenterController(VolunteerCenterService volunteerCenterService) {
+        this.volunteerCenterService = volunteerCenterService;
+    }
     @GetMapping
-    public ResponseEntity<List<VolunteerCenterDTO>> getAllVolunteerCenters() {
-        return ResponseEntity.ok(volunteerCenterService.getAllVolunteerCenters());
+    public List<VolunteerCenterDTO> getAllVolunteerCenters() {
+        return volunteerCenterService.getAllVolunteerCenters();
     }
 
     @GetMapping("/{id}")
@@ -29,12 +27,13 @@ public class VolunteerCenterController {
     }
 
     @PostMapping
-    public ResponseEntity<VolunteerCenterDTO> createVolunteerCenter(@RequestBody VolunteerCenterDTO volunteerCenterDTO) {
-        return ResponseEntity.ok(volunteerCenterService.createVolunteerCenter(volunteerCenterDTO));
+    public VolunteerCenterDTO createVolunteerCenter(@RequestBody VolunteerCenterDTO volunteerCenterDTO) {
+        return volunteerCenterService.createVolunteerCenter(volunteerCenterDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<VolunteerCenterDTO> updateVolunteerCenter(@PathVariable Long id, @RequestBody VolunteerCenterDTO volunteerCenterDTO) {
+    public ResponseEntity<VolunteerCenterDTO> updateVolunteerCenter(@PathVariable Long id,
+                                                                    @RequestBody VolunteerCenterDTO volunteerCenterDTO) {
         return ResponseEntity.ok(volunteerCenterService.updateVolunteerCenter(id, volunteerCenterDTO));
     }
 

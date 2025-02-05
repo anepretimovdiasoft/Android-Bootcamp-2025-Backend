@@ -9,7 +9,6 @@ import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.repository.VolunteerCenterRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.util.UserMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +16,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final VolunteerCenterRepository volunteerCenterRepository;
+
+    //конструктор с инъекцией зависимостей
+    public UserServiceImpl(UserRepository userRepository, VolunteerCenterRepository volunteerCenterRepository) {
+        this.userRepository = userRepository;
+        this.volunteerCenterRepository = volunteerCenterRepository;
+    }
 
     @Override
     public List<UserDTO> getAllUsers() {
