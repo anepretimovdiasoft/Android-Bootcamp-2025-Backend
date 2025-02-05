@@ -9,11 +9,13 @@ public class UserDTO {
     private String email;
     private String birthDate;
     private String name;
+    private String username;
     private String description;
     private String avatarUrl;
     private Timestamp joinedAt;
     private Timestamp createdAt;
     private String center;
-    private boolean adminRights;
+    private String centerDescription;
+    private String authorities;
 
 }

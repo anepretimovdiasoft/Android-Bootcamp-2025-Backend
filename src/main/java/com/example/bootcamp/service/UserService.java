@@ -1,7 +1,7 @@
 package com.example.bootcamp.service;
 
 import com.example.bootcamp.dto.UserDTO;
-import com.example.bootcamp.entity.User;
+import com.example.bootcamp.dto.UserRegisterDTO;
 
 import java.util.List;
 
@@ -15,7 +15,9 @@ public interface UserService {
 
     UserDTO getUserById(Long id);
 
-    User createUser(User user);
+    UserDTO createUser(UserRegisterDTO user);
+
+    UserDTO getByUsername(String username);
 
     UserDTO updateUserProfile(Long id, UserDTO userDTO);
 

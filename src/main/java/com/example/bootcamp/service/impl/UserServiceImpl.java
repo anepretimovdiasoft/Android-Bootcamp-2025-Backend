@@ -1,9 +1,12 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.UserDTO;
+import com.example.bootcamp.dto.UserRegisterDTO;
+import com.example.bootcamp.entity.Authority;
 import com.example.bootcamp.entity.Center;
 import com.example.bootcamp.entity.User;
 import com.example.bootcamp.exception.*;
+import com.example.bootcamp.repository.AuthorityRepository;
 import com.example.bootcamp.repository.CenterRepository;
 import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.UserService;
@@ -11,19 +14,17 @@ import com.example.bootcamp.util.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.h2.jdbc.JdbcSQLDataException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.NamingException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
-
-import static liquibase.pro.license.keymgr.e.e;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +32,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final CenterRepository centerRepository;
-
+    private final PasswordEncoder passwordEncoder;
+    private final AuthorityRepository authorityRepository;
     @Override
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll().stream().map(UserMapper::convertToDTO).collect(Collectors.toList());
@@ -57,14 +59,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public UserDTO createUser(UserRegisterDTO registerDTO)  {
         try {
-            if (userRepository.existsByEmail(user.getEmail())) {
-                throw new EmailAlreadyExistsException("Email " + user.getEmail() + " already exists!");
+            if (userRepository.findByUsername(registerDTO.getUsername()).isPresent()) {
+                throw new UsernameAlreadyExistsException("Username" + registerDTO.getUsername() + " already exists!");
             }
+            else if (userRepository.existsByEmail(registerDTO.getEmail())) {
+                throw new EmailAlreadyExistsException("Email " + registerDTO.getEmail() + " already exists!");
+            }
+
+            Optional<Authority> roleUser = authorityRepository.findByAuthority("ROLE_USER");
+            if (roleUser.isEmpty()) {
+                throw new AuthorityNotFoundException("Authority ROLE_USER not found!");
+            }
+
+            User user = UserMapper.convertFromRegisterDTO(registerDTO);
+            user.setAuthorities(Set.of(roleUser.get()));
             user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
-            return userRepository.save(user);
-        } catch (DataIntegrityViolationException e) {
+            user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
+
+            return UserMapper.convertToDTO(userRepository.save(user));
+        }
+        catch (DataIntegrityViolationException e) {
             Throwable rootCause = e;
             while (rootCause.getCause() != null && rootCause.getCause() != rootCause) {
                 rootCause = rootCause.getCause();
@@ -75,16 +91,10 @@ public class UserServiceImpl implements UserService {
 
                 String sqlMessage = constraintEx.getMessage();
 
-                if (sqlMessage.contains("USER(EMAIL)")) {
-                    throw new EmailAlreadyExistsException("Email " + user.getEmail() + " already exists!");
-                } else if (sqlMessage.contains("BIRTH_DATE")) {
-                    throw new InvalidBirthDateException("Birth Date " + user.getBirthDate() + " too large(max 10 symbols)!");
-                } else if (sqlMessage.contains("PASSWORD VARCHAR(100)")) {
-                    throw new InvalidPasswordException("Password " + user.getPassword() + " too large(max 100 symbols)!");
+                if (sqlMessage.contains("PASSWORD VARCHAR(100)")) {
+                    throw new InvalidPasswordException("Password " + registerDTO.getPassword() + " too large(max 100 symbols)!");
                 } else if (sqlMessage.contains("NAME")) {
-                    throw new InvalidNameException("Name " + user.getName() + " too large(max 100 symbols)!");
-                } else if (sqlMessage.contains("DESCRIPTION")) {
-                    throw new InvalidDescriptionException("Description " + user.getDescription() + " too large(max 200 symbols)!");
+                    throw new InvalidNameException("Name " + registerDTO.getName() + " too large(max 100 symbols)!");
                 } else {
                     throw new OtherException("Неизвестная ошибка!");
                 }
@@ -95,16 +105,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO getByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User with name " + username + " not found!");
+        }
+        return UserMapper.convertToDTO(user.get());
+    }
+
+    @Override
     public UserDTO updateUserProfile(Long id, UserDTO userDTO) {
         try {
             User old_user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User " + id + " not found!"));
             User user = UserMapper.convertFromDTO(userDTO);
-
             user.setId(id);
-            user.setPassword(old_user.getPassword());
+
             user.setCreatedAt(old_user.getCreatedAt());
+            user.setPassword(old_user.getPassword());
+            user.setAuthorities(old_user.getAuthorities());
+            user.setCenter(old_user.getCenter());
+            user.setJoinedAt(old_user.getJoinedAt());
             return UserMapper.convertToDTO(userRepository.save(user));
-        } catch (DataIntegrityViolationException e) {
+        }
+        catch (DataIntegrityViolationException e) {
             Throwable rootCause = e;
             while (rootCause.getCause() != null && rootCause.getCause() != rootCause) {
                 rootCause = rootCause.getCause();
@@ -133,7 +156,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-        public UserDTO editCenter(Long id, String center) {
+    public UserDTO editCenter(Long id, String center) {
 
         User old_user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found!"));
         Optional<Center> optionalCenter = centerRepository.findByName(center);

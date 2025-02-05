@@ -4,7 +4,6 @@ import com.example.bootcamp.dto.CenterDTO;
 import com.example.bootcamp.entity.Center;
 import com.example.bootcamp.util.CalculateDistance.CalculateDistance;
 import lombok.experimental.UtilityClass;
-import org.springframework.data.geo.Distance;
 
 import java.util.Optional;
 import java.util.stream.Collectors;

@@ -21,6 +21,9 @@
             <column name="email" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
+            <column name="username" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
             <column name="password" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
@@ -33,9 +36,6 @@
             </column>
             <column name="joined_at" type="TIMESTAMP"/>
             <column name="created_at" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="admin_rights" type="BOOL">
                 <constraints nullable="false"/>
             </column>
         </createTable>

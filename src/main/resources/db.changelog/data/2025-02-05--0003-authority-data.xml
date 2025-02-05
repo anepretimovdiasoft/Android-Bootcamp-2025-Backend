@@ -5,11 +5,8 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="2025-01-30--0002-user-data" author="nzhavoronkov">
-        <sql>
-            ALTER TABLE user ALTER COLUMN created_at SET DEFAULT CURRENT_TIMESTAMP;
-        </sql>
-        <loadData tableName="user" file="db.changelog/data/csv/2025-01-30--0002-user-data.csv"
+    <changeSet id="2025-02-05--0003-authority-data" author="nzhavoronkov">
+        <loadData tableName="authority" file="db.changelog/data/csv/2025-02-05--0003-authority-data.csv"
                   separator=";"
                   quotchar='"'
                   encoding="UTF-8"/>
