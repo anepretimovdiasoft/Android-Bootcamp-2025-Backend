@@ -16,4 +16,6 @@ public interface VolunteerService {
     void delete(long volunteerId);
 
     List<VolunteerDTO> free();
+
+    List<VolunteerDTO> notFree();
 }

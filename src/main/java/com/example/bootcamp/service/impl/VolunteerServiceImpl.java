@@ -1,20 +1,20 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.aspect.annotation.LogExample;
-import com.example.bootcamp.domain.entity.Center;
 import com.example.bootcamp.domain.entity.Role;
 import com.example.bootcamp.domain.entity.Volunteer;
 import com.example.bootcamp.domain.exception.ConflictResourceException;
 import com.example.bootcamp.domain.exception.ResourceNotFoundException;
-import com.example.bootcamp.repository.CenterRepository;
-import com.example.bootcamp.repository.RoleRepository;
-import com.example.bootcamp.repository.VolunteerRepository;
-import com.example.bootcamp.service.VolunteerService;
 import com.example.bootcamp.dto.entity.volunteer.VolunteerDTO;
 import com.example.bootcamp.dto.entity.volunteer.VolunteerRegisterDTO;
 import com.example.bootcamp.dto.mappers.volunteer.VolunteerMapper;
 import com.example.bootcamp.dto.mappers.volunteer.VolunteerRegisterMapper;
+import com.example.bootcamp.repository.CenterRepository;
+import com.example.bootcamp.repository.RoleRepository;
+import com.example.bootcamp.repository.VolunteerRepository;
+import com.example.bootcamp.service.VolunteerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     private final VolunteerRepository volunteerRepository;
     private final RoleRepository roleRepository;
     private final CenterRepository centerRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @LogExample
@@ -64,28 +64,18 @@ public class VolunteerServiceImpl implements VolunteerService {
     @Override
     @LogExample
     public VolunteerDTO create(VolunteerRegisterDTO volunteerRegisterDTO) {
-        Optional<Role> roleOptional = roleRepository.findByRoleName(volunteerRegisterDTO.getRole());
-
         Optional<Volunteer> volunteerEmailOptional = volunteerRepository.findByEmail(volunteerRegisterDTO.getEmail());
         Optional<Volunteer> volunteerPhoneOptional = volunteerRepository.findByTelephone(volunteerRegisterDTO.getTelephone());
-
-        if (roleOptional.isEmpty())
-            throw new ResourceNotFoundException("Роль с названием (" + volunteerRegisterDTO.getRole() + ") не найдена!");
-
-        // todo: Кривая реализация, переписать
-        Center center = null;
-        if (volunteerRegisterDTO.getCenter() != null) {
-            Optional<Center> centerOptional = centerRepository.findById(volunteerRegisterDTO.getCenter());
-
-            if (centerOptional.isEmpty())
-                throw new ResourceNotFoundException("Центр с id (" + volunteerRegisterDTO.getCenter() + ") не найден!");
-            center = centerOptional.get();
-        }
 
         if (volunteerEmailOptional.isPresent() || volunteerPhoneOptional.isPresent())
             throw new ConflictResourceException("Пользователь с таким email или телефоном уже существует!");
 
-        Volunteer volunteer = VolunteerRegisterMapper.convertFromDTO(volunteerRegisterDTO, roleOptional.get(), center);
+        Role standardRole = roleRepository.findByRoleName("ROLE_USER").orElseThrow(() -> new ResourceNotFoundException("Стандартная роль пользователя не найдена!"));
+        Volunteer volunteer = VolunteerRegisterMapper.convertFromDTO(
+                volunteerRegisterDTO,
+                passwordEncoder.encode(volunteerRegisterDTO.getPassword()),
+                standardRole, null
+        );
         return VolunteerMapper.convertToDTO(volunteerRepository.save(volunteer));
     }
 
@@ -95,7 +85,6 @@ public class VolunteerServiceImpl implements VolunteerService {
         Volunteer volunteer = volunteerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Волонтёр с id (" + id + ") не найден!"));
 
-        // todo: Пока поля email, telephone и role обновлять нельзя, но над этим стоит ещё подумать.
         volunteer.setName(volunteerDTO.getName());
         volunteer.setSurname(volunteerDTO.getSurname());
         volunteer.setPatronymic(volunteerDTO.getPatronymic());
@@ -128,6 +117,14 @@ public class VolunteerServiceImpl implements VolunteerService {
     public List<VolunteerDTO> free() {
         return volunteerRepository.findAll().stream()
                 .filter(volunteer -> volunteer.getCenter() == null)
+                .map(VolunteerMapper::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VolunteerDTO> notFree() {
+        return volunteerRepository.findAll().stream()
+                .filter(volunteer -> volunteer.getCenter() != null)
                 .map(VolunteerMapper::convertToDTO)
                 .collect(Collectors.toList());
     }

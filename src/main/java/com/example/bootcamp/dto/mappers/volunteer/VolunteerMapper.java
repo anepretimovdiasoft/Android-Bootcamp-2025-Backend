@@ -24,8 +24,11 @@ public class VolunteerMapper {
         volunteerDTO.setVkLink(volunteer.getVkLink());
         volunteerDTO.setRole(volunteer.getRole().getRoleName());
 
-        if (volunteer.getCenter() != null)
+        if (volunteer.getCenter() != null) {
             volunteerDTO.setCenter(volunteer.getCenter().getId());
+            volunteerDTO.setCenterName(volunteer.getCenter().getName());
+            volunteerDTO.setCenterImageUrl(volunteer.getCenter().getLinkLogo());
+        }
 
         volunteerDTO.setProfileImageUrl(volunteer.getProfileImageUrl());
         volunteerDTO.setMedicalBook(volunteer.isMedicalBook());

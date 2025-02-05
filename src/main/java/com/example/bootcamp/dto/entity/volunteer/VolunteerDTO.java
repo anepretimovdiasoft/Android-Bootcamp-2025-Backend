@@ -28,6 +28,9 @@ public class VolunteerDTO {
     private String role;  // строка либо user, либо admin
     private Long center = null;  // id центра, в котором зарегистрирован
 
+    private String centerName = null;
+    private String centerImageUrl = null;
+
     private String profileImageUrl;
     private boolean medicalBook;
     private boolean driverLicense;
