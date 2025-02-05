@@ -1,5 +1,6 @@
 package com.example.bootcamp.exception.handler;
 
+import com.example.bootcamp.exception.MessageNotFoundException;
 import com.example.bootcamp.exception.UserNotFoundException;
 import com.example.bootcamp.exception.VolunteerCenterNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -19,5 +20,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleVolunteerCenterNotFoundException(VolunteerCenterNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(MessageNotFoundException.class)
+    public ResponseEntity<String> handleMessageNotFoundException(MessageNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 
 }
