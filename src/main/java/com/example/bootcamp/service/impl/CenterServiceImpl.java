@@ -3,10 +3,8 @@ package com.example.bootcamp.service.impl;
 import com.example.bootcamp.dto.CenterDTO;
 import com.example.bootcamp.dto.UserDTO;
 import com.example.bootcamp.entity.Center;
-import com.example.bootcamp.exception.UserNotFoundException;
 import com.example.bootcamp.repository.CenterRepository;
 import com.example.bootcamp.service.CenterService;
-import com.example.bootcamp.util.CalculateDistance.CalculateDistance;
 import com.example.bootcamp.util.Mapper.CenterMapper;
 
 import com.example.bootcamp.exception.CenterNotFoundException;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

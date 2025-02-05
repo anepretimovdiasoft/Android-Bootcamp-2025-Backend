@@ -64,4 +64,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleOtherException(OtherException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public ResponseEntity<String> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(AuthorityNotFoundException.class)
+    public ResponseEntity<String> handleAuthorityNotFoundException(AuthorityNotFoundException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

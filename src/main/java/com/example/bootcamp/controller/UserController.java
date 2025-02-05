@@ -1,12 +1,14 @@
 package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.UserDTO;
-import com.example.bootcamp.entity.User;
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.exception.NoRequestBodyException;
 import com.example.bootcamp.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,12 +40,31 @@ public class UserController {
         return ResponseEntity.ok(userService.getLatestEnrollments());
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody(required = false) User user) {
-            User createdUser = userService.createUser(user);
-            return ResponseEntity.ok(createdUser);
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> createUser(@RequestBody(required = false) UserRegisterDTO user) {
+        if (user == null) {
+            throw new NoRequestBodyException("No or wrong request body!");
+        }
+            UserDTO createdUser = userService.createUser(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<String> getByUsername(@PathVariable String username) {
+        UserDTO userDTO = userService.getByUsername(username);
+        if (username == null) {
+            throw new NoRequestBodyException("No or wrong request body!");
+        }
+        return ResponseEntity.ok(userDTO.getUsername());
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<UserDTO> login(Authentication authentication) {
+        if (authentication == null) {
+            throw new NoRequestBodyException("No or wrong request body!");
+        }
+        return ResponseEntity.ok(userService.getByUsername(authentication.getName()));
+    }
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUserProfile(
             @PathVariable Long id,
