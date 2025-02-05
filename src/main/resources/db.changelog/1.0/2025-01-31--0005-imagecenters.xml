@@ -13,10 +13,11 @@
 
         <createTable tableName="ImageCenters">
             <column name="Id" type="BIGINT">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_ImageCenters_VolunteerCenters" referencedTableName="VolunteersCenters"
+                             referencedColumnNames="ImageId"/>
             </column>
 
-            <column name="LinkImage" type="CHAR">
+            <column name="LinkImage" type="VARCHAR(1000)">
                 <constraints nullable="false"/>
             </column>
 

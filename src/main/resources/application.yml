@@ -20,4 +20,3 @@ spring:
     swagger-ui:
       path: /swagger-ui.html
       operationsSorter: method
-  port : 8081
