@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="/db.changelog/1.0/2025-01-29--0001-volunteer-centers.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0001-roles.xml"/>
+    <include file="/db.changelog/1.0/2025-01-29--0001-users.xml"/>
+    <include file="db.changelog/1.0/data/2025-01-29--0001-volunteer-centers-data.xml"/>
+    <include file="db.changelog/1.0/data/2025-01-29--0001-roles-data.xml"/>
+    <include file="db.changelog/1.0/data/2025-01-29--0001-users-data.xml"/>
+</databaseChangeLog>

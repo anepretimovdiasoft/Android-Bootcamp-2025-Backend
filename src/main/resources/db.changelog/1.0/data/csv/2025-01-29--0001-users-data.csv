@@ -1,0 +1,4 @@
+name;surname;patronymic;age;phone_number;email;location;username;password;volunteer_center_id;is_active;role_id
+Сергей;Пчельников;Алексеевич;16;89998887766;sigma.timlid@gmail.com;Ижевск;ventavis;tabulavia;1;false;1
+Ананьин;Данил;Олегович;15;89723336744;gigachad.backend@gmail.com;Москва;deron38;usabrave;2;true;2
+Пешков;Дмитрий;Бобович;15;89129041217;prikol.frontend@gmail.com;Санкт-Петербург;pshkvd;dmitropeshka;3;true;2
