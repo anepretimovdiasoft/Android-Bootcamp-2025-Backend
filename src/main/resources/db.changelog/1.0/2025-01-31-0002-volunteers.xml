@@ -15,27 +15,27 @@
         <createTable tableName="volunteers">
 
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
 
             <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="email" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="password" type="VARCHAR(50)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="activestatus" type="BOOL">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="adminrights" type="BOOL">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="volunteercenter_id" type="BIGINT">

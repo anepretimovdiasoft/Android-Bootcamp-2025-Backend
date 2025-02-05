@@ -15,11 +15,11 @@
         <createTable tableName="volunteercenters">
 
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
 
             <column name="centername" type="varchar(50)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
 
             <column name="coordinates" type="varchar(100)">
