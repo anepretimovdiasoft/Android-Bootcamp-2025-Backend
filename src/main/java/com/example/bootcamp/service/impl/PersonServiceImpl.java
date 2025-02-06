@@ -14,6 +14,8 @@ import com.example.bootcamp.repository.VolunteerCentreRepository;
 import com.example.bootcamp.service.PersonService;
 import com.example.bootcamp.util.PersonMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -104,4 +106,12 @@ public class PersonServiceImpl implements PersonService {
 
         return PersonMapper.convertToDto(optionalPerson.get());
     }
+
+    @Override
+    public Page<PersonDTO> getAllPersonPaginated(Pageable pageable) {
+        return personRepository.findAll(pageable)
+                .map(PersonMapper::convertToDto);
+    }
+
+
 }
