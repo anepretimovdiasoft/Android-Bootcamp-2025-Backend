@@ -4,17 +4,15 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="db.changelog/1.0/2025-01-31--0001-users.xml"/>
-    <include file="db.changelog/1.0/2025-01-31--0002-contacts.xml"/>
-    <include file="db.changelog/1.0/2025-01-31--0003-volunteercenters.xml"/>
-    <include file="db.changelog/1.0/2025-01-31--0004-enrollment.xml"/>
-    <include file="db.changelog/1.0/2025-01-31--0005-imagecenters.xml"/>
-    <include file="db.changelog/1.0/2025-01-31--0006-role.xml"/>
+    <include file="db.changelog/1.0/2025-02-06-0001-authority.xml"/>
+    <include file="db.changelog/1.0/2025-02-06-0002-organization.xml"/>
+    <include file="db.changelog/1.0/2025-02-06-0003-contact.xml"/>
+    <include file="db.changelog/1.0/2025-02-06-0004-users.xml"/>
+    <include file="db.changelog/1.0/2025-02-06-0005-user-authorities.xml"/>
 
-    <include file="db.changelog/data/2025-01-31--0001-users-data.xml"/>
-    <include file="db.changelog/data/2025-01-31--0002-contacts-data.xml"/>
-    <include file="db.changelog/data/2025-01-31--0003-volunteercenters-data.xml"/>
-    <include file="db.changelog/data/2025-01-31--0004-enrollment-data.xml"/>
-    <include file="db.changelog/data/2025-01-31--0005-imagecenters-data.xml"/>
-    <include file="db.changelog/data/2025-01-31--0006-role-data.xml"/>
+    <include file="db.changelog/data/2025-02-06-0001-authority-data.xml"/>
+    <include file="db.changelog/data/2025-02-06-0002-organization-data.xml"/>
+    <include file="db.changelog/data/2025-02-06-0003-contact-data.xml"/>
+    <include file="db.changelog/data/2025-02-06-0004-users-data.xml"/>
+    <include file="db.changelog/data/2025-02-06-0005-user-authorities.xml"/>
 </databaseChangeLog>

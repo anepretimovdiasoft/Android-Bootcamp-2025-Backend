@@ -6,12 +6,26 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UserMapper {
-    public UserDTO convertToDto(User user){
+    public UserDTO convertToUserDTO(User user){
         UserDTO userDTO = new UserDTO();
+
         userDTO.setId(user.getId());
-        userDTO.setFirstName(user.getFirstName());
+        userDTO.setName(user.getName());
         userDTO.setSecondName(user.getSecondName());
         userDTO.setLastName(user.getLastName());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setInfo(user.getInfo());
+
+        if(user.getOrganization() != null){
+            userDTO.setOrganizationName(user.getOrganization().getName());
+        }
+
+        if(user.getContact() != null){
+            userDTO.setPhoneNumber(user.getContact().getPhoneNumber());
+            userDTO.setEmail(user.getContact().getEmail());
+            userDTO.setTelegramLink(user.getContact().getTelegramLink());
+        }
+
         return userDTO;
     }
 }

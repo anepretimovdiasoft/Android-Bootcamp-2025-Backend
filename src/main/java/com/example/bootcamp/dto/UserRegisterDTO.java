@@ -1,18 +1,16 @@
 package com.example.bootcamp.dto;
 
-import com.example.bootcamp.entity.Contact;
-import com.example.bootcamp.entity.Organization;
 import lombok.Data;
 
 @Data
-public class UserDTO {
-    private long id;
+public class UserRegisterDTO {
     private String name;
     private String secondName;
     private String lastName;
     private String username;
-    private String organizationName;
+    private String password;
     private String phoneNumber;
+    private String organizationName;
     private String email;
     private String telegramLink;
     private String info;
