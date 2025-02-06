@@ -11,7 +11,7 @@ public class UserRegisterDTO {
     private String username;
     private String password;
     private String mail;
-    private String phone;
-    private String Center;
+    private String centers;
+    private String photo_url;
 
 }

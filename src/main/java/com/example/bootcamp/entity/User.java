@@ -1,5 +1,7 @@
 package com.example.bootcamp.entity;
 
+
+
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +19,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "active")
-    private boolean active;;
+    private boolean active;
+
 
     @Column(name = "name")
     private String name;
@@ -37,15 +40,31 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phone")
-    private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "center_id", nullable = false)
+    @JoinColumn(name = "center_id", nullable = true)
     private Volunteer_centers centers;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Roles> roles;
+
+
+
+
+    public boolean getActive() {
+        return active;
+    }
+
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Long getId(){ return id;}
+
+    public void setId(Long id){this.id = id; }
+
 
 
     @Override
@@ -54,6 +73,7 @@ public class User implements UserDetails {
         return roles;
 
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

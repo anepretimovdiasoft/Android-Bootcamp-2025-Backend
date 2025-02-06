@@ -1,3 +1,3 @@
-username;name;mail;phone;password;center_id;photo_url;active
-mashullr;masha;abk@mail;576854;$2a$10$EXRo8ZwxLe5kdkHu0fIxkOPOnL1RoOVOTz/EVULKE5R5QwCBGQ0TS;2;ссылка на фото;true
-polilyx;polina;pol@yandex;547643;YWR;1;ссылка на фото;false
+username;name;mail;password;photo_url;active;center_id
+mashullr;masha;abk@mail;$2a$10$EXRo8ZwxLe5kdkHu0fIxkOPOnL1RoOVOTz/EVULKE5R5QwCBGQ0TS;ссылка на фото;true;1
+polilyx;polina;pol@yandex;YWR;ссылка на фото;false;null

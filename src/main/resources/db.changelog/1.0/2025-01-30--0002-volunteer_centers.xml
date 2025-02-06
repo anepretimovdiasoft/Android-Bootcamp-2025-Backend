@@ -24,7 +24,7 @@
             </column>
 
 
-            <column name="contacts" type="VARCHAR(15)">
+            <column name="contacts" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
 

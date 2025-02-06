@@ -9,10 +9,14 @@ public class UserDTO {
     private String name;
     private String username;
     private String mail;
-    private String phone;
     private String centers;
     private String photo_url;
-    private String active;
+    private Boolean active;
+    private Long center_id;
+
+
+
+
 
 
 }
