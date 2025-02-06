@@ -1,2 +1,2 @@
-name;phone_number;email;about;password;center_id
-Джон Доу;+78005553535;johndoe@gmail.com;Я Джон Доу;VeryStrong;1
+name;username;phone_number;email;about;password;center_id
+Джон Доу;john;+78005553535;johndoe@gmail.com;Я Джон Доу;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;1

@@ -7,9 +7,13 @@
         <!--tables-->
         <include file="db.changelog/1.0/2025-01-31--0002-volunteer_centers.xml"/>
         <include file="db.changelog/1.0/2025-01-31--0003-users.xml"/>
+        <include file="db.changelog/1.0/2025-02-02--0001-authority.xml"/>
+        <include file="db.changelog/1.0/2025-02-02--0004-users-authorities.xml"/>
 
         <!--data-->
         <include file="db.changelog/data/2025-01-31--0002-volunteer_centers-data.xml"/>
         <include file="db.changelog/data/2025-01-31--0003-users-data.xml"/>
+        <include file="db.changelog/data/2025-02-02--0001-authority-data.xml"/>
+        <include file="db.changelog/data/2025-02-02--0004-users-authorities-data.xml"/>
 
 </databaseChangeLog>

@@ -5,19 +5,18 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="2025-02-02---0004-person-authorities" author="agrachev">
+    <changeSet id="2025-02-02---0004-users-authorities" author="agrachev">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="person_authorities"/>
+                <tableExists tableName="users_authorities"/>
             </not>
         </preConditions>
-
-        <createTable tableName="person_authorities">
+        <createTable tableName="users_authorities">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="person_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_persauth_person" referencedTableName="users"
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_persauth_users" referencedTableName="users"
                              referencedColumnNames="id"/>
             </column>
             <column name="authorities_id" type="BIGINT">

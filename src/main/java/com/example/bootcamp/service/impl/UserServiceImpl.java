@@ -46,8 +46,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserRegisterDto dto) {
+        if (userRepository.findByUsername(dto.getUsername()).isPresent())
+            throw new UserAlreadyExistsException("Username already exists");
+
         VolunteerCenter center = centerRepository.findByName(dto.getCenterName())
-                .orElseThrow(() -> new CenterNotFoundException("Department not found"));
+                .orElseThrow(() -> new CenterNotFoundException("Center not found"));
 
         Optional<Authority> roleUser = authorityRepository.findByAuthority("ROLE_USER");
         if (roleUser.isEmpty()) throw new RuntimeException("Authority not found!");
@@ -68,11 +71,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Volunteer not found!"));
 
-        if (userRepository.findByUsername(dto.getUsername()).isPresent())
-            throw new UserAlreadyExistsException("Username already exists");
-
         user.setName(dto.getName());
-        user.setUsername(dto.getUsername());
+        // user.setUsername(dto.getUsername()); Нельзя менять логин
         user.setPhoneNumber(dto.getPhone_number());
         user.setEmail(dto.getEmail());
         user.setAbout(dto.getAbout());

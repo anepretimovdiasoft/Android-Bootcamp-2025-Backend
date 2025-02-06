@@ -5,8 +5,8 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="2025-02-02--0004-person-authorities-data" author="agrachev">
-        <loadData tableName="person_authorities" file="db.changelog/data/csv/2025-02-02--0004-user-authorities-data.csv"
+    <changeSet id="2025-02-02--0004-users-authorities-data" author="agrachev">
+        <loadData tableName="users_authorities" file="db.changelog/data/csv/2025-02-02--0004-users-authorities-data.csv"
                   separator=";"
                   quotchar='"'
                   encoding="UTF-8"/>
