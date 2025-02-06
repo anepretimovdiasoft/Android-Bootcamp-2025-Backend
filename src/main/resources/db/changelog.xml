@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Создание таблицы users -->
+    <changeSet id="001-create-users" author="your_name">
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)"/>
+            <column name="email" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(20)"/>
+            <column name="password_hash" type="varchar(255)"/>
+            <column name="role" type="varchar(50)"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Создание таблицы follows -->
+    <changeSet id="002-create-follows" author="your_name">
+        <createTable tableName="follows">
+            <column name="following_user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="follows" baseColumnNames="following_user_id"
+                                 referencedTableName="users" referencedColumnNames="id" constraintName=""/>
+        <addForeignKeyConstraint baseTableName="follows" baseColumnNames="followed_user_id"
+                                 referencedTableName="users" referencedColumnNames="id" constraintName=""/>
+    </changeSet>
+
+    <!-- Создание остальных таблиц (volunteer_centers, user_volunteer_centers, posts, tasks) -->
+    <changeSet id="003-create-volunteer-centers" author="your_name">
+        <createTable tableName="volunteer_centers">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="address" type="text"/>
+            <column name="latitude" type="decimal"/>
+            <column name="longitude" type="decimal"/>
+            <column name="contact_info" type="text"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Добавление предзаполненных данных -->
+    <changeSet id="004-insert-users" author="your_name">
+        <loadData file="classpath:/db/data/users.csv" separator="," tableName="users"/>
+    </changeSet>
+
+    <changeSet id="005-insert-volunteer-centers" author="your_name">
+        <loadData file="classpath:/db/data/volunteer_centers.csv" separator="," tableName="volunteer_centers"/>
+    </changeSet>
+
+</databaseChangeLog>
