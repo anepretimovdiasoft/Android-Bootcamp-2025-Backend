@@ -6,6 +6,8 @@ import com.example.bootcamp.entity.User;
 import com.example.bootcamp.entity.VolunteerCenter;
 import lombok.experimental.UtilityClass;
 
+import java.util.stream.Collectors;
+
 @UtilityClass
 public class ConverterDTO {
     public static UserDTO convertToDTO(User user) {
@@ -31,7 +33,7 @@ public class ConverterDTO {
         dto.setAbout(center.getAbout());
         dto.setLatitude(center.getLatitude());
         dto.setLongitude(center.getLongitude());
-        //dto.setVolunteers(center.getVolunteers());
+        dto.setVolunteersID(center.getVolunteers().stream().map(User::getId).collect(Collectors.toList()));
         return dto;
     }
 }
