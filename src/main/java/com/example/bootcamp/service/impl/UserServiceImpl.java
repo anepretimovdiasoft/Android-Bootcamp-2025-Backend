@@ -61,11 +61,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO createUser(UserRegisterDTO registerDTO)  {
         try {
-            if (userRepository.findByUsername(registerDTO.getUsername()).isPresent()) {
-                throw new UsernameAlreadyExistsException("Username" + registerDTO.getUsername() + " already exists!");
-            }
-            else if (userRepository.existsByEmail(registerDTO.getEmail())) {
-                throw new EmailAlreadyExistsException("Email " + registerDTO.getEmail() + " already exists!");
+            if (userRepository.findByEmail(registerDTO.getEmail()).isPresent()) {
+                throw new UsernameAlreadyExistsException("Username " + registerDTO.getEmail() + " already exists!");
             }
 
             Optional<Authority> roleUser = authorityRepository.findByAuthority("ROLE_USER");
@@ -105,8 +102,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
+    public UserDTO getByEmail(String username) {
+        Optional<User> user = userRepository.findByEmail(username);
         if (user.isEmpty()) {
             throw new UserNotFoundException("User with name " + username + " not found!");
         }

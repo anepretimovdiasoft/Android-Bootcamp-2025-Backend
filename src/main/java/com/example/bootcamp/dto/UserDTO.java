@@ -9,7 +9,6 @@ public class UserDTO {
     private String email;
     private String birthDate;
     private String name;
-    private String username;
     private String description;
     private String avatarUrl;
     private Timestamp joinedAt;

@@ -13,7 +13,6 @@ public class UserMapper {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setName(user.getName());
-        userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setDescription(user.getDescription());
         userDTO.setAvatarUrl(user.getAvatarUrl());
@@ -31,7 +30,6 @@ public class UserMapper {
         User user = new User();
         user.setId(userDTO.getId());
         user.setName(userDTO.getName());
-        user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setDescription(userDTO.getDescription());
         user.setAvatarUrl(userDTO.getAvatarUrl());
@@ -43,7 +41,6 @@ public class UserMapper {
     public User convertFromRegisterDTO(UserRegisterDTO userRegisterDTO) {
         User user = new User();
         user.setName(userRegisterDTO.getName());
-        user.setUsername(userRegisterDTO.getUsername());
         user.setEmail(userRegisterDTO.getEmail());
         return user;
     }
@@ -51,7 +48,6 @@ public class UserMapper {
     public UserRegisterDTO convertToRegisterDTO(User user) {
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO();
         userRegisterDTO.setName(user.getName());
-        userRegisterDTO.setUsername(user.getUsername());
         userRegisterDTO.setEmail(user.getEmail());
         return userRegisterDTO;
     }
