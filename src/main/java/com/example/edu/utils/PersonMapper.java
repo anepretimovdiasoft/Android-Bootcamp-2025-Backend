@@ -1,6 +1,6 @@
 package com.example.edu.utils;
 
-import com.example.edu.dto.PersonDTO;
+import com.example.edu.dto.person.PersonDTO;
 import com.example.edu.entity.Person;
 import lombok.experimental.UtilityClass;
 

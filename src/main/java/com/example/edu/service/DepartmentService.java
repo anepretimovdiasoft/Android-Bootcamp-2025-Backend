@@ -1,6 +1,7 @@
 package com.example.edu.service;
 
-import com.example.edu.dto.DepartmentDTO;
+import com.example.edu.dto.department.DepartmentDTO;
+import com.example.edu.dto.department.DepartmentUpdateDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +15,7 @@ public interface DepartmentService {
 
     DepartmentDTO getDepartmentByName(String name);
 
-    DepartmentDTO updateDepartment(Long id, DepartmentDTO dto);
+    DepartmentDTO updateDepartment(Long id, DepartmentUpdateDTO dto);
 
     void deleteDepartment(Long id);
 

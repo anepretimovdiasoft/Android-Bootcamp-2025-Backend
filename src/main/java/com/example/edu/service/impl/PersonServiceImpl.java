@@ -1,7 +1,7 @@
 package com.example.edu.service.impl;
 
-import com.example.edu.dto.PersonDTO;
-import com.example.edu.dto.PersonRegisterDto;
+import com.example.edu.dto.person.PersonDTO;
+import com.example.edu.dto.person.PersonRegisterDto;
 import com.example.edu.entity.Authority;
 import com.example.edu.entity.Department;
 import com.example.edu.entity.Person;

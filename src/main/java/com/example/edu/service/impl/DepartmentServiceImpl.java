@@ -1,6 +1,7 @@
 package com.example.edu.service.impl;
 
-import com.example.edu.dto.DepartmentDTO;
+import com.example.edu.dto.department.DepartmentDTO;
+import com.example.edu.dto.department.DepartmentUpdateDTO;
 import com.example.edu.entity.Department;
 import com.example.edu.entity.Place;
 import com.example.edu.exception.DepartmentNotFoundException;
@@ -56,15 +57,17 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public DepartmentDTO updateDepartment(Long id, DepartmentDTO dto) {
+    public DepartmentDTO updateDepartment(Long id, DepartmentUpdateDTO dto) {
         Department department = departmentRepository.findById(id).orElseThrow(() -> new DepartmentNotFoundException("Department with id " + id + "was not found"));
 
         // TODO: Name should be unique?
         department.setName(dto.getName());
 
-        // FIXME
-        // Optional<Place> place = placeRepository.findById(dto.getPlace().getId());
-        // place.ifPresent(department::setPlace);
+        if (dto.getPlaceId() != null) {
+             Optional<Place> place = placeRepository.findById(dto.getPlaceId());
+             if (place.isEmpty()) throw new PlaceNotFoundException("Unable to update department: unknown place id " + dto.getPlaceId());
+             department.setPlace(place.get());
+        }
 
         return DepartmentMapper.convertToDTO(departmentRepository.save(department));
     }
