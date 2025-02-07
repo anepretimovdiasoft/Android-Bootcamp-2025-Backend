@@ -296,3 +296,4 @@
 
 # Сущности в БД
 ![Screenshot_3](https://github.com/user-attachments/assets/a4a0f21d-3fd2-4e14-9d8a-a1c8dd3b61f5)
+.
