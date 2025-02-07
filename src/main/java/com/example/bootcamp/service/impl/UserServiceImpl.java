@@ -1,7 +1,7 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.UserDTO;
-import com.example.bootcamp.dto.UserRegisterDto;
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.entity.Authority;
 import com.example.bootcamp.entity.User;
 import com.example.bootcamp.entity.VolunteerCenter;
@@ -14,8 +14,14 @@ import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.util.ConverterDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,12 +51,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO createUser(UserRegisterDto dto) {
+    public UserDTO createUser(UserRegisterDTO dto) {
         if (userRepository.findByUsername(dto.getUsername()).isPresent())
             throw new UserAlreadyExistsException("Username already exists");
 
+        /*
         VolunteerCenter center = centerRepository.findByName(dto.getCenterName())
                 .orElseThrow(() -> new CenterNotFoundException("Center not found"));
+        */
 
         Optional<Authority> roleUser = authorityRepository.findByAuthority("ROLE_USER");
         if (roleUser.isEmpty()) throw new RuntimeException("Authority not found!");
@@ -58,10 +66,8 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(dto.getName());
         user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setAuthorities(Set.of(roleUser.get()));
-        user.setVolunteerCenter(center);
 
         return ConverterDTO.convertToDTO(userRepository.save(user));
     }
@@ -112,5 +118,11 @@ public class UserServiceImpl implements UserService {
         if (userOptional.isEmpty()) throw new UserNotFoundException("User with username " + username + " not found");
 
         return ConverterDTO.convertToDTO(userOptional.get());
+    }
+
+    @Override
+    public Page<UserDTO> getAllUsersPaginated(Pageable pageable) {
+        return userRepository.findAll(pageable)
+                .map(ConverterDTO::convertToDTO);
     }
 }

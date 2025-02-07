@@ -28,14 +28,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll() // потом забрать доступ
                 .antMatchers("/api/users/register").permitAll()
                 .antMatchers("/api/users/username/{username}").permitAll()
+                .antMatchers("/api/users/paginated").permitAll()
                 .antMatchers("/api/authority/**").hasAuthority("ROLE_ADMIN")
                 //.antMatchers("/api/person/authority/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/api/users/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/api/centers/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .anyRequest().authenticated()
-                .and()
+            .and()
                 .httpBasic()
-                .and()
+            .and()
                 .headers().frameOptions().disable();
     }
 

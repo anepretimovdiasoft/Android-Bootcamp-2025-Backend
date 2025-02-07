@@ -9,6 +9,8 @@ import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.service.CenterService;
 import com.example.bootcamp.util.ConverterDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,5 +70,11 @@ public class CenterServiceImpl implements CenterService {
     @Override
     public List<CenterDTO> getCenterByLocation(UserDTO user) {
         return List.of();
+    }
+
+    @Override
+    public Page<CenterDTO> getAllCentresPaginated(Pageable pageable) {
+        return centerRepository.findAll(pageable)
+                .map(ConverterDTO::convertToDTO);
     }
 }

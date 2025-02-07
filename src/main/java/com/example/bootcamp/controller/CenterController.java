@@ -4,6 +4,9 @@ import com.example.bootcamp.dto.CenterDTO;
 import com.example.bootcamp.dto.UserDTO;
 import com.example.bootcamp.service.CenterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +34,13 @@ public class CenterController {
     }
 
     // @GetMapping("/search")
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<CenterDTO>> getAllUsersPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(centerService.getAllCentresPaginated(pageable));
+    }
 
 }
