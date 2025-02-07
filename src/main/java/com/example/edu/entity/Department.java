@@ -18,4 +18,8 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Person> people;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "place_id", nullable = false)
+    private Place place;
 }

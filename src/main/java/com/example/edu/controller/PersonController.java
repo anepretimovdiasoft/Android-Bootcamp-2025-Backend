@@ -25,14 +25,19 @@ public class PersonController {
         return personService.getAllPersons();
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<PersonDTO> register(@RequestBody PersonRegisterDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(dto));
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<PersonDTO> login(Authentication authentication) {
+        return ResponseEntity.ok(personService.getPersonByUsername(authentication.getName()));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PersonDTO> getPersonById(@PathVariable Long id) {
         return ResponseEntity.ok(personService.getPersonById(id));
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<PersonDTO> createPerson(@RequestBody PersonRegisterDto dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(dto));
     }
 
     @PutMapping("/{id}")
@@ -52,15 +57,11 @@ public class PersonController {
         return ResponseEntity.ok("User " + personDTO.getUsername() + " is registered");
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<PersonDTO> login(Authentication authentication) {
-        return ResponseEntity.ok(personService.getPersonByUsername(authentication.getName()));
-    }
-
     @GetMapping("/paginated")
     public ResponseEntity<Page<PersonDTO>> getAllPersonsPaginated(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size
+    ) {
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(personService.getAllPersonsPaginated(pageable));
     }

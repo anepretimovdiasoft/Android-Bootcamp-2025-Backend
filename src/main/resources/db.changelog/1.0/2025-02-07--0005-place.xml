@@ -1,0 +1,21 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2025-02-07-01" author="your-name">
+        <createTable tableName="place">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path_to_image" type="VARCHAR(500)"/>
+            <column name="address" type="VARCHAR(500)"/>
+            <column name="information" type="VARCHAR(500)"/>
+            <column name="lat_lng" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
