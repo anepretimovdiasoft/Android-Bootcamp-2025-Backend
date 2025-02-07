@@ -11,22 +11,11 @@ public class VolunteerMapper {
         VolunteerDTO volunteerDTO = new VolunteerDTO();
         volunteerDTO.setId(volunteer.getId());
         volunteerDTO.setName(volunteer.getName());
+        volunteerDTO.setUsername(volunteer.getUsername());
         volunteerDTO.setEmail(volunteer.getEmail());
-        volunteerDTO.setPassword(volunteer.getPassword());
         volunteerDTO.setActiveStatus(volunteer.isActiveStatus());
-        volunteerDTO.setAdminRights(volunteer.isAdminRights());
         volunteerDTO.setVolunteerCenter(volunteer.getVolunteerCenter().getName());
         return volunteerDTO;
     }
 
-    public Volunteer convertToEntity(VolunteerDTO dto){
-        Volunteer volunteer = new Volunteer();
-        volunteer.setId(dto.getId());
-        volunteer.setName(dto.getName());
-        volunteer.setEmail(dto.getEmail());
-        volunteer.setPassword(dto.getPassword());
-        volunteer.setActiveStatus(dto.isActiveStatus());
-        volunteer.setAdminRights(dto.isAdminRights());
-        return volunteer;
-    }
 }

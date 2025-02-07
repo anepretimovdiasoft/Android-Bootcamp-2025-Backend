@@ -2,7 +2,7 @@ package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.VolunteerCenterDTO;
 import com.example.bootcamp.entity.VolunteerCenter;
-import com.example.bootcamp.exceptions.VolunteerCenterExistException;
+import com.example.bootcamp.exceptions.VolunteerCenterAlreadyExistException;
 import com.example.bootcamp.exceptions.VolunteerCenterNotFoundException;
 import com.example.bootcamp.repository.VolunteerCenterRepository;
 import com.example.bootcamp.repository.VolunteerRepository;
@@ -51,7 +51,7 @@ public class VolunteerCenterServiceImpl implements VolunteerCenterService {
             volunteerCenter.setVolunteer(volunteerRepository.findAllById(dto.getVolunteer()));
             return VolunteerCenterMapper.convertToDto(volunteerCenterRepository.save(volunteerCenter));
         } else{
-            throw new VolunteerCenterExistException("This volunteer center already exists!");
+            throw new VolunteerCenterAlreadyExistException("This volunteer center already exists!");
         }
     }
 

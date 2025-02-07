@@ -1,5 +1,6 @@
-name;email;password;activestatus;adminrights;volunteercenter_id
-Иванов Иван Иванович;iivanov@gmail.com;Iva234_-+235;true;false;3
-Сергеев Сергей Сергеевич;ssergeev@yandex.ru;SerG34_256;false;false;1
-Никитин Никита Константинович;nnikitin@yandex.ru;NikNikitich5362671;true;false;2
-Николаев Сергей Владимирович;nikolay.sergey23@yandex.ru;SergBladiMir732743;false;true;1
+name;username;email;password;activestatus;volunteercenter_id
+Иванов Иван Иванович;iivanov;iivanov@gmail.com;$2a$12$DjpLThK8cixlhNSh6Hshzu8xeBF5HsKS27LcSUpK9Ubox3ENS2CY6;true;3
+Сергеев Сергей Сергеевич;ssergeev;ssergeev@yandex.ru;$2a$12$DjpLThK8cixlhNSh6Hshzu8xeBF5HsKS27LcSUpK9Ubox3ENS2CY6;false;1
+Никитин Никита Константинович;nnikitin;nnikitin@yandex.ru;$2a$12$DjpLThK8cixlhNSh6Hshzu8xeBF5HsKS27LcSUpK9Ubox3ENS2CY6;true;2
+Николаев Сергей Владимирович;snikolayev;nikolay.sergey23@yandex.ru;$2a$12$Bp4QqbYI38roxv/B/sn2Tu2HCL4C.F27G2Oo9hPebczNeOs69AqtG;false;1
+Назаров Георгий Николаевич;gnazarov;gnazarov@ya.ru;$2a$12$Bp4QqbYI38roxv/B/sn2Tu2HCL4C.F27G2Oo9hPebczNeOs69AqtG;true;1

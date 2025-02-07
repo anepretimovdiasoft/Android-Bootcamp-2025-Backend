@@ -1,8 +1,6 @@
 package com.example.bootcamp.exceptions.handler;
 
-import com.example.bootcamp.exceptions.VolunteerCenterExistException;
-import com.example.bootcamp.exceptions.VolunteerCenterNotFoundException;
-import com.example.bootcamp.exceptions.VolunteerNotFoundException;
+import com.example.bootcamp.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,8 +19,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(VolunteerCenterExistException.class)
-    public ResponseEntity<String> handleVolunteerCenterExistException(VolunteerCenterExistException e){
+    @ExceptionHandler(VolunteerCenterAlreadyExistException.class)
+    public ResponseEntity<String> handleVolunteerCenterAlreadyExistException(VolunteerCenterAlreadyExistException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(VolunteerAlreadyExistsException.class)
+    public ResponseEntity<String> handleVolunteerCenterAlreadyExistException(VolunteerAlreadyExistsException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(AuthorityNotFoundException.class)
+    public ResponseEntity<String> handleVolunteerCenterAlreadyExistException(AuthorityNotFoundException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
