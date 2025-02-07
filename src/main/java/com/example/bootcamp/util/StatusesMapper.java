@@ -1,7 +1,7 @@
 package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.StatusesDTO;
-import com.example.bootcamp.modal.Status;
+import com.example.bootcamp.entity.Status;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

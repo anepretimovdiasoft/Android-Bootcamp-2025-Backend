@@ -1,8 +1,7 @@
-package com.example.bootcamp.modal;
+package com.example.bootcamp.entity;
 
 import lombok.Data;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @Entity

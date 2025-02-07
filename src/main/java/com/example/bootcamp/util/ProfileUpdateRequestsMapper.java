@@ -1,7 +1,7 @@
 package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.ProfileUpdateRequestsDTO;
-import com.example.bootcamp.modal.ProfileUpdateRequest;
+import com.example.bootcamp.entity.ProfileUpdateRequest;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

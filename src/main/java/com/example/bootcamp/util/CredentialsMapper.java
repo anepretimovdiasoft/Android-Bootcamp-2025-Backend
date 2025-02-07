@@ -1,7 +1,7 @@
 package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.CredentialsDTO;
-import com.example.bootcamp.modal.Credentials;
+import com.example.bootcamp.entity.Credentials;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

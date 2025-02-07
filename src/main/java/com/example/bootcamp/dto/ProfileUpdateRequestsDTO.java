@@ -1,8 +1,8 @@
 package com.example.bootcamp.dto;
 
-import com.example.bootcamp.modal.Profile;
-import com.example.bootcamp.modal.Status;
-import com.example.bootcamp.modal.Users;
+import com.example.bootcamp.entity.Profile;
+import com.example.bootcamp.entity.Status;
+import com.example.bootcamp.entity.Users;
 import lombok.Data;
 
 @Data

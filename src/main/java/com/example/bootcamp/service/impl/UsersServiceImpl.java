@@ -1,26 +1,33 @@
 package com.example.bootcamp.service.impl;
 
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
-import com.example.bootcamp.modal.Users;
+import com.example.bootcamp.entity.Roles;
+import com.example.bootcamp.entity.Users;
+import com.example.bootcamp.exception.PersonAlreadyExistsException;
+import com.example.bootcamp.exception.PersonNotFoundException;
+import com.example.bootcamp.repository.RolesRepository;
 import com.example.bootcamp.repository.UsersRepository;
 import com.example.bootcamp.service.UsersService;
 import com.example.bootcamp.util.UsersMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
-
-    @Autowired
-    public UsersServiceImpl(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
+    private final RolesRepository rolesRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<UsersDTO> getAllUsers() {
@@ -36,11 +43,22 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersDTO createUser(UsersDTO dto) {
+    public UsersDTO createUser(UserRegisterDTO dto) {
+
+        if(usersRepository.findByUsername(dto.getUsername()).isPresent()){
+            throw new PersonAlreadyExistsException("Username already exists");
+        }
+
+        Optional<Roles> roleUser = rolesRepository.findByRole("ROLE_USER");
+
+        if (roleUser.isEmpty()) throw new RuntimeException("Roles not found");
+
         Users user = new Users();
-        user.setCredentials(dto.getCredentials());
-        user.setRole(dto.getRole());
-        user.setProfile(dto.getProfile());
+        user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setRoles(Set.of(roleUser.get()));
+
+
         Users savedUser = usersRepository.save(user);
         return UsersMapper.convertDTO(savedUser);
     }
@@ -55,12 +73,28 @@ public class UsersServiceImpl implements UsersService {
             existingUser.setProfile(dto.getProfile());
             Users updatedUser = usersRepository.save(existingUser);
             return UsersMapper.convertDTO(updatedUser);
-        }
-        return null;
+        } else {
+        throw new PersonNotFoundException("Person not found");}
     }
 
     @Override
     public void deletePerson(Long id) {
         usersRepository.deleteById(id);
+    }
+
+    @Override
+    public UsersDTO getUserByUsername(String username) {
+        Optional<Users> optionalUsers = usersRepository.findByUsername(username);
+
+        if (optionalUsers.isEmpty()) {
+            throw new PersonNotFoundException("Usr with username" + username + "not found");
+        }
+        return UsersMapper.convertDTO(optionalUsers.get());
+    }
+
+    @Override
+    public Page<UsersDTO> getAllUserPaginated(Pageable pageable) {
+        return usersRepository.findAll(pageable)
+                .map(UsersMapper::convertDTO);
     }
 }

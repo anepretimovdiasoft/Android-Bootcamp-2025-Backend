@@ -5,7 +5,9 @@ spring:
   h2:
     console:
       enabled: true
-  luquibase:
+      path: /h2-console
+
+  liquibase:
     enabled: true
     change-log: classpath:db.changelog/db.changelog-master.xml
 

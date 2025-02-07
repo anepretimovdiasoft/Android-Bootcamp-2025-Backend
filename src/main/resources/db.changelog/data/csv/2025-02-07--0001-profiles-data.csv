@@ -1,0 +1,21 @@
+center_id;name;lastname;age;picture;bio
+1;John;Doe;30;john_doe_picture.jpg;Software Developer from New York
+2;Jane;Smith;28;jane_smith_picture.jpg;Graphic Designer from London
+3;Michael;Johnson;35;michael_johnson_picture.jpg;Data Scientist from Berlin
+1;Emily;Davis;25;emily_davis_picture.jpg;Project Manager from Sydney
+2;James;Wilson;40;james_wilson_picture.jpg;Marketing Specialist from Toronto
+3;Patricia;Moore;32;patricia_moore_picture.jpg;HR Manager from Madrid
+1;Robert;Taylor;29;robert_taylor_picture.jpg;Front-end Developer from Paris
+2;Linda;Martinez;27;linda_martinez_picture.jpg;UI/UX Designer from Los Angeles
+3;David;Anderson;38;david_anderson_picture.jpg;Full-stack Developer from Rome
+1;Susan;Thomas;31;susan_thomas_picture.jpg;Business Analyst from San Francisco
+2;William;Harris;26;william_harris_picture.jpg;SEO Specialist from Chicago
+3;Elizabeth;Clark;34;elizabeth_clark_picture.jpg;Content Strategist from Madrid
+1;Daniel;Lewis;27;daniel_lewis_picture.jpg;Software Engineer from London
+2;Sophia;Young;28;sophia_young_picture.jpg;Project Manager from Barcelona
+3;Christopher;King;33;christopher_king_picture.jpg;Product Designer from Toronto
+1;Olivia;Scott;29;olivia_scott_picture.jpg;Digital Marketer from New York
+2;Benjamin;Adams;31;benjamin_adams_picture.jpg;QA Engineer from San Francisco
+3;Megan;Baker;36;megan_baker_picture.jpg;Software Architect from Berlin
+1;Lucas;Gonzalez;30;lucas_gonzalez_picture.jpg;Data Analyst from Madrid
+1;Yulia;Petrova;25;sds.png;Designer

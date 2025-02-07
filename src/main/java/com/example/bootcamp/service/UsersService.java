@@ -1,6 +1,10 @@
 package com.example.bootcamp.service;
 
+import com.example.bootcamp.dto.ProfilesDTO;
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +13,13 @@ import java.util.List;
 public interface UsersService {
     List<UsersDTO> getAllUsers();
     UsersDTO getUserbyId(Long id);
-    UsersDTO createUser(UsersDTO dto);
+
+    UsersDTO createUser(UserRegisterDTO dto);
+
     UsersDTO updatePerson(Long id, UsersDTO dto);
     void deletePerson(Long id);
+
+    UsersDTO getUserByUsername(String username);
+
+    Page<UsersDTO> getAllUserPaginated(Pageable pageable);
 }
