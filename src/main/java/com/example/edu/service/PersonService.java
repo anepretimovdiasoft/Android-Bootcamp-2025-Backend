@@ -2,6 +2,7 @@ package com.example.edu.service;
 
 import com.example.edu.dto.person.PersonDTO;
 import com.example.edu.dto.person.PersonRegisterDto;
+import com.example.edu.dto.person.PersonUpdateDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +15,13 @@ public interface PersonService {
 
     PersonDTO getPersonByUsername(String username);
 
-    PersonDTO updatePerson(Long id, PersonDTO dto);
+    PersonDTO updatePerson(Long id, PersonUpdateDTO dto);
+
+    PersonDTO updatePerson(String username, PersonUpdateDTO dto);
+
+    PersonDTO patchPerson(Long id, PersonUpdateDTO dto);
+
+    PersonDTO patchPerson(String username, PersonUpdateDTO dto);
 
     void deletePerson(Long id);
 

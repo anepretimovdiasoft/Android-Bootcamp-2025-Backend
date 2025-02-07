@@ -9,5 +9,7 @@ public class PersonDTO {
     private String username;
     private String email;
     private String photoUrl;
+    private String info;
+    private String phone;
     private String departmentName;
 }
