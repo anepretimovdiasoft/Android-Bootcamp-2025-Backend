@@ -1,6 +1,7 @@
 package com.example.edu.controller;
 
-import com.example.edu.dto.DepartmentDTO;
+import com.example.edu.dto.department.DepartmentDTO;
+import com.example.edu.dto.department.DepartmentUpdateDTO;
 import com.example.edu.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ public class DepartmentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DepartmentDTO> updateDepartment(@PathVariable Long id, @RequestBody DepartmentDTO dto) {
+    public ResponseEntity<DepartmentDTO> updateDepartment(@PathVariable Long id, @RequestBody DepartmentUpdateDTO dto) {
         return ResponseEntity.ok(departmentService.updateDepartment(id, dto));
     }
 

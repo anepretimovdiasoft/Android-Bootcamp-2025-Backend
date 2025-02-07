@@ -1,7 +1,7 @@
 package com.example.edu.controller;
 
-import com.example.edu.dto.PersonDTO;
-import com.example.edu.dto.PersonRegisterDto;
+import com.example.edu.dto.person.PersonDTO;
+import com.example.edu.dto.person.PersonRegisterDto;
 import com.example.edu.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

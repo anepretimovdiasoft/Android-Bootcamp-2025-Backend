@@ -1,5 +1,6 @@
-package com.example.edu.dto;
+package com.example.edu.dto.department;
 
+import com.example.edu.dto.PlaceDTO;
 import lombok.Data;
 
 @Data

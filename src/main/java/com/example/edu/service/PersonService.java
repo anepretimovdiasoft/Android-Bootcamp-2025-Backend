@@ -1,7 +1,7 @@
 package com.example.edu.service;
 
-import com.example.edu.dto.PersonDTO;
-import com.example.edu.dto.PersonRegisterDto;
+import com.example.edu.dto.person.PersonDTO;
+import com.example.edu.dto.person.PersonRegisterDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
