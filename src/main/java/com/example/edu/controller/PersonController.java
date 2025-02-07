@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,13 @@ public class PersonController {
     public ResponseEntity<String> getByUsername(@PathVariable String username) {
         PersonDTO personDTO = personService.getPersonByUsername(username);
         return ResponseEntity.ok("User " + personDTO.getUsername() + " is registered");
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<PersonDTO> getMe() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return ResponseEntity.ok(personService.getPersonByUsername(username));
     }
 
     @GetMapping("/paginated")
