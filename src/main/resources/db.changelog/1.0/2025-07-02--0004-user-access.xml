@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="2025-07-02--0004-user-access" author="agavrilov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_access"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_authorities">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_user_id" referencedTableName="user"
+                referencedColumnNames="id"/>
+            </column>
+            <column name="authorities_id" type="BIGINT">
+                <constraints nullable="false"  foreignKeyName="fk_access_id" referencedTableName="access"
+                referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

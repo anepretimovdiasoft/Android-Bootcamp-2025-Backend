@@ -1,26 +1,35 @@
 package com.example.bootcamp.service.impl;
 
+import com.example.bootcamp.dto.CreateUserDTO;
+import com.example.bootcamp.dto.UpdateUserDTO;
 import com.example.bootcamp.dto.UserDTO;
+import com.example.bootcamp.entity.Access;
 import com.example.bootcamp.entity.User;
-import com.example.bootcamp.entity.Volunteer_center;
+import com.example.bootcamp.entity.VolunteerCenter;
+import com.example.bootcamp.exception.AccessNotFoundException;
+import com.example.bootcamp.exception.UserAlreadyExistsException;
 import com.example.bootcamp.exception.UserNotFoundException;
-import com.example.bootcamp.exception.Volunteer_centerNotFoundException;
+import com.example.bootcamp.repository.AccessRepository;
 import com.example.bootcamp.repository.UserRepository;
-import com.example.bootcamp.repository.Volunteer_centerRepository;
+import com.example.bootcamp.repository.VolunteerCenterRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.util.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final Volunteer_centerRepository volunteerCenterRepository;
+    private final VolunteerCenterRepository volunteerCenterRepository;
+    private final AccessRepository accessRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<UserDTO> getAllUsers() {
@@ -35,20 +44,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO createUser(UserDTO dto) {
-        Optional<Volunteer_center> optionalVolunteer_center = volunteerCenterRepository.findByVolunteer_centerId(dto.getId());
-        if (optionalVolunteer_center.isEmpty()) {
-            throw new Volunteer_centerNotFoundException("Volunteer center not found!");
+    public UserDTO createUser(CreateUserDTO dto) {
+        if (userRepository.findByUsername(dto.getUsername()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists!");
+        }
+
+        Optional<Access> accessOptional = accessRepository.findByAuthority("ROLE_USER");
+        if (accessOptional.isEmpty()) {
+            throw new AccessNotFoundException("Authority not found!");
         }
 
         User user = new User();
-        user.setFirst_name(dto.getFirst_name());
-        user.setLast_name(dto.getLast_name());
-        user.setEmail(dto.getEmail());
-        user.setContact_info(dto.getContact_info());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setContactInfo(dto.getContactInfo());
         user.setBiography(dto.getBiography());
         user.setPhoto(dto.getPhoto());
-        user.setStatus(optionalVolunteer_center.get());
+        user.setAuthorities(Set.of(accessOptional.get()));
 
         return UserMapper.convertToDto(userRepository.save(user));
     }
@@ -57,14 +71,18 @@ public class UserServiceImpl implements UserService {
     public UserDTO updateUser(Long id, UserDTO dto) {
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found!"));
 
-        user.setFirst_name(dto.getFirst_name());
-        user.setLast_name(dto.getLast_name());
-        user.setEmail(dto.getEmail());
-        user.setContact_info(dto.getContact_info());
+        if (userRepository.findByUsername(dto.getUsername()).isPresent()) {
+            throw new UserAlreadyExistsException("User with email " + user + " already exist!");
+        }
+
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setUsername(dto.getUsername());
+        user.setContactInfo(dto.getContactInfo());
         user.setBiography(dto.getBiography());
         user.setPhoto(dto.getPhoto());
 
-        Optional<Volunteer_center> optionalVolunteer_center = volunteerCenterRepository.findByVolunteer_centerId(dto.getId());
+        Optional<VolunteerCenter> optionalVolunteer_center = volunteerCenterRepository.findById(dto.getStatus());
         optionalVolunteer_center.ifPresent(user::setStatus);
 
         return UserMapper.convertToDto(userRepository.save(user));
@@ -73,5 +91,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDTO getUserByUsername(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+
+        if (optionalUser.isEmpty()) {
+            throw new UserNotFoundException("User with email " + username + " not found!");
+        }
+
+        return UserMapper.convertToDto(optionalUser.get());
     }
 }
