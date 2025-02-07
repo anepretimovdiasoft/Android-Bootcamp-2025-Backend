@@ -29,9 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/person/register").permitAll()  // Allow registration
                 .antMatchers("/api/person/login").permitAll()     // Allow login
                 .antMatchers("/api/person/username/**").permitAll()     // Allow check if user exists
-                .antMatchers("/api/person/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN") // Allow users to view persons
-                .antMatchers(HttpMethod.PUT, "/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update persons
-                .antMatchers(HttpMethod.DELETE, "/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only: delete persons
+                .antMatchers("/api/person/me").hasAuthority("ROLE_USER") // Admin only: update persons
+                .antMatchers("/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update persons
                 .antMatchers(HttpMethod.POST, "/api/department/**").hasAuthority("ROLE_ADMIN") // Admin only: create department
                 .antMatchers(HttpMethod.PUT, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update department
                 .antMatchers(HttpMethod.DELETE, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: delete department
