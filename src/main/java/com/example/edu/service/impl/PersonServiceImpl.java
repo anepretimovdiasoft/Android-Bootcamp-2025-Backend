@@ -47,10 +47,8 @@ public class PersonServiceImpl implements PersonService {
             throw new PersonAlreadyExistsException("Username already exists");
 
         Optional<Department> department = departmentRepository.findByName(dto.getDepartmentName());
-        if (department.isEmpty()) {
-            //throw new DepartmentNotFoundException("Department not found");
-            department = departmentRepository.findById(1L);
-        }
+        if (department.isEmpty()) department = departmentRepository.findById(1L);
+        if (department.isEmpty()) throw new DepartmentNotFoundException("Unable to create person: bad department specified");
 
         Optional<Authority> authorityOptional = authorityRepository.findByAuthority("ROLE_USER");
         if (authorityOptional.isEmpty()) throw new RuntimeException("Authority not found!");
