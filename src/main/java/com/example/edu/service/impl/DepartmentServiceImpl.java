@@ -4,8 +4,7 @@ import com.example.edu.dto.department.DepartmentDTO;
 import com.example.edu.dto.department.DepartmentUpdateDTO;
 import com.example.edu.entity.Department;
 import com.example.edu.entity.Place;
-import com.example.edu.exception.DepartmentNotFoundException;
-import com.example.edu.exception.PlaceNotFoundException;
+import com.example.edu.exception.NotFoundException;
 import com.example.edu.repository.DepartmentRepository;
 import com.example.edu.repository.PlaceRepository;
 import com.example.edu.service.DepartmentService;
@@ -31,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         Optional<Place> place = placeRepository.findById(dto.getPlace().getId());
         if (place.isEmpty()) place = placeRepository.findById(1L);
-        if (place.isEmpty()) throw new PlaceNotFoundException("Unable to create department: bad place specified");
+        if (place.isEmpty()) throw new NotFoundException("Unable to create department: bad place specified");
 
         Department department = new Department();
         department.setName(dto.getName());
@@ -44,28 +43,28 @@ public class DepartmentServiceImpl implements DepartmentService {
     public DepartmentDTO getDepartmentById(Long id) {
         return departmentRepository.findById(id)
                 .map(DepartmentMapper::convertToDTO)
-                .orElseThrow(() -> new DepartmentNotFoundException("Department with id " + id + "was not found"));
+                .orElseThrow(() -> new NotFoundException("Department with id " + id + "was not found"));
     }
 
     @Override
     public DepartmentDTO getDepartmentByName(String name) {
         Optional<Department> departmentOptional = departmentRepository.findByName(name);
 
-        if (departmentOptional.isEmpty()) throw new DepartmentNotFoundException("Department with name " + name + " was not found");
+        if (departmentOptional.isEmpty()) throw new NotFoundException("Department with name " + name + " was not found");
 
         return DepartmentMapper.convertToDTO(departmentOptional.get());
     }
 
     @Override
     public DepartmentDTO updateDepartment(Long id, DepartmentUpdateDTO dto) {
-        Department department = departmentRepository.findById(id).orElseThrow(() -> new DepartmentNotFoundException("Department with id " + id + "was not found"));
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new NotFoundException("Department with id " + id + "was not found"));
 
         // TODO: Name should be unique?
         department.setName(dto.getName());
 
         if (dto.getPlaceId() != null) {
              Optional<Place> place = placeRepository.findById(dto.getPlaceId());
-             if (place.isEmpty()) throw new PlaceNotFoundException("Unable to update department: unknown place id " + dto.getPlaceId());
+             if (place.isEmpty()) throw new NotFoundException("Unable to update department: unknown place id " + dto.getPlaceId());
              department.setPlace(place.get());
         }
 

@@ -6,9 +6,9 @@ import com.example.edu.dto.person.PersonUpdateDTO;
 import com.example.edu.entity.Authority;
 import com.example.edu.entity.Department;
 import com.example.edu.entity.Person;
-import com.example.edu.exception.DepartmentNotFoundException;
-import com.example.edu.exception.PersonAlreadyExistsException;
-import com.example.edu.exception.PersonNotFoundException;
+import com.example.edu.exception.AlreadyExistsException;
+import com.example.edu.exception.BadRequestException;
+import com.example.edu.exception.NotFoundException;
 import com.example.edu.repository.AuthorityRepository;
 import com.example.edu.repository.DepartmentRepository;
 import com.example.edu.repository.PersonRepository;
@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
     public PersonDTO getPersonByUsername(String username) {
         Optional<Person> userOptional = personRepository.findByUsername(username);
 
-        if (userOptional.isEmpty()) throw new PersonNotFoundException("User with username " + username + " not found");
+        if (userOptional.isEmpty()) throw new NotFoundException("User with username " + username + " not found");
 
         return PersonMapper.convertToDTO(userOptional.get());
     }
@@ -47,11 +47,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonDTO createPerson(PersonRegisterDto dto) {
         if (personRepository.findByUsername(dto.getUsername()).isPresent())
-            throw new PersonAlreadyExistsException("Username already exists");
+            throw new AlreadyExistsException("Username already exists");
 
         Optional<Department> department = departmentRepository.findByName(dto.getDepartmentName());
         if (department.isEmpty()) department = departmentRepository.findById(1L);
-        if (department.isEmpty()) throw new DepartmentNotFoundException("Unable to create person: bad department specified");
+        if (department.isEmpty()) throw new NotFoundException("Unable to create person: bad department specified");
 
         Optional<Authority> authorityOptional = authorityRepository.findByAuthority("ROLE_USER");
         if (authorityOptional.isEmpty()) throw new RuntimeException("Authority not found");
@@ -69,10 +69,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     private PersonDTO _updatePerson(@NonNull Person person, @NonNull PersonUpdateDTO dto, boolean partial) {
-        if (!partial && GlobalUtils.hasAnyNullField(dto)) throw new IllegalArgumentException("All fields must be provided when partial=false");
+        if (!partial && GlobalUtils.hasAnyNullField(dto)) throw new BadRequestException("All fields must be provided when update is not partial");
 
         personRepository.findByUsername(dto.getUsername()).ifPresent(existingPerson -> {
-            if (!existingPerson.getId().equals(person.getId())) throw new PersonAlreadyExistsException("Username already exists");
+            if (!existingPerson.getId().equals(person.getId())) throw new AlreadyExistsException("Username already exists");
         });
 
         GlobalUtils.updateIfNotNull(dto.getName(), person::setName);
@@ -88,25 +88,25 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDTO updatePerson(Long id, PersonUpdateDTO dto) {
-        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        Person person = personRepository.findById(id).orElseThrow(() -> new NotFoundException("Person not found"));
         return this._updatePerson(person, dto, false);
     }
 
     @Override
     public PersonDTO updatePerson(String username, PersonUpdateDTO dto) {
-        Person person = personRepository.findByUsername(username).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        Person person = personRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("Person not found"));
         return this._updatePerson(person, dto, false);
     }
 
     @Override
     public PersonDTO patchPerson(Long id, PersonUpdateDTO dto) {
-        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        Person person = personRepository.findById(id).orElseThrow(() -> new NotFoundException("Person not found"));
         return this._updatePerson(person, dto, true);
     }
 
     @Override
     public PersonDTO patchPerson(String username, PersonUpdateDTO dto) {
-        Person person = personRepository.findByUsername(username).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        Person person = personRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("Person not found"));
         return this._updatePerson(person, dto, true);
     }
 
@@ -114,7 +114,7 @@ public class PersonServiceImpl implements PersonService {
     public PersonDTO getPersonById(Long id) {
         return personRepository.findById(id)
                 .map(PersonMapper::convertToDTO)
-                .orElseThrow(() -> new PersonNotFoundException("Person not found!"));
+                .orElseThrow(() -> new NotFoundException("Person not found!"));
     }
 
     @Override
