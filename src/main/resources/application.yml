@@ -2,9 +2,9 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/your_database
-    username: your_user
-    password: your_password
+    url: jdbc:postgresql://localhost:5432/bootcamp_db
+    username: postgres  # Или ваш реальный юзер
+    password: 2  # Укажите реальный пароль
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.xml
