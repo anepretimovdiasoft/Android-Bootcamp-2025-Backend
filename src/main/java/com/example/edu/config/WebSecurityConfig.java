@@ -2,6 +2,7 @@ package com.example.edu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,14 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/api/person/register").permitAll()
-                .antMatchers("/api/person/username/{username}").permitAll()
-                .antMatchers("/api/person/paginated").permitAll()
-                .antMatchers("/api/authority/**").hasAuthority("ROLE_ADMIN")
-                //.antMatchers("/api/person/authority/**").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/api/person/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers("/api/person/register").permitAll()  // Allow registration
+                .antMatchers("/api/person/login").permitAll()     // Allow login
+                .antMatchers("/api/person/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN") // Allow users to view persons
+                .antMatchers(HttpMethod.PUT, "/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update persons
+                .antMatchers(HttpMethod.DELETE, "/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only: delete persons
+                .antMatchers(HttpMethod.POST, "/api/department/**").hasAuthority("ROLE_ADMIN") // Admin only: create department
+                .antMatchers(HttpMethod.PUT, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update department
+                .antMatchers(HttpMethod.DELETE, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: delete department
+                .antMatchers("/api/authority/**").hasAuthority("ROLE_ADMIN") // Admin only: change user rights (authorities)
+                .anyRequest().authenticated() // Any other request requires authentication
                 .and()
                 .httpBasic()
                 .and()
