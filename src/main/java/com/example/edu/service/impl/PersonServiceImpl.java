@@ -157,6 +157,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Page<PersonDTO> getByDepartmentNamePaginated(String departmentName, Pageable pageable) {
+        Page<Person> personsPage = personRepository.findByDepartment_Name(departmentName, pageable);
+        return personsPage.map(PersonMapper::convertToDTO);
+    }
+
+    @Override
     public List<AuthorityDTO> getAuthorities(Long personId) {
         Optional<Person> person = personRepository.findById(personId);
         if (person.isEmpty()) throw new NotFoundException("User was not found");

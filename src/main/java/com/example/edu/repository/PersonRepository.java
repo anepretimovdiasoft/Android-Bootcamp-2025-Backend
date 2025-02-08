@@ -17,4 +17,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Optional<Person> findByUsername(String userName);
 
     Page<Person> findAll(Pageable pageable);
+
+    Page<Person> findByDepartment_Name(String departmentName, Pageable pageable);
 }

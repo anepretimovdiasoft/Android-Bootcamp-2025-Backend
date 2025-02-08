@@ -26,14 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/person/register").permitAll()  // Allow registration
                 .antMatchers("/api/person/login").permitAll()     // Allow login
                 .antMatchers("/api/person/username/**").permitAll()     // Allow check if user exists
-                .antMatchers("/api/person/me").hasAuthority("ROLE_USER") // Admin only: update persons
-                .antMatchers("/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update persons
+                .antMatchers("/api/person/me").hasAuthority("ROLE_USER") // Auth only
+                .antMatchers("/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only
                 .antMatchers(HttpMethod.POST, "/api/department/**").hasAuthority("ROLE_ADMIN") // Admin only: create department
                 .antMatchers(HttpMethod.PUT, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update department
                 .antMatchers(HttpMethod.DELETE, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: delete department
+                .antMatchers("/api/department/{name}/persons/paginated").hasAuthority("ROLE_ADMIN") // Admin only: show persons attached to department
                 .antMatchers("/api/authority/**").hasAuthority("ROLE_ADMIN") // Admin only: change user rights (authorities)
                 .anyRequest().authenticated() // Any other request requires authentication
                 .and()

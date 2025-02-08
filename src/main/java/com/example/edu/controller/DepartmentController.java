@@ -2,7 +2,9 @@ package com.example.edu.controller;
 
 import com.example.edu.dto.department.DepartmentDTO;
 import com.example.edu.dto.department.DepartmentUpdateDTO;
+import com.example.edu.dto.person.PersonDTO;
 import com.example.edu.service.DepartmentService;
+import com.example.edu.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class DepartmentController {
     private final DepartmentService departmentService;
+    private final PersonService personService;  // TODO: Can i use it here?
 
     @GetMapping("/{id}")
     public ResponseEntity<DepartmentDTO> getDepartmentById(@PathVariable Long id) {
@@ -35,6 +38,16 @@ public class DepartmentController {
     @GetMapping("/name/{name}")
     public ResponseEntity<DepartmentDTO> getDepartmentByName(@PathVariable String name) {
         return ResponseEntity.ok(departmentService.getDepartmentByName(name));
+    }
+
+    @GetMapping("{name}/persons/paginated")
+    public ResponseEntity<Page<PersonDTO>> getDepartmentPersonsPaginated(
+            @PathVariable String name,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(personService.getByDepartmentNamePaginated(name, pageable));
     }
 
     @GetMapping("/paginated")

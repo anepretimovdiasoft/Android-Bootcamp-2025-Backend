@@ -30,6 +30,8 @@ public interface PersonService {
 
     Page<PersonDTO> getAllPersonsPaginated(Pageable pageable);
 
+    Page<PersonDTO> getByDepartmentNamePaginated(String departmentName, Pageable pageable);
+
     List<AuthorityDTO> getAuthorities(Long personId);
 
     List<AuthorityDTO> getAuthorities(String username);
