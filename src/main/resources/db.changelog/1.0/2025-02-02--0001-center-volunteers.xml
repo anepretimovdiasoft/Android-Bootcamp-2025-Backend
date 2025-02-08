@@ -12,7 +12,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="center_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_centersa_key" referencedTableName="centers"
+                <constraints nullable="false" foreignKeyName="fk_centersv_key" referencedTableName="centers"
                              referencedColumnNames="id"/>
             </column>
             <column name="volunteers" type="BIGINT">

@@ -24,7 +24,8 @@
     <include file="db.changelog/1.0/2025-02-02--0001-center-tags.xml"/>
     <include file="db.changelog/data/2025-02-02--0001-center-active-data.xml"/>
     <include file="db.changelog/data/2025-02-02--0001-center-tags-data.xml"/>
-    <include file="db.changelog/data/2025-02-02--0001-center-volunteers-data.xml"/>
     <include file="db.changelog/1.0/2025-02-02--0001-center-volunteers.xml"/>
+    <include file="db.changelog/data/2025-02-02--0001-center-volunteers-data.xml"/>
+
 
 </databaseChangeLog>
