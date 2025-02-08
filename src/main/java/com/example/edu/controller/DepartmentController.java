@@ -46,6 +46,7 @@ public class DepartmentController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
+        departmentService.getDepartmentByName(name);  // Only to check if department exists
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(personService.getByDepartmentNamePaginated(name, pageable));
     }
