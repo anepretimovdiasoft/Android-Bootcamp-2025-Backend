@@ -49,10 +49,6 @@ public class PersonServiceImpl implements PersonService {
         if (personRepository.findByUsername(dto.getUsername()).isPresent())
             throw new AlreadyExistsException("Username already exists");
 
-        Optional<Department> department = departmentRepository.findByName(dto.getDepartmentName());
-        if (department.isEmpty()) department = departmentRepository.findById(1L);
-        if (department.isEmpty()) throw new NotFoundException("Unable to create person: bad department specified");
-
         Optional<Authority> authorityOptional = authorityRepository.findByAuthority("ROLE_USER");
         if (authorityOptional.isEmpty()) throw new RuntimeException("Authority not found");
 
@@ -61,7 +57,6 @@ public class PersonServiceImpl implements PersonService {
         person.setUsername(dto.getUsername());
         person.setEmail(dto.getEmail());
         person.setPhotoUrl("https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg");  // TODO
-        person.setDepartment(department.get());
         person.setPassword(passwordEncoder.encode(dto.getPassword()));
         person.setAuthorities(Set.of(authorityOptional.get()));
 

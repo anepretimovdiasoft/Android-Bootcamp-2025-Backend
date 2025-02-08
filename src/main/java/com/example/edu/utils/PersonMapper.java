@@ -8,14 +8,16 @@ import lombok.experimental.UtilityClass;
 public class PersonMapper {
     public PersonDTO convertToDTO(Person person) {
         PersonDTO dto = new PersonDTO();
+
         dto.setId(person.getId());
         dto.setName(person.getName());
         dto.setUsername(person.getUsername());
         dto.setEmail(person.getEmail());
         dto.setPhotoUrl(person.getPhotoUrl());
-        dto.setDepartmentName(person.getDepartment().getName());
         dto.setPhone(person.getPhone());
         dto.setInfo(person.getInfo());
+
+        if (person.getDepartment() != null) dto.setDepartmentName(person.getDepartment().getName());
         return dto;
     }
 }
