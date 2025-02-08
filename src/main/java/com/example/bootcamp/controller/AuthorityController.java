@@ -1,43 +1,46 @@
 package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.AuthorityDTO;
+import com.example.bootcamp.dto.UsersDTO;
+import com.example.bootcamp.entity.Authority;
+import com.example.bootcamp.exception.RoleisNotAdmin;
 import com.example.bootcamp.service.AuthorityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/authority")
 @RequiredArgsConstructor
 public class AuthorityController {
 
-    private final AuthorityService rolesService;
+    private final AuthorityService authorityService;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Authority add(@RequestBody Authority authority) {
+        return authorityService.add(authority);
+    }
 
     @GetMapping
-    public List<AuthorityDTO> getAllAuthority() {
-        return rolesService.getAllAuthority();
+    @ResponseStatus(HttpStatus.OK)
+    public List<Authority> getAll() {
+        return authorityService.getAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AuthorityDTO> getAuthorityById(@PathVariable long id) {
-        return ResponseEntity.ok(rolesService.getRoleById(id));
-    }
-
-    @PostMapping
-    public ResponseEntity<AuthorityDTO> createRole(@RequestBody AuthorityDTO dto) {
-        return ResponseEntity.ok(rolesService.createAuthority(dto));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<AuthorityDTO> updateRole(@PathVariable long id, @RequestBody AuthorityDTO dto) {
-        return ResponseEntity.ok(rolesService.updateAuthority(id, dto));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRole(@PathVariable long id) {
-        rolesService.deleteAuthority(id);
-        return ResponseEntity.noContent().build();
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> login(@PathVariable Long id) {
+        String idn = authorityService.isAdmin(id);
+        if (Objects.equals(idn, "ROLE_ADMIN")) {
+            return ResponseEntity.ok("is Admin");}
+        else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("is Not Admin");
+        }
     }
 }

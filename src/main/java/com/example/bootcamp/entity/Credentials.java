@@ -19,6 +19,12 @@ public class Credentials {
     @Column(name = "hashed_password")
     private String hashedPassword;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "lastname")
+    private String lastname;
+
     @OneToMany(mappedBy = "credentials")
     @JsonIgnore
     private List<Users> users;

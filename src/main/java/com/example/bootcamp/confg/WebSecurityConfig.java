@@ -25,19 +25,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()  // Отключение CSRF защиты
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()  // Разрешить доступ ко всем страницам H2-консоли без авторизации
-                .antMatchers("/api/users/register").permitAll()  // Разрешить доступ к регистрации без авторизации
-                .antMatchers("/api/username/{username}").permitAll()  // Разрешить доступ по имени пользователя без авторизации
-                .antMatchers("/api/authority/**").hasAuthority("ROLE_ADMIN")  // Доступ для ролей ADMIN
-//                .antMatchers("/api/users/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")  // Доступ для ролей USER и ADMIN
-                .antMatchers("/api/users/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
-                .anyRequest().authenticated()  // Для остальных запросов требуется аутентификация
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/api/users/register").permitAll()
+                .antMatchers("/api/users/username/{username}").permitAll()
+                .antMatchers("/api/users/paginated").permitAll()
+                .antMatchers("/api/users/login").permitAll()
+                .antMatchers("/api/authority/").permitAll()
+                //.antMatchers("/api/users/authority/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/api/users/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .anyRequest().authenticated()
                 .and()
-                .httpBasic()  // Использование Basic Auth
+                .httpBasic()
                 .and()
-                .headers().frameOptions().disable();  // Отключение защиты от фреймов (для H2-консоли)
+                .headers().frameOptions().disable();
     }
 
 

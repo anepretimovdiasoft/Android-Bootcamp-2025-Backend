@@ -2,20 +2,20 @@ package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
-import com.example.bootcamp.entity.Authority;
-import com.example.bootcamp.entity.Users;
+import com.example.bootcamp.entity.*;
 import com.example.bootcamp.exception.PersonAlreadyExistsException;
 import com.example.bootcamp.exception.PersonNotFoundException;
-import com.example.bootcamp.repository.AuthorityRepository;
-import com.example.bootcamp.repository.UsersRepository;
+import com.example.bootcamp.repository.*;
 import com.example.bootcamp.service.UsersService;
 import com.example.bootcamp.util.UsersMapper;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.type.LocalDateTimeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -26,6 +26,9 @@ import java.util.stream.Collectors;
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
+    private final CredentialsRepository credentialsRepository;
+    private final ProfileRepository profileRepository;
+    public final CenterRepository centerRepository;
     private final AuthorityRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -46,7 +49,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDTO createUser(UserRegisterDTO dto) {
-
         if(usersRepository.findByUsername(dto.getUsername()).isPresent()){
             throw new PersonAlreadyExistsException("Username already exists");
         }
@@ -54,11 +56,29 @@ public class UsersServiceImpl implements UsersService {
         Optional<Authority> roleUser = rolesRepository.findByAuthority("ROLE_USER");
 
         if (roleUser.isEmpty()) throw new RuntimeException("Roles not found");
+        Profile profile = new Profile();
+        Credentials credentials = new Credentials();
+        credentials.setLogin(dto.getUsername());
+        credentials.setName(dto.getName());
+        credentials.setLastname(dto.getLastname());
+        credentials.setHashedPassword(passwordEncoder.encode(dto.getPassword()));
+        credentials = credentialsRepository.save(credentials);
+        profile.setName(credentials.getName());
+        profile.setLastname(credentials.getLastname());
+        profile = profileRepository.save(profile);
 
         Users user = new Users();
+        LocalDateTime localDateTime = LocalDateTime.now();
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setAuthorities(Set.of(roleUser.get()));
+        user.setCredentials(credentials);
+        user.setProfile(profile);
+        user.setAuthority(roleUser.get());
+        user.setCreated(localDateTime);
+        user.setUpdated(localDateTime);
+
+
 
 
         Users savedUser = usersRepository.save(user);
@@ -70,9 +90,7 @@ public class UsersServiceImpl implements UsersService {
         Optional<Users> existingUserOptional = usersRepository.findById(id);
         if (existingUserOptional.isPresent()) {
             Users existingUser = existingUserOptional.get();
-            existingUser.setCredentials(dto.getCredentials());
-            existingUser.setAuthority(dto.getAuthority());
-            existingUser.setProfile(dto.getProfile());
+//            existingUser.setProfile(dto.getProfileId());
             Users updatedUser = usersRepository.save(existingUser);
             return UsersMapper.convertDTO(updatedUser);
         } else {

@@ -15,6 +15,7 @@ public class FullCentersDTO {
     private String description;
     private String address;
     private String phone;
+    private List<Integer> volunteerIds;
     private String email;
     private String link;
     @JsonProperty("tags")

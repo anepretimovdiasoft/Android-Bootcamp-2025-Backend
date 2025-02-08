@@ -31,26 +31,13 @@ public class ProfilesServiceImpl implements ProfilesService {
         return profile.map(ProfilesMapper::convertDTO).orElse(null);
     }
 
-    @Override
-    public ProfilesDTO createProfile(ProfilesDTO dto) {
-        Profile profile = new Profile();
-        profile.setCenter(dto.getCenterId());
-        profile.setName(dto.getName());
-        profile.setLastname(dto.getLastname());
-        profile.setAge(dto.getAge());
-        profile.setPicture(dto.getPicture());
-        profile.setBio(dto.getBio());
-
-        Profile savedProfile = profilesRepository.save(profile);
-        return ProfilesMapper.convertDTO(savedProfile);
-    }
 
     @Override
     public ProfilesDTO updateProfile(Long id, ProfilesDTO dto) {
         Optional<Profile> existingProfileOptional = profilesRepository.findById(id);
         if (existingProfileOptional.isPresent()) {
             Profile existingProfile = existingProfileOptional.get();
-            existingProfile.setCenter(dto.getCenterId());
+//            existingProfile.setCenter(dto.getCenterId());
             existingProfile.setName(dto.getName());
             existingProfile.setLastname(dto.getLastname());
             existingProfile.setAge(dto.getAge());
@@ -62,8 +49,4 @@ public class ProfilesServiceImpl implements ProfilesService {
         return null;
     }
 
-    @Override
-    public void deleteProfile(Long id) {
-        profilesRepository.deleteById(id);
-    }
 }

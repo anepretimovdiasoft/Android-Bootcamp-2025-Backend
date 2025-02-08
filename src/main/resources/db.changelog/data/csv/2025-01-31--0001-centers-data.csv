@@ -1,5 +1,5 @@
 name;address;latitude;longitude;created;updated;volunteer_ids;description;phone;email;link;image_Url;active
-Center 1;Address 1;52.5200;13.4050;2025-01-31 10:00:00;2025-01-31 10:00:00;16;Center1;88008003355;admin@igramagadev.ru;igramagadev.ru;photo1;1
-Center 2;Address 2;48.8566;2.3522;2025-01-31 11:00:00;2025-01-31 11:00:00;17;Center2;88008003355;admin@igramagadev.ru;igramagadev.ru;photo2;1
-Center 3;Address 3;34.0522;-118.2437;2025-01-31 12:00:00;2025-01-31 12:00:00;18;Center3;88008003355;admin@igramagadev.ru;igramagadev.ru;photo3;1
+Center 1;Address 1;52.5200;13.4050;2025-01-31 10:00:00;2025-01-31 10:00:00;16;Center1;88008003355;admin@igramagadev.ru;igramagadev.ru;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKmM6q3QDt6MGwt6r6ABJVjKaT2QwH5aSvtQ&s;1
+Center 2;Address 2;48.8566;2.3522;2025-01-31 11:00:00;2025-01-31 11:00:00;17;Center2;88008003355;admin@igramagadev.ru;igramagadev.ru;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKmM6q3QDt6MGwt6r6ABJVjKaT2QwH5aSvtQ&s;1
+Center 3;Address 3;34.0522;-118.2437;2025-01-31 12:00:00;2025-01-31 12:00:00;18;Center3;88008003355;admin@igramagadev.ru;igramagadev.ru;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKmM6q3QDt6MGwt6r6ABJVjKaT2QwH5aSvtQ&s;1
 

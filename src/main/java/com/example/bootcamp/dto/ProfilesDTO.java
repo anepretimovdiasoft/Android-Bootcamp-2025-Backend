@@ -7,10 +7,12 @@ import lombok.Data;
 public class ProfilesDTO {
 
     private long id;
-    private Center centerId;
+    private long centerId;
     private String name;
     private String lastname;
     private String age;
+    private String phone;
+    private String email;
     private String picture;
     private String bio;
 }

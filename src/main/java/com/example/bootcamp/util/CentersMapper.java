@@ -13,6 +13,9 @@ public class CentersMapper {
         centersDTO.setAddress(center.getAddress());
         centersDTO.setLatitude(center.getLatitude());
         centersDTO.setLongitude(center.getLongitude());
+        centersDTO.setPhone(center.getPhone());
+        centersDTO.setTag(center.getTags().get(0));
+        centersDTO.setImageUrl(center.getImageUrl());
         centersDTO.setCreated(center.getCreated());
         centersDTO.setUpdated(center.getUpdated());
         return centersDTO;

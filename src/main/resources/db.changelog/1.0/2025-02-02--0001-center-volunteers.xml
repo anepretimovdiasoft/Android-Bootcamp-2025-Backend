@@ -15,7 +15,7 @@
                 <constraints nullable="false" foreignKeyName="fk_centersv_key" referencedTableName="centers"
                              referencedColumnNames="id"/>
             </column>
-            <column name="volunteers" type="BIGINT">
+            <column name="volunteer_ids" type="BIGINT">
                 <constraints nullable="false" foreignKeyName="fk_centervolunteers_key"
                 referencedColumnNames="id"/>
             </column>

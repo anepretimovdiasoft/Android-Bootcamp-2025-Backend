@@ -11,6 +11,8 @@ public class CredentialsMapper {
         credentialsDTO.setId(credentials.getId());
         credentialsDTO.setLogin(credentials.getLogin());
         credentialsDTO.setHashedPassword(credentials.getHashedPassword());
+        credentialsDTO.setName(credentials.getName());
+        credentialsDTO.setLastname(credentials.getLastname());
         return credentialsDTO;
     }
 }

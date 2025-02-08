@@ -8,13 +8,32 @@ import lombok.experimental.UtilityClass;
 public class ProfilesMapper {
     public static ProfilesDTO convertDTO(Profile profile) {
         ProfilesDTO profilesDTO = new ProfilesDTO();
-        profilesDTO.setId(profile.getId());
-        profilesDTO.setCenterId(profile.getCenter());
-        profilesDTO.setName(profile.getName());
-        profilesDTO.setLastname(profile.getLastname());
-        profilesDTO.setAge(profile.getAge());
-        profilesDTO.setPicture(profile.getPicture());
-        profilesDTO.setBio(profile.getBio());
+
+        if (profile.getCenter() != null) {
+            profilesDTO.setCenterId(profile.getCenter().getId());
+        }
+        if (profile.getName() != null) {
+            profilesDTO.setName(profile.getName());
+        }
+        if (profile.getLastname() != null) {
+            profilesDTO.setLastname(profile.getLastname());
+        }
+        if (profile.getAge() != null) {
+            profilesDTO.setAge(profile.getAge());
+        }
+        if (profile.getPicture() != null) {
+            profilesDTO.setPicture(profile.getPicture());
+        }
+        if (profile.getBio() != null) {
+            profilesDTO.setBio(profile.getBio());
+        }
+        if (profile.getEmail() != null) {
+            profilesDTO.setEmail(profile.getEmail());
+        }
+        if (profile.getPhone() != null) {
+            profilesDTO.setPhone(profile.getPhone());
+        }
+
         return profilesDTO;
     }
 }

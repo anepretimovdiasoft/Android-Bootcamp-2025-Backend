@@ -11,10 +11,9 @@ import java.time.LocalDateTime;
 public class UsersDTO {
 
     private long id;
-    private Credentials credentials;
-    private Authority authority;
+    private long authorityId;
     private String username;
-    private Profile profile;
+    private long profileId;
     private LocalDateTime created;
     private LocalDateTime updated;
 }

@@ -14,7 +14,7 @@ public class Profile {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "center_id", nullable = false)
+    @JoinColumn(name = "center_id")
     @JsonIgnore
     private Center center;
 
@@ -29,6 +29,12 @@ public class Profile {
 
     @Column(name = "picture")
     private String picture;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phone")
+    private String phone;
 
     @Column(name = "bio")
     private String bio;

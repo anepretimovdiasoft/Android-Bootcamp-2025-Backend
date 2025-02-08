@@ -20,17 +20,17 @@ public class Users implements UserDetails {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "credentials_id", nullable = false)
+    @JoinColumn(name = "credentials_id")
     @JsonIgnore
     private Credentials credentials;
 
     @ManyToOne
-    @JoinColumn(name = "authority_id", nullable = false)
+    @JoinColumn(name = "authority_id")
     @JsonIgnore
     private Authority authority;
 
     @ManyToOne
-    @JoinColumn(name = "profile_id", nullable = false)
+    @JoinColumn(name = "profile_id")
     @JsonIgnore
     private Profile profile;
 

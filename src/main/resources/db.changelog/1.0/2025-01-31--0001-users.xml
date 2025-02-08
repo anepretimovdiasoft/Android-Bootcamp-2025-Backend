@@ -12,13 +12,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="credentials_id" type="INT">
-                <constraints nullable="false" unique="true"/>
             </column>
             <column name="authority_id" type="INT">
-                <constraints nullable="false"/>
             </column>
             <column name="profile_id" type="INT">
-                <constraints nullable="false"/>
             </column>
             <column name="created" type="TIMESTAMP">
                 <constraints nullable="false"/>

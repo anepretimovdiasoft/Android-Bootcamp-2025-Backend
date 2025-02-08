@@ -43,6 +43,7 @@ public class UsersController {
     }
     @GetMapping("/login")
     public ResponseEntity<UsersDTO> login(Authentication authentication) {
+        System.out.println("1");
         return ResponseEntity.ok(usersService.getUserByUsername(authentication.getName()));
     }
     @PutMapping("/{id}")

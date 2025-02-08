@@ -8,4 +8,6 @@ public class CredentialsDTO {
     private long id;
     private String login;
     private String hashedPassword;
+    private String name;
+    private String lastname;
 }

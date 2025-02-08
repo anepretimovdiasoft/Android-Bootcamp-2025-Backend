@@ -14,6 +14,9 @@ public class FullCentersMapper {
         FullCentersDTO fullCentersDTO = new FullCentersDTO();
         fullCentersDTO.setId(center.getId());
         fullCentersDTO.setType(center.getType());
+        if (!center.getVolunteer_ids().isEmpty()) {
+            fullCentersDTO.setVolunteerIds(center.getVolunteer_ids());
+        }
         fullCentersDTO.setName(center.getName());
         fullCentersDTO.setDescription(center.getDescription());
         fullCentersDTO.setAddress(center.getAddress());
