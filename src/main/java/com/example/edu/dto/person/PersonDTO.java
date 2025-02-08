@@ -1,7 +1,6 @@
 package com.example.edu.dto.person;
 
 import com.example.edu.dto.authorities.AuthorityDTO;
-import com.example.edu.dto.department.DepartmentDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -15,6 +14,7 @@ public class PersonDTO {
     private String photoUrl;
     private String info;
     private String phone;
-    private DepartmentDTO department;
+    //    private DepartmentDTO department;
+    private String departmentName;
     private List<AuthorityDTO> authorities;
 }

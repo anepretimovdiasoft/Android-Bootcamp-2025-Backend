@@ -21,7 +21,8 @@ public class PersonMapper {
         dto.setPhone(person.getPhone());
         dto.setInfo(person.getInfo());
 
-        if (person.getDepartment() != null) dto.setDepartment(DepartmentMapper.convertToDTO(person.getDepartment()));
+//        if (person.getDepartment() != null) dto.setDepartment(DepartmentMapper.convertToDTO(person.getDepartment()));
+        if (person.getDepartment() != null) dto.setDepartmentName(person.getDepartment().getName());
         dto.setAuthorities(AuthorityMapper.convertAllToDTO(person.getAuthorities()));
 
         return dto;
