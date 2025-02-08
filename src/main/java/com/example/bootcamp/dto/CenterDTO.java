@@ -14,5 +14,5 @@ public class CenterDTO {
     private String about;
     private float latitude;
     private float longitude;
-    //private List<User> volunteers;
+    private List<Long> volunteersID;
 }

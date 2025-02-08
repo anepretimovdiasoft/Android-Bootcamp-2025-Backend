@@ -1,2 +1,15 @@
-name;phone_number;email;about;password;center_id
-Джон Доу;+78005553535;johndoe@gmail.com;Я Джон Доу;VeryStrong;1
+name;username;phone_number;email;about;password;center_id
+Джон Доу;john;+78005553535;johndoe@gmail.com;Я Джон Доу;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;1
+Алексей Иванов;alex_ivanov;+79990001122;alex.ivanov@email.com;Студент, увлекаюсь волонтерством в области экологии. Работаю на благо природы и общества.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;1
+Мария Смирнова;masha_smirnova;+79990001133;maria.smirnova@email.com;Люблю помогать людям. Активный участник благотворительных мероприятий.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;2
+Иван Петров;ivan_petrov;+79990001144;ivan.petrov@email.com;Профессиональный разработчик. Хочу использовать свои навыки для помощи нуждающимся.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;3
+Екатерина Белова;kate_belova;+79990001155;kate.belova@email.com;Волонтер в кризисном центре. Оказание помощи в трудных ситуациях - мой долг.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;8
+Дмитрий Кузнецов;dmitriy_kuznecov;+79990001166;dmitriy.kuznecov@email.com;Руководитель проекта по помощи бездомным животным. Мечтаю сделать мир лучше.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;1
+Светлана Орлова;svetlana_orlova;+79990001177;svetlana.orlova@email.com;Активистка за права женщин. Веду работу по поддержке женских приютов.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;7
+Анна Васильева;anna_vasilyeva;+79990002211;anna.vasilyeva@email.com;Волонтер в приюте для детей. Стремлюсь создать лучшие условия для нуждающихся.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;4
+Олег Смирнов;oleg_smirnov;+79990002222;oleg.smirnov@email.com;Медицинский работник, помогаю организовывать помощь в экстренных ситуациях.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;2
+Юлия Тарасова;yulia_tarasova;+79990002233;yulia.tarasova@email.com;Помогаю бездомным и оказавшимся в трудной ситуации людям.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;5
+Максим Кузьмин;maxim_kuzmin;+79990002244;maxim.kuzmin@email.com;Активист, занимаюсь благотворительными проектами по всему городу.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;6
+Татьяна Волкова;tatiana_volkova;+79990002255;tatiana.volkova@email.com;Эколог, организую проекты по очистке парков и лесов.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;2
+Роман Александров;roman_aleksandrov;+79990002266;roman.aleksandrov@email.com;Помогаю организациям по защите прав детей и молодежи.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;5
+Елена Петрова;elena_petrov;+79990002277;elena.petrov@email.com;Координатор благотворительных мероприятий. Люблю помогать и организовывать.;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;1

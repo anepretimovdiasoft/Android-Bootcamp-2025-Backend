@@ -1,9 +1,12 @@
 package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.UserDTO;
-import com.example.bootcamp.dto.UserRegisterDto;
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> createPerson(@RequestBody UserRegisterDto dto) {
+    public ResponseEntity<UserDTO> createPerson(@RequestBody UserRegisterDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(dto));
     }
 
@@ -63,6 +66,14 @@ public class UserController {
     @PutMapping("/{id}/status")
     public ResponseEntity<Boolean> updateUser(@PathVariable Long id, @RequestBody boolean status) {
         return ResponseEntity.ok(userService.updateUserStatus(id, status));
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UserDTO>> getAllUsersPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(userService.getAllUsersPaginated(pageable));
     }
 
 }
