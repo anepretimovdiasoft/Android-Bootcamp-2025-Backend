@@ -1,11 +1,11 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.ProfileUpdateRequestsDTO;
-import com.example.bootcamp.modal.ProfileUpdateRequest;
+import com.example.bootcamp.entity.ProfileUpdateRequest;
 import com.example.bootcamp.repository.ProfileUpdateRequestRepository;
 import com.example.bootcamp.service.ProfileUpdateRequestsService;
 import com.example.bootcamp.util.ProfileUpdateRequestsMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileUpdateRequestsServiceImpl implements ProfileUpdateRequestsService {
 
     private final ProfileUpdateRequestRepository profileUpdateRequestsRepository;
-
-    @Autowired
-    public ProfileUpdateRequestsServiceImpl(ProfileUpdateRequestRepository profileUpdateRequestsRepository) {
-        this.profileUpdateRequestsRepository = profileUpdateRequestsRepository;
-    }
 
     @Override
     public List<ProfileUpdateRequestsDTO> getAllProfileUpdateRequests() {

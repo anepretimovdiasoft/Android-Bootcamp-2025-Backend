@@ -1,11 +1,11 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.ProfilesDTO;
-import com.example.bootcamp.modal.Profile;
+import com.example.bootcamp.entity.Profile;
 import com.example.bootcamp.repository.ProfileRepository;
 import com.example.bootcamp.service.ProfilesService;
 import com.example.bootcamp.util.ProfilesMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProfilesServiceImpl implements ProfilesService {
 
     private final ProfileRepository profilesRepository;
-
-    @Autowired
-    public ProfilesServiceImpl(ProfileRepository profilesRepository) {
-        this.profilesRepository = profilesRepository;
-    }
 
     @Override
     public List<ProfilesDTO> getAllProfiles() {

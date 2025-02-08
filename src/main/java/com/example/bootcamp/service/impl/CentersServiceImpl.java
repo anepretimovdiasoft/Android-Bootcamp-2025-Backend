@@ -1,11 +1,11 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.CentersDTO;
-import com.example.bootcamp.modal.Center;
+import com.example.bootcamp.entity.Center;
 import com.example.bootcamp.repository.CenterRepository;
 import com.example.bootcamp.service.CentersService;
 import com.example.bootcamp.util.CentersMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CentersServiceImpl implements CentersService {
 
     private final CenterRepository centerRepository;
-
-    @Autowired
-    public CentersServiceImpl(CenterRepository centerRepository) {
-        this.centerRepository = centerRepository;
-    }
 
     @Override
     public List<CentersDTO> getAllCenters() {
@@ -39,7 +35,6 @@ public class CentersServiceImpl implements CentersService {
     public CentersDTO createCenter(CentersDTO dto) {
         Center center = new Center();
         center.setName(dto.getName());
-        center.setVolunteerIds(dto.getVolunteerIds());
         center.setAddress(dto.getAddress());
         center.setLatitude(dto.getLatitude());
         center.setLongitude(dto.getLongitude());

@@ -1,11 +1,11 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.CredentialsDTO;
-import com.example.bootcamp.modal.Credentials;
+import com.example.bootcamp.entity.Credentials;
 import com.example.bootcamp.repository.CredentialsRepository;
 import com.example.bootcamp.service.CredentialsService;
 import com.example.bootcamp.util.CredentialsMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CredentialsServiceImpl implements CredentialsService {
 
     private final CredentialsRepository credentialsRepository;
-
-    @Autowired
-    public CredentialsServiceImpl(CredentialsRepository credentialsRepository) {
-        this.credentialsRepository = credentialsRepository;
-    }
 
     @Override
     public List<CredentialsDTO> getAllCredentials() {

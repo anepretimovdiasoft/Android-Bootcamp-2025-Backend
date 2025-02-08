@@ -2,6 +2,7 @@ package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.CentersDTO;
 import com.example.bootcamp.service.CentersService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/centers")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CentersController {
 
     private final CentersService centersService;

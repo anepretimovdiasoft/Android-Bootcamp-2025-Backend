@@ -1,8 +1,13 @@
 package com.example.bootcamp.controller;
 
+import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
+import com.example.bootcamp.entity.Roles;
 import com.example.bootcamp.service.UsersService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +30,20 @@ public class UsersController {
         return ResponseEntity.ok(usersService.getUserbyId(id));
     }
 
-    @PostMapping
-    public ResponseEntity<UsersDTO> createUser(@RequestBody UsersDTO dto) {
+    @PostMapping("/register")
+    public ResponseEntity<UsersDTO> createUser(@RequestBody UserRegisterDTO dto) {
         return ResponseEntity.ok(usersService.createUser(dto));
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<String> getByUsername(@PathVariable String username) {
+        UsersDTO usersDTO = usersService.getUserByUsername(username);
+        return ResponseEntity.ok("User " + usersDTO.getUsername() + " is registered");
+    }
+    @GetMapping("/login")
+    public ResponseEntity<UsersDTO> login(Roles roles) {
+        return ResponseEntity.ok(usersService.getUserByUsername(roles.getRole()));
+    }
     @PutMapping("/{id}")
     public ResponseEntity<UsersDTO> updateUser(@PathVariable long id, @RequestBody UsersDTO dto) {
         return ResponseEntity.ok(usersService.updatePerson(id, dto));
@@ -39,5 +53,14 @@ public class UsersController {
     public ResponseEntity<Void> deleteUser(@PathVariable long id) {
         usersService.deletePerson(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UsersDTO>> getAllUserPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(usersService.getAllUserPaginated(pageable));
     }
 }

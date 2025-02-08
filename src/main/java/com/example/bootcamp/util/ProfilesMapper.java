@@ -1,7 +1,7 @@
 package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.ProfilesDTO;
-import com.example.bootcamp.modal.Profile;
+import com.example.bootcamp.entity.Profile;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

@@ -1,11 +1,11 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.StatusesDTO;
-import com.example.bootcamp.modal.Status;
+import com.example.bootcamp.entity.Status;
 import com.example.bootcamp.repository.StatusRepository;
 import com.example.bootcamp.service.StatusesService;
 import com.example.bootcamp.util.StatusesMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class StatusesServiceImpl implements StatusesService {
 
     private final StatusRepository statusesRepository;
-
-    @Autowired
-    public StatusesServiceImpl(StatusRepository statusesRepository) {
-        this.statusesRepository = statusesRepository;
-    }
 
     @Override
     public List<StatusesDTO> getAllStatuses() {

@@ -1,6 +1,6 @@
 package com.example.bootcamp.repository;
 
-import com.example.bootcamp.modal.ProfileUpdateRequest;
+import com.example.bootcamp.entity.ProfileUpdateRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

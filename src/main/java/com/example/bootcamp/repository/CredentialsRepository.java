@@ -1,6 +1,6 @@
 package com.example.bootcamp.repository;
 
-import com.example.bootcamp.modal.Credentials;
+import com.example.bootcamp.entity.Credentials;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -17,6 +17,7 @@
             <column name="address" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="volunteer_ids" type="VARCHAR(255)"/>
             <column name="latitude" type="FLOAT"/>
             <column name="longitude" type="FLOAT"/>
             <column name="created" type="TIMESTAMP">

@@ -1,6 +1,6 @@
 package com.example.bootcamp.dto;
 
-import com.example.bootcamp.modal.Center;
+import com.example.bootcamp.entity.Center;
 import lombok.Data;
 
 @Data

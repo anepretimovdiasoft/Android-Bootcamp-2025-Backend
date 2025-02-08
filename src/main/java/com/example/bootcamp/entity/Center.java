@@ -1,4 +1,4 @@
-package com.example.bootcamp.modal;
+package com.example.bootcamp.entity;
 
 import lombok.Data;
 import javax.persistence.*;
@@ -17,7 +17,7 @@ public class Center {
     private String name;
 
     @Column(name = "volunteer_ids")
-    private String volunteerIds; // Можно заменить на List, если используется JSON или другая структура
+    private String volunteerIds; // TODO в лист
 
     @Column(name = "address")
     private String address;

@@ -1,11 +1,11 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.RolesDTO;
-import com.example.bootcamp.modal.Roles;
+import com.example.bootcamp.entity.Roles;
 import com.example.bootcamp.repository.RolesRepository;
 import com.example.bootcamp.service.RolesService;
 import com.example.bootcamp.util.RolesMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class RolesServiceImpl implements RolesService {
 
     private final RolesRepository rolesRepository;
-
-    @Autowired
-    public RolesServiceImpl(RolesRepository rolesRepository) {
-        this.rolesRepository = rolesRepository;
-    }
 
     @Override
     public List<RolesDTO> getAllRoles() {
@@ -38,7 +34,7 @@ public class RolesServiceImpl implements RolesService {
     @Override
     public RolesDTO createRole(RolesDTO dto) {
         Roles role = new Roles();
-        role.setName(dto.getName());
+        role.setRole(dto.getName());
         Roles savedRole = rolesRepository.save(role);
         return RolesMapper.convertDTO(savedRole);
     }
@@ -48,7 +44,7 @@ public class RolesServiceImpl implements RolesService {
         Optional<Roles> existingRoleOptional = rolesRepository.findById(id);
         if (existingRoleOptional.isPresent()) {
             Roles existingRole = existingRoleOptional.get();
-            existingRole.setName(dto.getName());
+            existingRole.setRole(dto.getName());
             Roles updatedRole = rolesRepository.save(existingRole);
             return RolesMapper.convertDTO(updatedRole);
         }

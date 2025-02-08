@@ -1,7 +1,7 @@
 package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.UsersDTO;
-import com.example.bootcamp.modal.Users;
+import com.example.bootcamp.entity.Users;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
