@@ -49,11 +49,6 @@ public class PersonController {
         return ResponseEntity.ok(personService.getPersonByUsername(authentication.getName()));
     }
 
-    @GetMapping("/one/{volunteerId}")
-    public List<PersonDTO> getAllPersonAtVolunteerCenter(@PathVariable long volunteerId){
-        return personService.getAllPersonAtCenter(volunteerId);
-    }
-
     @PutMapping("/update/{id}")
     public ResponseEntity<PersonDTO> updatePerson(@PathVariable long id, @RequestBody PersonDTO personDTO) {
         return ResponseEntity.ok(personService.updatePerson(id, personDTO));

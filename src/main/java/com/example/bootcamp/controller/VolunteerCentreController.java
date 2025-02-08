@@ -3,6 +3,7 @@ package com.example.bootcamp.controller;
 import com.example.bootcamp.dto.PersonDTO;
 import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.VolunteerCentre;
+import com.example.bootcamp.service.PersonService;
 import com.example.bootcamp.service.VolunteerCentreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 public class VolunteerCentreController {
 
     public final VolunteerCentreService volunteerCentreService;
+    public final PersonService personService;
 
     @GetMapping
     public List<VolunteerCentreDTO> getAllVolunteerCentre(){
@@ -25,6 +27,11 @@ public class VolunteerCentreController {
     @GetMapping("/info/{id}")
     public ResponseEntity<VolunteerCentreDTO> getVolunteerCentreById(@PathVariable long id){
         return ResponseEntity.ok(volunteerCentreService.getVolunteerCentreById(id));
+    }
+
+    @GetMapping("/one/{volunteerId}")
+    public List<PersonDTO> getAllPersonAtVolunteerCenter(@PathVariable long volunteerId){
+        return personService.getAllPersonAtCenter(volunteerId);
     }
 
     @PostMapping("/register")
