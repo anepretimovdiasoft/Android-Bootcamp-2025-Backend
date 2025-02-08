@@ -1,6 +1,7 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.PersonDTO;
+import com.example.bootcamp.dto.PersonGetDTO;
 import com.example.bootcamp.dto.PersonRegisterDTO;
 import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.Authority;
@@ -39,6 +40,13 @@ public class PersonServiceImpl implements PersonService {
     public List<PersonDTO> getAllPerson() {
         return personRepository.findAll().stream()
                 .map(PersonMapper::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PersonGetDTO> getAllPersonsName() {
+        return personRepository.findAll().stream()
+                .map(PersonMapper::convertToDTO)
                 .collect(Collectors.toList());
     }
 
@@ -132,6 +140,5 @@ public class PersonServiceImpl implements PersonService {
                 .map(PersonMapper::convertToDto)
                 .collect(Collectors.toList());
     }
-
 
 }

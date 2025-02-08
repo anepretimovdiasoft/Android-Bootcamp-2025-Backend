@@ -1,6 +1,7 @@
 package com.example.bootcamp.service;
 
 import com.example.bootcamp.dto.PersonDTO;
+import com.example.bootcamp.dto.PersonGetDTO;
 import com.example.bootcamp.dto.PersonRegisterDTO;
 import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.Person;
@@ -11,6 +12,8 @@ import java.util.List;
 
 public interface PersonService {
     List<PersonDTO> getAllPerson();
+
+    List<PersonGetDTO> getAllPersonsName();
 
     PersonDTO getPersonById(Long id);
 
