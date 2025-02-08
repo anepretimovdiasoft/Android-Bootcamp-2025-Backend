@@ -12,4 +12,5 @@ public class PersonUpdateDTO {
     private @Nullable String info;
     private @Nullable String phone;
     private @Nullable String departmentName;
+    private @Nullable Long departmentId;
 }

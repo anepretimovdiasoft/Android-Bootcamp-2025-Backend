@@ -1,5 +1,6 @@
 package com.example.edu.service;
 
+import com.example.edu.dto.authorities.AuthorityDTO;
 import com.example.edu.dto.person.PersonDTO;
 import com.example.edu.dto.person.PersonRegisterDto;
 import com.example.edu.dto.person.PersonUpdateDTO;
@@ -28,4 +29,8 @@ public interface PersonService {
     List<PersonDTO> getAllPersons();
 
     Page<PersonDTO> getAllPersonsPaginated(Pageable pageable);
+
+    List<AuthorityDTO> getAuthorities(Long personId);
+
+    List<AuthorityDTO> getAuthorities(String username);
 }

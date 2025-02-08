@@ -8,7 +8,7 @@ import com.example.edu.exception.NotFoundException;
 import com.example.edu.repository.DepartmentRepository;
 import com.example.edu.repository.PlaceRepository;
 import com.example.edu.service.DepartmentService;
-import com.example.edu.utils.DepartmentMapper;
+import com.example.edu.utils.mappers.DepartmentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
