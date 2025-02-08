@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <include file="db.changelog/1.0/2025-02-07--0005-place.xml"/>
+    <include file="db.changelog/1.0/2025-01-29--0001-department.xml"/>
+    <include file="db.changelog/1.0/2025-01-29--0002-person.xml"/>
+
+    <include file="db.changelog/data/2025-02-07--0005-place-data.xml"/>
+    <include file="db.changelog/data/2025-01-29--0001-department-data.xml"/>
+    <include file="db.changelog/data/2025-01-29--0002-person-data.xml"/>
+
+    <include file="db.changelog/1.0/2025-02-02--0003-authority.xml"/>
+    <include file="db.changelog/1.0/2025-02-02--0004-person-authorities.xml"/>
+    <include file="db.changelog/data/2025-02-02--0003-authority-data.xml"/>
+    <include file="db.changelog/data/2025-02-02--0004-person-authorities-data.xml"/>
+</databaseChangeLog>
