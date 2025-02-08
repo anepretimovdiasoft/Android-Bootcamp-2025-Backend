@@ -49,13 +49,13 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-    @GetMapping("/username/{username}")
-    public ResponseEntity<String> getByUsername(@PathVariable String username) {
-        UserDTO userDTO = userService.getByUsername(username);
-        if (username == null) {
+    @GetMapping("/email/{email}")
+    public ResponseEntity<String> getByUsername(@PathVariable String email) {
+        UserDTO userDTO = userService.getByEmail(email);
+        if (email == null) {
             throw new NoRequestBodyException("No or wrong request body!");
         }
-        return ResponseEntity.ok(userDTO.getUsername());
+        return ResponseEntity.ok(userDTO.getEmail());
     }
 
     @GetMapping("/login")
@@ -63,7 +63,7 @@ public class UserController {
         if (authentication == null) {
             throw new NoRequestBodyException("No or wrong request body!");
         }
-        return ResponseEntity.ok(userService.getByUsername(authentication.getName()));
+        return ResponseEntity.ok(userService.getByEmail(authentication.getName()));
     }
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUserProfile(

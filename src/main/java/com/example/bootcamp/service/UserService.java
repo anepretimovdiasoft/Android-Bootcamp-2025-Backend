@@ -17,7 +17,7 @@ public interface UserService {
 
     UserDTO createUser(UserRegisterDTO user);
 
-    UserDTO getByUsername(String username);
+    UserDTO getByEmail(String email);
 
     UserDTO updateUserProfile(Long id, UserDTO userDTO);
 

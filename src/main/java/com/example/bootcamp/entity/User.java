@@ -18,9 +18,6 @@ public class User implements UserDetails {
     @Column(name = "name")
     private String name;
 
-    @Column(name =  "username")
-    private String username;
-
     @Column(name = "email")
     private String email;
 
@@ -49,6 +46,11 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Authority> authorities;
 
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;
