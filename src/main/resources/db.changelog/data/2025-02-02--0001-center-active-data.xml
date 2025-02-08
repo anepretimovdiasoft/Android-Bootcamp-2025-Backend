@@ -5,12 +5,12 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <preConditions onFail="WARN">
         <not>
-            <tableExists tableName="roles"/>
+            <tableExists tableName="center_active"/>
         </not>
     </preConditions>
-    <changeSet id="2025-02-02--0001-roles-data" author="IgraM">
-        <loadData tableName="roles"
-                  file="db.changelog/data/csv/2025-02-02--0001-roles-data.csv"
+    <changeSet id="2025-02-02--0001-center-active-data" author="IgraM">
+        <loadData tableName="center_active"
+                  file="db.changelog/data/csv/2025-02-02--0001-center-active-data.csv"
                   separator=";"
                   encoding="UTF-8"/>
     </changeSet>

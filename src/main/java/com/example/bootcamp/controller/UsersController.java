@@ -2,13 +2,14 @@ package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
-import com.example.bootcamp.entity.Roles;
+import com.example.bootcamp.entity.Authority;
 import com.example.bootcamp.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,8 +42,8 @@ public class UsersController {
         return ResponseEntity.ok("User " + usersDTO.getUsername() + " is registered");
     }
     @GetMapping("/login")
-    public ResponseEntity<UsersDTO> login(Roles roles) {
-        return ResponseEntity.ok(usersService.getUserByUsername(roles.getRole()));
+    public ResponseEntity<UsersDTO> login(Authentication authentication) {
+        return ResponseEntity.ok(usersService.getUserByUsername(authentication.getName()));
     }
     @PutMapping("/{id}")
     public ResponseEntity<UsersDTO> updateUser(@PathVariable long id, @RequestBody UsersDTO dto) {
@@ -52,7 +53,7 @@ public class UsersController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable long id) {
         usersService.deletePerson(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/paginated")

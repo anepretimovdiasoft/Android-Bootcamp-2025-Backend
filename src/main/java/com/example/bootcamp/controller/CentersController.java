@@ -1,9 +1,14 @@
 package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.CentersDTO;
+import com.example.bootcamp.dto.FullCentersDTO;
+import com.example.bootcamp.dto.UsersDTO;
 import com.example.bootcamp.service.CentersService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +27,15 @@ public class CentersController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CentersDTO> getCenterById(@PathVariable long id) {
-        return ResponseEntity.ok(centersService.getCenterById(id));
+    public ResponseEntity<FullCentersDTO> getCenterById(@PathVariable long id) {
+        FullCentersDTO fullCentersDTO = centersService.getFullCenterById(id);
+        if (fullCentersDTO == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(fullCentersDTO);
     }
+
+
 
     @PostMapping
     public ResponseEntity<CentersDTO> createCenter(@RequestBody CentersDTO dto) {
@@ -40,5 +51,14 @@ public class CentersController {
     public ResponseEntity<Void> deleteCenter(@PathVariable long id) {
         centersService.deleteCenter(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<CentersDTO>> getAllCentersPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(centersService.getAllCentersPaginated(pageable));
     }
 }

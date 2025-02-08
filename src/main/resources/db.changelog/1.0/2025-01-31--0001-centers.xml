@@ -17,6 +17,23 @@
             <column name="address" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+            </column>
+            <column name="phone" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link" type="VARCHAR(255)"/>
+            <column name="tags" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="image_Url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
             <column name="volunteer_ids" type="VARCHAR(255)"/>
             <column name="latitude" type="FLOAT"/>
             <column name="longitude" type="FLOAT"/>

@@ -1,4 +1,4 @@
-credentials_id;role_id;profile_id;created;updated;username;password
+credentials_id;authority_id;profile_id;created;updated;username;password
 1;1;1;2025-01-31 10:00:00;2025-01-31 10:00:00;anepretimov;$2a$10$PKgj5TATmAB62xuZgDWw8OOjh7uryZnjA3P2bd/YsqgNTbbv3Hc8a
 2;1;2;2025-01-31 11:00:00;2025-01-31 11:00:00;vasilynov;$2a$10$G4dB8YnQOHTi9u4AYDd9xotxLB0fFzEzRGpyLfw96QZ9D7k0r0v.e
 3;1;3;2025-01-31 12:00:00;2025-01-31 12:00:00;olgasid;$2a$10$5tH.4nHY6gqK7LwCmouAw6gi2xOaO0dxVh7dY5/J5JFlFd7TeY0sK
@@ -14,7 +14,7 @@ credentials_id;role_id;profile_id;created;updated;username;password
 13;1;13;2025-01-31 22:00:00;2025-01-31 22:00:00;tatyanadmitrieva;$2a$10$3LpUFSyK0R8nFu5Q6Bjp01J6gRFM5BdTeYk0FqC0c6yPsw61jGH.C
 14;1;14;2025-01-31 23:00:00;2025-01-31 23:00:00;vladimirzaitsev;$2a$10$PvWrr6L4shBd6KOp2kizxjch.QFg9iB0X2U62bEvhkwD.SrQx2f02
 15;1;15;2025-02-01 00:00:00;2025-02-01 00:00:00;olgakolbova;$2a$10$W6Bx5sLgODTn78WcUt1BGgT.3POVjvEx6pZ9HlmOU16xy0yF86zbm
-16;2;16;2025-02-01 01:00:00;2025-02-01 01:00:00;igram;$2a$10$PKgj5TATmAB62xuZgDWw8OOjh7uryZnjA3P2bd/YsqgNTbbv3Hc8a
+16;2;16;2025-02-01 01:00:00;2025-02-01 01:00:00;igram;$2a$10$RD6RJ.lPzSvkgRgKHqbNUeSf/8J83oQg9cotuYkmdeJXLEwd0PRO6
 17;1;17;2025-02-01 02:00:00;2025-02-01 02:00:00;artemyakovlev;$2a$10$VfPxt6U92sZ.EFC3tXBmlSz7QKvkyXj.BztZZfR9gfcn95UJYp4nS
 18;1;18;2025-02-01 03:00:00;2025-02-01 03:00:00;irinaalexandrova;$2a$10$Q0S4lzwRMIbMftLMLyNl3GjozHq0rnZl77mYYrLybUwXX2fgEwTCm
 19;1;19;2025-02-01 04:00:00;2025-02-01 04:00:00;sergeikuznetsov;$2a$10$Yu3cYBQ.pQrkFqJRxABdyfvXGB0kLZmuyYcCG1npRGz5Nr6p.EVei

@@ -1,5 +1,6 @@
 package com.example.bootcamp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,14 +21,17 @@ public class Users implements UserDetails {
 
     @ManyToOne
     @JoinColumn(name = "credentials_id", nullable = false)
+    @JsonIgnore
     private Credentials credentials;
 
     @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private Roles role;
+    @JoinColumn(name = "authority_id", nullable = false)
+    @JsonIgnore
+    private Authority authority;
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
+    @JsonIgnore
     private Profile profile;
 
     @Column(name = "username")
@@ -37,7 +41,7 @@ public class Users implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Roles> roles;
+    private Set<Authority> authorities;
 
     @Column(name = "created")
     private LocalDateTime created;

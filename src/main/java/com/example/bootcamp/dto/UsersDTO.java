@@ -2,7 +2,7 @@ package com.example.bootcamp.dto;
 
 import com.example.bootcamp.entity.Credentials;
 import com.example.bootcamp.entity.Profile;
-import com.example.bootcamp.entity.Roles;
+import com.example.bootcamp.entity.Authority;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ public class UsersDTO {
 
     private long id;
     private Credentials credentials;
-    private Roles role;
+    private Authority authority;
     private String username;
     private Profile profile;
     private LocalDateTime created;

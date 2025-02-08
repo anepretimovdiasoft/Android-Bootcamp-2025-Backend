@@ -1,5 +1,6 @@
 package com.example.bootcamp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 
@@ -16,14 +17,17 @@ public class ProfileUpdateRequest {
     private Users user;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "new_profile_id", nullable = false)
     private Profile newProfile;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "old_profile_id", nullable = false)
     private Profile oldProfile;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 }

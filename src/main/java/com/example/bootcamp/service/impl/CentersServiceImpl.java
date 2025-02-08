@@ -1,11 +1,17 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.CentersDTO;
+import com.example.bootcamp.dto.FullCentersDTO;
+import com.example.bootcamp.dto.UsersDTO;
 import com.example.bootcamp.entity.Center;
 import com.example.bootcamp.repository.CenterRepository;
 import com.example.bootcamp.service.CentersService;
 import com.example.bootcamp.util.CentersMapper;
+import com.example.bootcamp.util.FullCentersMapper;
+import com.example.bootcamp.util.UsersMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +35,12 @@ public class CentersServiceImpl implements CentersService {
     public CentersDTO getCenterById(Long id) {
         Optional<Center> center = centerRepository.findById(id);
         return center.map(CentersMapper::convertDTO).orElse(null);
+    }
+
+    @Override
+    public FullCentersDTO getFullCenterById(Long id) {
+        Optional<Center> center = centerRepository.findById(id);
+        return center.map(FullCentersMapper::convertDTO).orElse(null);
     }
 
     @Override
@@ -62,5 +74,12 @@ public class CentersServiceImpl implements CentersService {
     @Override
     public void deleteCenter(Long id) {
         centerRepository.deleteById(id);
+    }
+
+
+    @Override
+    public Page<CentersDTO> getAllCentersPaginated(Pageable pageable) {
+        return centerRepository.findAll(pageable)
+                .map(CentersMapper::convertDTO);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.bootcamp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Profile {
 
     @ManyToOne
     @JoinColumn(name = "center_id", nullable = false)
+    @JsonIgnore
     private Center center;
 
     @Column(name = "name")
@@ -32,11 +34,14 @@ public class Profile {
     private String bio;
 
     @OneToMany(mappedBy = "profile")
+    @JsonIgnore
     private List<Users> users;
 
     @OneToMany(mappedBy = "oldProfile")
+    @JsonIgnore
     private List<ProfileUpdateRequest> oldProfileRequests;
 
     @OneToMany(mappedBy = "newProfile")
+    @JsonIgnore
     private List<ProfileUpdateRequest> newProfileRequests;
 }

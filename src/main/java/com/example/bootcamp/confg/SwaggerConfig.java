@@ -14,7 +14,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.bootcamp")) // Укажите ваш основной пакет
+                .apis(RequestHandlerSelectors.basePackage("com.example.bootcamp"))
                 .paths(PathSelectors.any())
                 .build();
     }

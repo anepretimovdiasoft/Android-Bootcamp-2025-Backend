@@ -5,7 +5,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="db.changelog/1.0/2025-01-31--0001-users.xml"/>
-    <include file="db.changelog/1.0/2025-01-31--0001-roles.xml"/>
+    <include file="db.changelog/1.0/2025-01-31--0001-authority.xml"/>
     <include file="db.changelog/1.0/2025-01-31--0001-credentials.xml"/>
     <include file="db.changelog/1.0/2025-01-31--0001-profiles.xml"/>
     <include file="db.changelog/1.0/2025-01-31--0001-centers.xml"/>
@@ -15,10 +15,16 @@
     <include file="db.changelog/data/2025-01-31--0001-users-data.xml"/>
     <include file="db.changelog/data/2025-01-31--0001-centers-data.xml"/>
 
-    <include file="db.changelog/1.0/2025-02-02--0001-person-authorities.xml"/>
-    <include file="db.changelog/data/2025-02-02--0001-roles-data.xml"/>
-    <include file="db.changelog/data/2025-02-02--0001-person-authorities-data.xml"/>
+    <include file="db.changelog/1.0/2025-02-02--0001-users-authorities.xml"/>
+    <include file="db.changelog/data/2025-02-02--0001-authority-data.xml"/>
+    <include file="db.changelog/data/2025-02-02--0001-users-authorities-data.xml"/>
     <include file="db.changelog/data/2025-02-07--0001-credentials-data.xml"/>
     <include file="db.changelog/data/2025-02-07--0001-profiles-data.xml"/>
+    <include file="db.changelog/1.0/2025-02-02--0001-center-active.xml"/>
+    <include file="db.changelog/1.0/2025-02-02--0001-center-tags.xml"/>
+    <include file="db.changelog/data/2025-02-02--0001-center-active-data.xml"/>
+    <include file="db.changelog/data/2025-02-02--0001-center-tags-data.xml"/>
+    <include file="db.changelog/data/2025-02-02--0001-center-volunteers-data.xml"/>
+    <include file="db.changelog/1.0/2025-02-02--0001-center-volunteers.xml"/>
 
 </databaseChangeLog>

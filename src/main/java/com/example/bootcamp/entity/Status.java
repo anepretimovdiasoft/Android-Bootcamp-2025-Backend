@@ -1,5 +1,6 @@
 package com.example.bootcamp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
@@ -16,5 +17,6 @@ public class Status {
     private String status;
 
     @OneToMany(mappedBy = "status")
+    @JsonIgnore
     private List<ProfileUpdateRequest> profileUpdateRequests;
 }

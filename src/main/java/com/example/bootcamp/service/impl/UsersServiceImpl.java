@@ -2,11 +2,11 @@ package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
-import com.example.bootcamp.entity.Roles;
+import com.example.bootcamp.entity.Authority;
 import com.example.bootcamp.entity.Users;
 import com.example.bootcamp.exception.PersonAlreadyExistsException;
 import com.example.bootcamp.exception.PersonNotFoundException;
-import com.example.bootcamp.repository.RolesRepository;
+import com.example.bootcamp.repository.AuthorityRepository;
 import com.example.bootcamp.repository.UsersRepository;
 import com.example.bootcamp.service.UsersService;
 import com.example.bootcamp.util.UsersMapper;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
-    private final RolesRepository rolesRepository;
+    private final AuthorityRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -36,10 +36,12 @@ public class UsersServiceImpl implements UsersService {
                 .collect(Collectors.toList());
     }
 
+
     @Override
     public UsersDTO getUserbyId(Long id) {
-        Optional<Users> user = usersRepository.findById(id);
-        return user.map(UsersMapper::convertDTO).orElse(null);
+        return usersRepository.findById(id)
+                .map(UsersMapper::convertDTO)
+                .orElseThrow(() -> new PersonNotFoundException("Person not found!"));
     }
 
     @Override
@@ -49,14 +51,14 @@ public class UsersServiceImpl implements UsersService {
             throw new PersonAlreadyExistsException("Username already exists");
         }
 
-        Optional<Roles> roleUser = rolesRepository.findByRole("ROLE_USER");
+        Optional<Authority> roleUser = rolesRepository.findByAuthority("ROLE_USER");
 
         if (roleUser.isEmpty()) throw new RuntimeException("Roles not found");
 
         Users user = new Users();
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setRoles(Set.of(roleUser.get()));
+        user.setAuthorities(Set.of(roleUser.get()));
 
 
         Users savedUser = usersRepository.save(user);
@@ -69,7 +71,7 @@ public class UsersServiceImpl implements UsersService {
         if (existingUserOptional.isPresent()) {
             Users existingUser = existingUserOptional.get();
             existingUser.setCredentials(dto.getCredentials());
-            existingUser.setRole(dto.getRole());
+            existingUser.setAuthority(dto.getAuthority());
             existingUser.setProfile(dto.getProfile());
             Users updatedUser = usersRepository.save(existingUser);
             return UsersMapper.convertDTO(updatedUser);
@@ -87,7 +89,7 @@ public class UsersServiceImpl implements UsersService {
         Optional<Users> optionalUsers = usersRepository.findByUsername(username);
 
         if (optionalUsers.isEmpty()) {
-            throw new PersonNotFoundException("Usr with username" + username + "not found");
+            throw new PersonNotFoundException("User with username " + username + "not found");
         }
         return UsersMapper.convertDTO(optionalUsers.get());
     }
