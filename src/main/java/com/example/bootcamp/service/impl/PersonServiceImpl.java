@@ -2,6 +2,7 @@ package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.PersonDTO;
 import com.example.bootcamp.dto.PersonRegisterDTO;
+import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.Authority;
 import com.example.bootcamp.entity.Person;
 import com.example.bootcamp.entity.VolunteerCentre;
@@ -13,7 +14,10 @@ import com.example.bootcamp.repository.PersonRepository;
 import com.example.bootcamp.repository.VolunteerCentreRepository;
 import com.example.bootcamp.service.PersonService;
 import com.example.bootcamp.util.PersonMapper;
+import com.example.bootcamp.util.VolunteerCentreMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,11 +55,6 @@ public class PersonServiceImpl implements PersonService {
             throw new PersonAlreadyExistException("Username already exists");
         }
 
-        Optional<VolunteerCentre> optionalVolunteer = volunteerCentreRepository.findByName(dto.getVolunteer());
-        if (optionalVolunteer.isEmpty()) {
-            throw new VolunteerCentreNotFoundException("Volunteer Centre not found");
-        }
-
         Optional<Authority> roleUser = authorityRepository.findByAuthority("ROLE_USER");
         if(roleUser.isEmpty()) throw new RuntimeException("Authority not found");
 
@@ -63,8 +62,8 @@ public class PersonServiceImpl implements PersonService {
         person.setName(dto.getName());
         person.setUsername(dto.getUsername());
         person.setEmail(dto.getEmail());
-        person.setVolunteer(optionalVolunteer.get());
         person.setPassword(passwordEncoder.encode(dto.getPassword()));
+        person.setVolunteer(volunteerCentreRepository.getById(1L));
         person.setAuthorities(Set.of(roleUser.get()));
 
         return PersonMapper.convertToDto(personRepository.save(person));
@@ -79,10 +78,12 @@ public class PersonServiceImpl implements PersonService {
             throw new PersonAlreadyExistException("Username already exist");
 
         person.setName(dto.getName());
-        person.setUsername(person.getUsername());
+        person.setUsername(dto.getUsername());
         person.setEmail(dto.getEmail());
         person.setPhone(dto.getPhone());
         person.setPhotoUrl(dto.getPhotoUrl());
+        person.setCoordinate_x(dto.getCoordinate_x());
+        person.setCoordinate_y(dto.getCoordinate_y());
 
         Optional<VolunteerCentre> optionalVolunteerCentre = volunteerCentreRepository.findByName(dto.getVolunteer());
         optionalVolunteerCentre.ifPresent(person::setVolunteer);
@@ -104,4 +105,33 @@ public class PersonServiceImpl implements PersonService {
 
         return PersonMapper.convertToDto(optionalPerson.get());
     }
+
+    @Override
+    public Page<PersonDTO> getAllPersonPaginated(Pageable pageable) {
+        return personRepository.findAll(pageable)
+                .map(PersonMapper::convertToDto);
+    }
+
+    @Override
+    public PersonDTO registerAtVolunteerCenter(Long id,String name) {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("User not found"));
+
+        Optional<VolunteerCentre> optionalVolunteerCentre = volunteerCentreRepository.findByName(name);
+        if(optionalVolunteerCentre.isEmpty())
+            throw new VolunteerCentreNotFoundException("Volunteer centre with name" + name + "not found");
+
+        person.setVolunteer(optionalVolunteerCentre.get());
+
+        return PersonMapper.convertToDto(personRepository.save(person));
+    }
+
+    @Override
+    public List<PersonDTO> getAllPersonAtCenter(Long volunteerId) {
+        return personRepository.findAllByVolunteerCentreId(volunteerId).stream()
+                .map(PersonMapper::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+
 }

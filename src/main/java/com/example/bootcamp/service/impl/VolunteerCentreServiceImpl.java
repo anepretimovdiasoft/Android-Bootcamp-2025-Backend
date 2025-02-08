@@ -1,10 +1,14 @@
 package com.example.bootcamp.service.impl;
 
+import com.example.bootcamp.dto.PersonDTO;
 import com.example.bootcamp.dto.VolunteerCentreDTO;
+import com.example.bootcamp.entity.Person;
 import com.example.bootcamp.entity.VolunteerCentre;
 import com.example.bootcamp.exception.VolunteerCentreNotFoundException;
+import com.example.bootcamp.repository.PersonRepository;
 import com.example.bootcamp.repository.VolunteerCentreRepository;
 import com.example.bootcamp.service.VolunteerCentreService;
+import com.example.bootcamp.util.PersonMapper;
 import com.example.bootcamp.util.VolunteerCentreMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,7 @@ import java.util.stream.Collectors;
 public class VolunteerCentreServiceImpl implements VolunteerCentreService {
 
     private final VolunteerCentreRepository volunteerCentreRepository;
+    private final PersonRepository personRepository;
 
     @Override
     public List<VolunteerCentreDTO> getAllVolunteerCentre() {
@@ -34,16 +39,16 @@ public class VolunteerCentreServiceImpl implements VolunteerCentreService {
     }
 
     @Override
-    public VolunteerCentreDTO updateVolunteerCentre(Long id, VolunteerCentre volunteerCentre) {
-        VolunteerCentre volunteerCentreDTO = volunteerCentreRepository.findById(id)
+    public VolunteerCentreDTO updateVolunteerCentre(Long id, VolunteerCentreDTO dto) {
+        VolunteerCentre volunteerCentre = volunteerCentreRepository.findById(id)
                 .orElseThrow(() -> new VolunteerCentreNotFoundException("Volunteer centre not found!"));
 
-        volunteerCentreDTO.setName(volunteerCentre.getName());
-        volunteerCentreDTO.setDescription(volunteerCentre.getDescription());
-        volunteerCentreDTO.setCoordinate_x(volunteerCentre.getCoordinate_x());
-        volunteerCentreDTO.setCoordinate_y(volunteerCentre.getCoordinate_y());
+        volunteerCentre.setName(dto.getName());
+        volunteerCentre.setDescription(dto.getDescription());
+        volunteerCentre.setCoordinate_x(dto.getCoordinate_x());
+        volunteerCentre.setCoordinate_y(dto.getCoordinate_y());
 
-        return VolunteerCentreMapper.convertToVolCenDTO(volunteerCentreRepository.save(volunteerCentreDTO));
+        return VolunteerCentreMapper.convertToVolCenDTO(volunteerCentreRepository.save(volunteerCentre));
     }
 
     @Override
