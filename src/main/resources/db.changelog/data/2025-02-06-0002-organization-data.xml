@@ -4,8 +4,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="2025-01-31--0002-contacts-data" author="mprokhorov">
-        <loadData tableName="Contacts" file="db.changelog/data/csv/2025-01-31--0002-contacts-data.csv"
+    <changeSet id="2025-02-06-0002-organization-data" author="mprokhorov">
+        <loadData tableName="organization" file="db.changelog/data/csv/2025-02-06-0002-organization-data.csv"
                   separator=";"
                   quotchar='"'
                   encoding="UTF-8"/>
