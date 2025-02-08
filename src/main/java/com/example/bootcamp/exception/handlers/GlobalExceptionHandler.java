@@ -1,5 +1,6 @@
 package com.example.bootcamp.exception.handlers;
 
+import com.example.bootcamp.exception.OrganizationAlreadyExistsException;
 import com.example.bootcamp.exception.OrganizationNotFoundException;
 import com.example.bootcamp.exception.UserAlreadyExistsException;
 import com.example.bootcamp.exception.UserNotFoundException;
@@ -20,6 +21,11 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<String> handlerUserAlreadyExistsException(UserAlreadyExistsException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrganizationAlreadyExistsException.class)
+    public ResponseEntity<String> handlerOrganizationAlreadyExistsException(OrganizationAlreadyExistsException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

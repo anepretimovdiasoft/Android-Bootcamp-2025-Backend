@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     public final UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/user/usersAll")
     public ResponseEntity<Page<UserDTO>> getAllUsers(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size){
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(userService.getAllUserPaginated(pageable));

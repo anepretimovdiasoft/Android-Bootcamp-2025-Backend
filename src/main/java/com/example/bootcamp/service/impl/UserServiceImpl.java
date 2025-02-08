@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUserByUsername(String username) {
         Optional<User> user = userRepository.findByUsername(username);
         if(user.isEmpty()){
-            throw new UserNotFoundException("User with" + username + " not found!");
+            throw new UserNotFoundException("User with " + username + " not found!");
         }
         return UserMapper.convertToUserDTO(user.get());
     }
