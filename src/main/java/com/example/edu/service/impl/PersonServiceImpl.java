@@ -14,8 +14,8 @@ import com.example.edu.repository.AuthorityRepository;
 import com.example.edu.repository.DepartmentRepository;
 import com.example.edu.repository.PersonRepository;
 import com.example.edu.service.PersonService;
-import com.example.edu.utils.mappers.AuthorityMapper;
 import com.example.edu.utils.GlobalUtils;
+import com.example.edu.utils.mappers.AuthorityMapper;
 import com.example.edu.utils.mappers.PersonMapper;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -57,17 +57,25 @@ public class PersonServiceImpl implements PersonService {
         GlobalUtils.updateIfNotNull(dto.getInfo(), person::setInfo);
 
         if (dto.getDepartmentName() != null) {
-            Optional<Department> department = departmentRepository.findByName(dto.getDepartmentName());
-            if (department.isEmpty()) throw new NotFoundException("Department was not found");
+            if (partial && dto.getDepartmentName().equals("NULL")) {
+                person.setDepartment(null);
+            } else {
+                Optional<Department> department = departmentRepository.findByName(dto.getDepartmentName());
+                if (department.isEmpty()) throw new NotFoundException("Department was not found");
 
-            person.setDepartment(department.get());
+                person.setDepartment(department.get());
+            }
         }
 
         if (dto.getDepartmentId() != null) {
-            Optional<Department> department = departmentRepository.findById(dto.getDepartmentId());
-            if (department.isEmpty()) throw new NotFoundException("Department was not found");
+            if (partial && dto.getDepartmentId() == -1) {
+                person.setDepartment(null);
+            } else {
+                Optional<Department> department = departmentRepository.findById(dto.getDepartmentId());
+                if (department.isEmpty()) throw new NotFoundException("Department was not found");
 
-            person.setDepartment(department.get());
+                person.setDepartment(department.get());
+            }
         }
 
         return PersonMapper.convertToDTO(personRepository.save(person));
