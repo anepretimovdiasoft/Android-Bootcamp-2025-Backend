@@ -23,7 +23,4 @@ public class VolunteerCentre {
 
     @Column(name="Coordinate_y")
     private float coordinate_y;
-
-    @OneToMany(mappedBy = "volunteer", cascade = CascadeType.ALL)
-    private List<Person> people;
 }

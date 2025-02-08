@@ -2,6 +2,8 @@ package com.example.bootcamp.service;
 
 import com.example.bootcamp.dto.PersonDTO;
 import com.example.bootcamp.dto.PersonRegisterDTO;
+import com.example.bootcamp.dto.VolunteerCentreDTO;
+import com.example.bootcamp.entity.Person;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,4 +23,8 @@ public interface PersonService {
     PersonDTO getPersonByUsername(String username);
 
     Page<PersonDTO> getAllPersonPaginated(Pageable pageable);
+
+    PersonDTO registerAtVolunteerCenter(Long id, String name);
+
+    List<PersonDTO> getAllPersonAtCenter(Long volunteerId);
 }

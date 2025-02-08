@@ -49,6 +49,11 @@ public class PersonController {
         return ResponseEntity.ok(personService.getPersonByUsername(authentication.getName()));
     }
 
+    @GetMapping("/one/{volunteerId}")
+    public List<PersonDTO> getAllPersonAtVolunteerCenter(@PathVariable long volunteerId){
+        return personService.getAllPersonAtCenter(volunteerId);
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<PersonDTO> updatePerson(@PathVariable long id, @RequestBody PersonDTO personDTO) {
         return ResponseEntity.ok(personService.updatePerson(id, personDTO));
@@ -67,5 +72,10 @@ public class PersonController {
     ) {
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(personService.getAllPersonPaginated(pageable));
+    }
+
+    @PutMapping("volunteer/add/{id}/{name}")
+    public ResponseEntity<PersonDTO> registerAtVolunteerCentre(@PathVariable long id, @PathVariable String name){
+        return ResponseEntity.ok(personService.registerAtVolunteerCenter(id, name));
     }
 }

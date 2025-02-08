@@ -1,5 +1,6 @@
 package com.example.bootcamp.controller;
 
+import com.example.bootcamp.dto.PersonDTO;
 import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.VolunteerCentre;
 import com.example.bootcamp.service.VolunteerCentreService;
@@ -32,8 +33,8 @@ public class VolunteerCentreController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<VolunteerCentreDTO> updateVolunteerCentre(@RequestBody VolunteerCentre volunteerCentre, @PathVariable long id) {
-        return ResponseEntity.ok(volunteerCentreService.updateVolunteerCentre(id, volunteerCentre));
+    public ResponseEntity<VolunteerCentreDTO> updateVolunteerCentre(@RequestBody VolunteerCentreDTO dto, @PathVariable long id) {
+        return ResponseEntity.ok(volunteerCentreService.updateVolunteerCentre(id, dto));
     }
 
     @DeleteMapping("/delete/{id}")
