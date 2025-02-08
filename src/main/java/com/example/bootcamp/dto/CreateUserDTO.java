@@ -3,13 +3,12 @@ package com.example.bootcamp.dto;
 import lombok.Data;
 
 @Data
-public class UserDTO {
-    private Long id;
+public class CreateUserDTO {
     private String firstName;
     private String lastName;
     private String username;
+    private String password;
     private String contactInfo;
     private String biography;
     private String photo;
-    private Long status;
 }

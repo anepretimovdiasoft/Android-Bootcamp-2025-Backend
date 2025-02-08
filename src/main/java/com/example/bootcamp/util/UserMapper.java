@@ -9,13 +9,17 @@ public class UserMapper {
     public UserDTO convertToDto(User user){
         UserDTO dto = new UserDTO();
         dto.setId(user.getId());
-        dto.setFirst_name(user.getFirst_name());
-        dto.setLast_name(user.getLast_name());
-        dto.setEmail(user.getEmail());
-        dto.setContact_info(user.getContact_info());
+        dto.setFirstName(user.getFirstName());
+        dto.setLastName(user.getLastName());
+        dto.setUsername(user.getUsername());
+        dto.setContactInfo(user.getContactInfo());
         dto.setBiography(user.getBiography());
         dto.setPhoto(user.getPhoto());
-        dto.setStatus(user.getStatus().getId());
+        if (user.getStatus() != null) {
+            dto.setStatus(user.getStatus().getId());
+        } else {
+            dto.setStatus(null);
+        }
         return dto;
     }
 }
