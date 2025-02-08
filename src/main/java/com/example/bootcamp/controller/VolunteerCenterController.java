@@ -26,17 +26,17 @@ public class VolunteerCenterController {
         return ResponseEntity.status(200).body(volunteerCenterService.getVolunteerCenterById(id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<VolunteerCenterDTO> createVolunteerCenter(@RequestBody VolunteerCenterDTO dto){
         return ResponseEntity.status(201).body(volunteerCenterService.createVolunteerCenter(dto));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<VolunteerCenterDTO> updateVolunteerCenter(@PathVariable long id, @RequestBody VolunteerCenterDTO dto){
         return ResponseEntity.status(200).body(volunteerCenterService.updateVolunteerCenter(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteVolunteerCenter(@PathVariable Long id){
         volunteerCenterService.deleteVolunteerCenter(id);
     }

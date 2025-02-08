@@ -18,23 +18,23 @@
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
 
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false" unique="false"/>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="username" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
             </column>
 
             <column name="email" type="VARCHAR(100)">
                 <constraints nullable="false" unique="false"/>
             </column>
 
-            <column name="password" type="VARCHAR(50)">
+            <column name="password" type="VARCHAR(100)">
                 <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="activestatus" type="BOOL">
-                <constraints nullable="false" unique="false"/>
-            </column>
-
-            <column name="adminrights" type="BOOL">
                 <constraints nullable="false" unique="false"/>
             </column>
 

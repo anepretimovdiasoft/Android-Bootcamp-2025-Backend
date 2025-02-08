@@ -1,6 +1,5 @@
 package com.example.bootcamp.dto;
 
-import com.example.bootcamp.entity.Volunteer;
 import lombok.Data;
 
 import java.util.List;
