@@ -15,6 +15,8 @@ import com.example.bootcamp.repository.VolunteerRepository;
 import com.example.bootcamp.service.VolunteerService;
 import com.example.bootcamp.util.VolunteerMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +56,6 @@ public class VolunteerServiceImpl implements VolunteerService {
             throw new VolunteerAlreadyExistsException("Username "+dto.getUsername()+" already exists");
         }
 
-        Optional<VolunteerCenter> optionalVolunteerCenter = volunteerCenterRepository.findByName(dto.getVolunteerCenter());
-        if(optionalVolunteerCenter.isEmpty()){
-            throw new VolunteerCenterNotFoundException("Volunteer center not found!");
-        }
-
         Optional<Authority> optionalAuthority = authorityRepository.findByAuthority("ROLE_VOLUNTEER");
         if(optionalAuthority.isEmpty()) throw new AuthorityNotFoundException("Authority not found");
 
@@ -66,10 +63,10 @@ public class VolunteerServiceImpl implements VolunteerService {
         volunteer.setName(dto.getName());
         volunteer.setUsername(dto.getUsername());
         volunteer.setEmail(dto.getEmail());
-        volunteer.setVolunteerCenter(optionalVolunteerCenter.get());
         volunteer.setPassword(passwordEncoder.encode(dto.getPassword()));
         volunteer.setAuthorities(Set.of(optionalAuthority.get()));
         volunteer.setActiveStatus(false);
+        volunteer.setVolunteerCenter(volunteerCenterRepository.findByName("Не указан").get());
 
         return VolunteerMapper.convertToDto(volunteerRepository.save(volunteer));
     }
@@ -83,13 +80,17 @@ public class VolunteerServiceImpl implements VolunteerService {
             throw new VolunteerAlreadyExistsException("Username already exists!");
         }
 
+        Optional<VolunteerCenter> optionalVolunteerCenter = volunteerCenterRepository.findByName(dto.getVolunteerCenter());
+        if(optionalVolunteerCenter.isEmpty()) {
+            throw new VolunteerCenterNotFoundException("Volunteer center " + dto.getVolunteerCenter() + " not found");
+        } else{
+            volunteer.setVolunteerCenter(optionalVolunteerCenter.get());
+        }
+
         volunteer.setName(dto.getName());
         volunteer.setUsername(dto.getUsername());
         volunteer.setEmail(dto.getEmail());
         volunteer.setActiveStatus(dto.isActiveStatus());
-
-        Optional<VolunteerCenter>  optionalVolunteerCenter = volunteerCenterRepository.findByName(dto.getVolunteerCenter());
-        optionalVolunteerCenter.ifPresent(volunteer::setVolunteerCenter);
 
         return VolunteerMapper.convertToDto((volunteerRepository.save(volunteer)));
     }
@@ -100,7 +101,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public VolunteerDTO getVolunteerByUserName(String username) {
+    public VolunteerDTO getVolunteerByUsername(String username) {
         Optional<Volunteer> optionalVolunteer = volunteerRepository.findByUsername(username);
 
         if(optionalVolunteer.isEmpty()){
@@ -108,5 +109,17 @@ public class VolunteerServiceImpl implements VolunteerService {
         }
 
         return VolunteerMapper.convertToDto(optionalVolunteer.get());
+    }
+
+    @Override
+    public Page<VolunteerDTO> getAllVolunteerPaginated(Pageable pageable) {
+        return volunteerRepository.findAll(pageable).map(VolunteerMapper::convertToDto);
+    }
+
+    @Override
+    public VolunteerDTO getVolunteerByName(String name) {
+        return volunteerRepository.findByName(name)
+                .map(VolunteerMapper::convertToDto)
+                .orElseThrow(() -> new VolunteerNotFoundException("Volunteer with name "+name+" not found"));
     }
 }

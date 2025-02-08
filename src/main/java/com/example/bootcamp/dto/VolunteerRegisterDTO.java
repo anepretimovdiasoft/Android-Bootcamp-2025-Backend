@@ -12,5 +12,4 @@ public class VolunteerRegisterDTO {
 
     private String password;
 
-    private String volunteerCenter;
 }

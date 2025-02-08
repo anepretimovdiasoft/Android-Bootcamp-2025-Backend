@@ -2,6 +2,8 @@ package com.example.bootcamp.service;
 
 import com.example.bootcamp.dto.VolunteerDTO;
 import com.example.bootcamp.dto.VolunteerRegisterDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -16,5 +18,9 @@ public interface VolunteerService {
 
     void deleteVolunteer(Long id);
 
-    VolunteerDTO getVolunteerByUserName(String username);
+    VolunteerDTO getVolunteerByUsername(String username);
+
+    Page<VolunteerDTO> getAllVolunteerPaginated(Pageable pageable);
+
+    VolunteerDTO getVolunteerByName(String name);
 }
