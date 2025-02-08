@@ -5,6 +5,8 @@ import com.example.bootcamp.dto.VolunteerCentreDTO;
 import com.example.bootcamp.entity.Person;
 import com.example.bootcamp.entity.VolunteerCentre;
 import com.example.bootcamp.repository.VolunteerCentreRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public interface VolunteerCentreService {
     VolunteerCentreDTO updateVolunteerCentre(Long id, VolunteerCentreDTO dto);
 
     VolunteerCentreDTO createVolunteerCentre(VolunteerCentreDTO volunteerCentre);
+
+    Page<VolunteerCentreDTO> getVolunteerCentrePaginated(Pageable pageable);
 
     void deleteVolunteerCentre(Long id);
 }

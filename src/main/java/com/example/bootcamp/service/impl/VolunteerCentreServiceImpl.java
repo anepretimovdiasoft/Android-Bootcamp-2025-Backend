@@ -11,6 +11,8 @@ import com.example.bootcamp.service.VolunteerCentreService;
 import com.example.bootcamp.util.PersonMapper;
 import com.example.bootcamp.util.VolunteerCentreMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,6 +63,12 @@ public class VolunteerCentreServiceImpl implements VolunteerCentreService {
         volunteerCentre1.setCoordinate_y(volunteerCentre.getCoordinate_y());
 
         return VolunteerCentreMapper.convertToVolCenDTO(volunteerCentreRepository.save(volunteerCentre1));
+    }
+
+    @Override
+    public Page<VolunteerCentreDTO> getVolunteerCentrePaginated(Pageable pageable) {
+        return volunteerCentreRepository.findAll(pageable)
+                .map(VolunteerCentreMapper::convertToVolCenDTO);
     }
 
     @Override

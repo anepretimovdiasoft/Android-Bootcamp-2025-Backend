@@ -1,6 +1,7 @@
 package com.example.bootcamp.controller;
 
 import com.example.bootcamp.dto.PersonDTO;
+import com.example.bootcamp.dto.PersonGetDTO;
 import com.example.bootcamp.dto.PersonRegisterDTO;
 import com.example.bootcamp.entity.Authority;
 import com.example.bootcamp.entity.Person;
@@ -23,9 +24,14 @@ import java.util.List;
 public class PersonController {
     private final PersonService personService;
 
+//    @GetMapping
+//    public List<PersonDTO> getAllPerson() {
+//        return personService.getAllPerson();
+//    }
+
     @GetMapping
-    public List<PersonDTO> getAllPerson() {
-        return personService.getAllPerson();
+    public List<PersonGetDTO> getAllPerson() {
+        return personService.getAllPersonsName();
     }
 
     @GetMapping("/info/{id}")

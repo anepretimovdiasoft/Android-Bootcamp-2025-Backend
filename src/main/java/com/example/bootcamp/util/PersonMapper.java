@@ -1,6 +1,7 @@
 package com.example.bootcamp.util;
 
 import com.example.bootcamp.dto.PersonDTO;
+import com.example.bootcamp.dto.PersonGetDTO;
 import com.example.bootcamp.entity.Person;
 import lombok.experimental.UtilityClass;
 
@@ -17,5 +18,11 @@ public class PersonMapper {
         personDTO.setCoordinate_y(person.getCoordinate_y());
         personDTO.setVolunteer(person.getVolunteer().getName());
         return personDTO;
+    }
+
+    public PersonGetDTO convertToDTO(Person person){
+        PersonGetDTO personGetDTO = new PersonGetDTO();
+        personGetDTO.setName(person.getName());
+        return personGetDTO;
     }
 }
