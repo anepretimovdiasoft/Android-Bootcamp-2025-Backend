@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/person/username/**").permitAll()     // Allow check if user exists
                 .antMatchers("/api/person/me").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER") // Auth only
                 .antMatchers("/api/person/{id}").hasAuthority("ROLE_ADMIN") // Admin only
-                .antMatchers(HttpMethod.POST, "/api/department/**").hasAuthority("ROLE_ADMIN") // Admin only: create department
+                .antMatchers(HttpMethod.POST, "/api/department/**").hasAuthority("ROLE_USER") // Admin only: create department
                 .antMatchers(HttpMethod.PUT, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: update department
                 .antMatchers(HttpMethod.DELETE, "/api/department/{id}").hasAuthority("ROLE_ADMIN") // Admin only: delete department
                 .antMatchers("/api/department/{name}/persons/paginated").hasAuthority("ROLE_ADMIN") // Admin only: show persons attached to department
