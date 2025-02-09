@@ -15,12 +15,10 @@ public class FullCentersDTO {
     private String description;
     private String address;
     private String phone;
-    private List<Integer> volunteerIds;
+    private List<Long> volunteerIds;
     private String email;
     private String link;
     @JsonProperty("tags")
     private List<String> tags;
     private String imageUrl;
-    @JsonProperty("active")
-    private List<Integer> active;
 }

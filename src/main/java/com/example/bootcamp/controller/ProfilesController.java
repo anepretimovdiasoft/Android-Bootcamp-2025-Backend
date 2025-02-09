@@ -18,4 +18,8 @@ public class ProfilesController {
     public ResponseEntity<ProfilesDTO> getProfileById(@PathVariable long id) {
         return ResponseEntity.ok(profilesService.getProfileById(id));
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateProfile(@PathVariable long id, @RequestBody ProfilesDTO dto) {
+        return ResponseEntity.ok(profilesService.updateProfile(id, dto));
+    }
 }

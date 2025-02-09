@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public interface UsersService {
     List<UsersDTO> getAllUsers();
+    List<ProfilesDTO> getAllUnoccupiedUsers();
     UsersDTO getUserbyId(Long id);
 
     UsersDTO createUser(UserRegisterDTO dto);
@@ -21,5 +22,5 @@ public interface UsersService {
 
     UsersDTO getUserByUsername(String username);
 
-    Page<UsersDTO> getAllUserPaginated(Pageable pageable);
+    Page<ProfilesDTO> getAllUserPaginated(Pageable pageable);
 }

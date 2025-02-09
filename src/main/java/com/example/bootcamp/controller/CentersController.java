@@ -36,6 +36,14 @@ public class CentersController {
     }
 
 
+    @PostMapping("/punish/{profileid}/{centerid}")
+    public ResponseEntity<String> punishUserToCenter(
+            @PathVariable long profileid,
+            @PathVariable long centerid) {
+
+        return ResponseEntity.ok(centersService.punishUserToCenter(profileid, centerid));
+    }
+
 
     @PostMapping
     public ResponseEntity<CentersDTO> createCenter(@RequestBody CentersDTO dto) {

@@ -9,6 +9,6 @@ import java.util.List;
 public interface ProfilesService {
     List<ProfilesDTO> getAllProfiles();
     ProfilesDTO getProfileById(Long id);
-    ProfilesDTO updateProfile(Long id, ProfilesDTO dto);
+    String updateProfile(Long id, ProfilesDTO dto);
 
 }

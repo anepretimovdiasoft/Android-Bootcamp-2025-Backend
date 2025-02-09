@@ -1,5 +1,6 @@
 package com.example.bootcamp.exception.handler;
 
+import com.example.bootcamp.exception.CenterNotFoundException;
 import com.example.bootcamp.exception.PersonAlreadyExistsException;
 import com.example.bootcamp.exception.PersonNotFoundException;
 import com.example.bootcamp.exception.RoleisNotAdmin;
@@ -13,6 +14,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PersonNotFoundException.class)
     public ResponseEntity<String> handlePersonNotFoundException(PersonNotFoundException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CenterNotFoundException.class)
+    public ResponseEntity<String> handleCenterNotFoundException(CenterNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 

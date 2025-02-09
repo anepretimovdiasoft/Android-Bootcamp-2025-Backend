@@ -9,6 +9,7 @@ public class ProfilesMapper {
     public static ProfilesDTO convertDTO(Profile profile) {
         ProfilesDTO profilesDTO = new ProfilesDTO();
 
+        profilesDTO.setId(profile.getId());
         if (profile.getCenter() != null) {
             profilesDTO.setCenterId(profile.getCenter().getId());
         }
@@ -23,9 +24,6 @@ public class ProfilesMapper {
         }
         if (profile.getPicture() != null) {
             profilesDTO.setPicture(profile.getPicture());
-        }
-        if (profile.getBio() != null) {
-            profilesDTO.setBio(profile.getBio());
         }
         if (profile.getEmail() != null) {
             profilesDTO.setEmail(profile.getEmail());

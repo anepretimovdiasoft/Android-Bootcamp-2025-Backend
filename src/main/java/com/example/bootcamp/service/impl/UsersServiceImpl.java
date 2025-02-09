@@ -1,5 +1,6 @@
 package com.example.bootcamp.service.impl;
 
+import com.example.bootcamp.dto.ProfilesDTO;
 import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
 import com.example.bootcamp.entity.*;
@@ -7,6 +8,7 @@ import com.example.bootcamp.exception.PersonAlreadyExistsException;
 import com.example.bootcamp.exception.PersonNotFoundException;
 import com.example.bootcamp.repository.*;
 import com.example.bootcamp.service.UsersService;
+import com.example.bootcamp.util.ProfilesMapper;
 import com.example.bootcamp.util.UsersMapper;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.type.LocalDateTimeType;
@@ -38,6 +40,15 @@ public class UsersServiceImpl implements UsersService {
                 .map(UsersMapper::convertDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProfilesDTO> getAllUnoccupiedUsers() {
+        return profileRepository.findAll().stream()
+                .filter(profile -> profile.getCenter() == null)  // Фильтрация пользователей без центра
+                .map(ProfilesMapper::convertDTO)
+                .collect(Collectors.toList());
+    }
+
 
 
     @Override
@@ -113,8 +124,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Page<UsersDTO> getAllUserPaginated(Pageable pageable) {
-        return usersRepository.findAll(pageable)
-                .map(UsersMapper::convertDTO);
+    public Page<ProfilesDTO> getAllUserPaginated(Pageable pageable) {
+        return profileRepository.findAll(pageable)
+                .map(ProfilesMapper::convertDTO);
     }
 }

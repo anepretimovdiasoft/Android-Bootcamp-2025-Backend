@@ -25,10 +25,6 @@ public class FullCentersMapper {
         fullCentersDTO.setLink(center.getLink());
 
         System.out.println("Tags: " + center.getTags());
-        System.out.println("Active: " + center.getActive());
-
-        fullCentersDTO.setTags(center.getTags() != null ? center.getTags() : new ArrayList<>());
-        fullCentersDTO.setActive(center.getActive() != null ? center.getActive() : new ArrayList<>());
 
         fullCentersDTO.setImageUrl(center.getImageUrl());
         return fullCentersDTO;

@@ -1,6 +1,7 @@
 package com.example.bootcamp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "centers")
 public class Center {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -20,10 +22,11 @@ public class Center {
     @Column(name = "name")
     private String name;
 
-    @ElementCollection(targetClass = Integer.class)
+    // Используем Long вместо Integer
+    @ElementCollection(targetClass = Long.class)
     @CollectionTable(name = "center_volunteers", joinColumns = @JoinColumn(name = "center_id"))
     @Column(name = "volunteer_ids")
-    private List<Integer> volunteer_ids;
+    private List<Long> volunteer_ids;  // Изменили тип на Long
 
     @Column(name = "address")
     private String address;
@@ -48,10 +51,6 @@ public class Center {
     @Column(name = "imageUrl")
     private String imageUrl;
 
-    @ElementCollection(targetClass = Integer.class)
-    @CollectionTable(name = "center_active", joinColumns = @JoinColumn(name = "center_id"))
-    @Column(name = "active")
-    private List<Integer> active;
 
     @Column(name = "latitude")
     private float latitude;

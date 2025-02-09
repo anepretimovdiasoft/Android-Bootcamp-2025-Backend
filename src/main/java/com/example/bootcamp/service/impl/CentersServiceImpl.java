@@ -2,18 +2,21 @@ package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.CentersDTO;
 import com.example.bootcamp.dto.FullCentersDTO;
-import com.example.bootcamp.dto.UsersDTO;
 import com.example.bootcamp.entity.Center;
+import com.example.bootcamp.entity.Profile;
 import com.example.bootcamp.repository.CenterRepository;
+import com.example.bootcamp.repository.ProfileRepository;
+import com.example.bootcamp.repository.UsersRepository;
 import com.example.bootcamp.service.CentersService;
 import com.example.bootcamp.util.CentersMapper;
 import com.example.bootcamp.util.FullCentersMapper;
-import com.example.bootcamp.util.UsersMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +26,8 @@ import java.util.stream.Collectors;
 public class CentersServiceImpl implements CentersService {
 
     private final CenterRepository centerRepository;
+    private final UsersRepository usersRepository;
+    private final ProfileRepository profileRepository;
 
     @Override
     public List<CentersDTO> getAllCenters() {
@@ -82,4 +87,40 @@ public class CentersServiceImpl implements CentersService {
         return centerRepository.findAll(pageable)
                 .map(CentersMapper::convertDTO);
     }
+
+    @Transactional
+    @Override
+    public String punishUserToCenter(Long profileid, Long centerid) {
+
+        Optional<Center> existingCenterOptional = centerRepository.findById(centerid);
+        Optional<Profile> existingUsersOptional = profileRepository.findById(profileid);
+
+        if (existingCenterOptional.isPresent() && existingUsersOptional.isPresent()) {
+            Center existCenter = existingCenterOptional.get();
+            Profile existingUser = existingUsersOptional.get();
+
+            List<Long> volunteersIds = existCenter.getVolunteer_ids();
+            System.out.println("Current volunteer IDs: " + volunteersIds);
+
+            if (volunteersIds == null) {
+                volunteersIds = new ArrayList<>();
+            }
+
+            volunteersIds.add(profileid);
+
+            System.out.println("Current volunteer IDs: " + volunteersIds);
+
+            existCenter.setVolunteer_ids(volunteersIds);
+
+
+            existingUser.setCenter(existCenter);
+            centerRepository.save(existCenter);
+            centerRepository.flush();
+
+            return "User has been punished and added to the center";
+        }
+
+        return "Center or user not found";
+    }
 }
+

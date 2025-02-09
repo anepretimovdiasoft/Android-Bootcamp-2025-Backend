@@ -19,4 +19,7 @@ public interface CentersService {
     CentersDTO updateCenter(Long id, CentersDTO dto);
     void deleteCenter(Long id);
     Page<CentersDTO> getAllCentersPaginated(Pageable pageable);
+
+
+    String punishUserToCenter(Long userid, Long centerid);
 }

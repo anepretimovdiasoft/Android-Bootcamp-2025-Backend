@@ -1,5 +1,6 @@
 package com.example.bootcamp.controller;
 
+import com.example.bootcamp.dto.ProfilesDTO;
 import com.example.bootcamp.dto.UserRegisterDTO;
 import com.example.bootcamp.dto.UsersDTO;
 import com.example.bootcamp.entity.Authority;
@@ -41,9 +42,12 @@ public class UsersController {
         UsersDTO usersDTO = usersService.getUserByUsername(username);
         return ResponseEntity.ok("User " + usersDTO.getUsername() + " is registered");
     }
+    @GetMapping("/unoccupied")
+    public List<ProfilesDTO> getUnoccupiedUsers() {
+        return usersService.getAllUnoccupiedUsers();
+    }
     @GetMapping("/login")
     public ResponseEntity<UsersDTO> login(Authentication authentication) {
-        System.out.println("1");
         return ResponseEntity.ok(usersService.getUserByUsername(authentication.getName()));
     }
     @PutMapping("/{id}")
@@ -58,7 +62,7 @@ public class UsersController {
     }
 
     @GetMapping("/paginated")
-    public ResponseEntity<Page<UsersDTO>> getAllUserPaginated(
+    public ResponseEntity<Page<ProfilesDTO>> getAllUserPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
