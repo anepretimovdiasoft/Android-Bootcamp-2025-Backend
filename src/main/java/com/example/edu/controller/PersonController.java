@@ -3,6 +3,7 @@ package com.example.edu.controller;
 import com.example.edu.dto.person.PersonDTO;
 import com.example.edu.dto.person.PersonRegisterDto;
 import com.example.edu.dto.person.PersonUpdateDTO;
+import com.example.edu.service.AuthorityService;
 import com.example.edu.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonController {
     private final PersonService personService;
+    private final AuthorityService authorityService;
 
     @PostMapping("/register")  // Public
     public ResponseEntity<PersonDTO> register(@RequestBody PersonRegisterDto dto) {
@@ -57,6 +59,14 @@ public class PersonController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         return ResponseEntity.ok(personService.patchPerson(username, dto));
+    }
+
+    @GetMapping("/me/isadmin")  // Auth only
+    public ResponseEntity<Boolean> patchMe() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        PersonDTO person = personService.getPersonByUsername(username);
+        return ResponseEntity.ok(person.getAuthorities().stream().anyMatch(dto -> "ROLE_ADMIN".equals(dto.getAuthority())));
     }
 
     @GetMapping("/{id}")  // Admin only

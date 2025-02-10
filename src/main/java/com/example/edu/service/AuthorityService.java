@@ -1,11 +1,14 @@
 package com.example.edu.service;
 
-import com.example.edu.entity.Authority;
+import com.example.edu.dto.authorities.AuthorityCreateDTO;
+import com.example.edu.dto.authorities.AuthorityDTO;
 
 import java.util.List;
 
 public interface AuthorityService {
-    Authority add(Authority authority);
+    AuthorityDTO add(AuthorityCreateDTO authority);
 
-    List<Authority> getAll();
+    AuthorityDTO getByAuthority(String authority);
+
+    List<AuthorityDTO> getAll();
 }

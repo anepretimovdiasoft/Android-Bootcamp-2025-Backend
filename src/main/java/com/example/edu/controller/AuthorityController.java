@@ -1,6 +1,7 @@
 package com.example.edu.controller;
 
-import com.example.edu.entity.Authority;
+import com.example.edu.dto.authorities.AuthorityCreateDTO;
+import com.example.edu.dto.authorities.AuthorityDTO;
 import com.example.edu.service.AuthorityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,13 @@ public class AuthorityController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Authority add(@RequestBody Authority authority) {
-        return authorityService.add(authority);
+    public AuthorityDTO add(@RequestBody AuthorityCreateDTO dto) {
+        return authorityService.add(dto);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Authority> getAll() {
+    public List<AuthorityDTO> getAll() {
         return authorityService.getAll();
     }
 

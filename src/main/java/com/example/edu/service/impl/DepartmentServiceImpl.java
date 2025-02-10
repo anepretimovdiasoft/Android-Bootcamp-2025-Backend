@@ -8,7 +8,7 @@ import com.example.edu.exception.NotFoundException;
 import com.example.edu.repository.DepartmentRepository;
 import com.example.edu.repository.PlaceRepository;
 import com.example.edu.service.DepartmentService;
-import com.example.edu.utils.DepartmentMapper;
+import com.example.edu.utils.mappers.DepartmentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,9 +63,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         department.setName(dto.getName());
 
         if (dto.getPlaceId() != null) {
-             Optional<Place> place = placeRepository.findById(dto.getPlaceId());
-             if (place.isEmpty()) throw new NotFoundException("Unable to update department: unknown place id " + dto.getPlaceId());
-             department.setPlace(place.get());
+            Optional<Place> place = placeRepository.findById(dto.getPlaceId());
+            if (place.isEmpty()) throw new NotFoundException("Unable to update department: unknown place id " + dto.getPlaceId());
+            department.setPlace(place.get());
         }
 
         return DepartmentMapper.convertToDTO(departmentRepository.save(department));

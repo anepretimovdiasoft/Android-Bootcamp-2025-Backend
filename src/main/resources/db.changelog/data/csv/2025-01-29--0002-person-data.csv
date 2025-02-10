@@ -1,6 +1,7 @@
 name;username;email;photo_url;department_id;password
-Непретимов Александр Евгеньевич;anepretimov;nae1994@yandex.ru;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;2;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia
-Иванов Иван Иванович;iivanov;iivanov@yandex.ru;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;1;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia
+Admin Александр Евгеньевич;admin;admin@server.com;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;2;$2a$10$Ivt2AFDRaeP7uIhgH1t31ua7j0BIFPOLdnkCbnPYu92zYIBBY68xS
+Admin2 Иван Иванович;iivanov;iivanov@yandex.ru;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;1;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia
+User Алексей Сергеевич;test;test@example.com;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;10;$2a$10$V3qR8UnCC5Q9ixBtw2KE4uN9qI4MMYmcwYpBgt9bgXy.PziJVXWoq
 Смирнов Алексей Сергеевич;aсмирнов;aсмирнов@example.com;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;1;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia
 Васильев Алексей Сергеевич;aвасильев;aвасильев@example.com;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;2;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia
 Козлов Алексей Сергеевич;aкозлов;aкозлов@example.com;https://funnyducks.ru/upload/iblock/0cd/0cdeb7ec3ed6fddda0f90fccee05557d.jpg;3;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia
