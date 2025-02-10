@@ -46,4 +46,16 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="2025-02-08-0002-volunteers" author="gnazarov">
+        <preConditions>
+            <not>
+                <indexExists tableName="volunteers" indexName="idx_volunteer_name"/>
+            </not>
+        </preConditions>
+
+        <createIndex tableName="volunteers" indexName="idx_volunteer_name">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>

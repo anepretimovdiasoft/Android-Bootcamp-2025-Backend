@@ -33,4 +33,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleVolunteerCenterAlreadyExistException(AuthorityNotFoundException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(AuthorityAlreadyExistsException.class)
+    public ResponseEntity<String> handleVolunteerCenterAlreadyExistException(AuthorityAlreadyExistsException e){
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
 }
