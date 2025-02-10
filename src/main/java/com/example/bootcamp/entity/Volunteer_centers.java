@@ -13,6 +13,7 @@ public class Volunteer_centers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private long id;
 
     @Column(name="title")
@@ -25,6 +26,6 @@ public class Volunteer_centers {
     private String contacts;
 
 
-    @OneToMany(mappedBy = "centers", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "centers",  cascade = CascadeType.ALL)
     private List<User> users;
 }

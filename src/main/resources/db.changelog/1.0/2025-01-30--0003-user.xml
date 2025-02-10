@@ -16,17 +16,14 @@
         <createTable tableName="user">
 
             <column name = "id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"
-                foreignKeyName="fk_user_volunteer_status" referencedTableName="volunteer_status"
-                referencedColumnNames="id"/>
-            </column>
-
-
-            <column name="username" type="VARCHAR(50)">
-                <constraints nullable="false" unique="true"/>
+                <constraints primaryKey="true" nullable="false"/>
             </column>
 
             <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="active" type="BOOL">
                 <constraints nullable="false"/>
             </column>
 
@@ -34,23 +31,21 @@
                 <constraints nullable="false" unique="true"/>
             </column>
 
-            <column name="phone" type="VARCHAR(15)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
 
-            <column name="center_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_user_volunteer_centers" referencedTableName="volunteer_centers"
-                referencedColumnNames="id" unique="false"/>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
             </column>
 
-            <column name="role_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_user_roles" referencedTableName="roles"
-                referencedColumnNames="id" unique="false"/>
+            <column name="photo_url" type="VARCHAR(100)"/>
+
+            <column name="center_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_user_volunteer_centers" referencedTableName="volunteer_centers"
+                referencedColumnNames="id" />
             </column>
+
         </createTable>
 
     </changeSet>
