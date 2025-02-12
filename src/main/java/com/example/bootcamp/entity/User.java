@@ -38,9 +38,8 @@ public class User implements UserDetails {
     @Column(name = "photo")
     private String photo;
 
-    @ManyToOne
-    @JoinColumn(name = "status")
-    private VolunteerCenter status;
+    @Column(name = "status")
+    private Long status;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Access> authorities;

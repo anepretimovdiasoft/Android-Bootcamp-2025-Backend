@@ -25,7 +25,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="photo" type="VARCHAR(200)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="description" type="VARCHAR(200)">
                 <constraints nullable="false" unique="true"/>
