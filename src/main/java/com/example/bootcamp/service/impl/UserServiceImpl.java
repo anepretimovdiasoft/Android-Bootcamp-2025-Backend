@@ -1,7 +1,6 @@
 package com.example.bootcamp.service.impl;
 
 import com.example.bootcamp.dto.CreateUserDTO;
-import com.example.bootcamp.dto.UpdateUserDTO;
 import com.example.bootcamp.dto.UserDTO;
 import com.example.bootcamp.entity.Access;
 import com.example.bootcamp.entity.User;
@@ -9,12 +8,15 @@ import com.example.bootcamp.entity.VolunteerCenter;
 import com.example.bootcamp.exception.AccessNotFoundException;
 import com.example.bootcamp.exception.UserAlreadyExistsException;
 import com.example.bootcamp.exception.UserNotFoundException;
+import com.example.bootcamp.exception.VolunteerCenterNotFoundException;
 import com.example.bootcamp.repository.AccessRepository;
 import com.example.bootcamp.repository.UserRepository;
 import com.example.bootcamp.repository.VolunteerCenterRepository;
 import com.example.bootcamp.service.UserService;
 import com.example.bootcamp.util.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +62,6 @@ public class UserServiceImpl implements UserService {
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setContactInfo(dto.getContactInfo());
-        user.setBiography(dto.getBiography());
         user.setPhoto(dto.getPhoto());
         user.setAuthorities(Set.of(accessOptional.get()));
 
@@ -81,9 +82,7 @@ public class UserServiceImpl implements UserService {
         user.setContactInfo(dto.getContactInfo());
         user.setBiography(dto.getBiography());
         user.setPhoto(dto.getPhoto());
-
-        Optional<VolunteerCenter> optionalVolunteer_center = volunteerCenterRepository.findById(dto.getStatus());
-        optionalVolunteer_center.ifPresent(user::setStatus);
+        user.setStatus(dto.getStatus());
 
         return UserMapper.convertToDto(userRepository.save(user));
     }
@@ -95,12 +94,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserByUsername(String username) {
-        Optional<User> optionalUser = userRepository.findByUsername(username);
-
-        if (optionalUser.isEmpty()) {
-            throw new UserNotFoundException("User with email " + username + " not found!");
-        }
-
-        return UserMapper.convertToDto(optionalUser.get());
+        return userRepository.findByUsername(username)
+                .map(UserMapper::convertToDto)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
     }
+
+    @Override
+    public Page<UserDTO> getAllUserPaginated(Pageable pageable) {
+        return userRepository.findAll(pageable).map(UserMapper::convertToDto);
+    }
+
+//    @Override
+//    public UserDTO getUserByStatus(Long status) {
+//        return userRepository.findByStatus(status).map(UserMapper::convertToDto)
+//                .orElseThrow(() -> new VolunteerCenterNotFoundException("Volunteer center not found!"));
+//    }
+
 }

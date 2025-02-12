@@ -9,6 +9,5 @@ public class CreateUserDTO {
     private String username;
     private String password;
     private String contactInfo;
-    private String biography;
     private String photo;
 }

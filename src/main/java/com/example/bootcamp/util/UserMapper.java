@@ -16,7 +16,7 @@ public class UserMapper {
         dto.setBiography(user.getBiography());
         dto.setPhoto(user.getPhoto());
         if (user.getStatus() != null) {
-            dto.setStatus(user.getStatus().getId());
+            dto.setStatus(user.getStatus());
         } else {
             dto.setStatus(null);
         }

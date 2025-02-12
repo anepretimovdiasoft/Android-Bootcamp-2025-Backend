@@ -4,6 +4,9 @@ import com.example.bootcamp.dto.CreateUserDTO;
 import com.example.bootcamp.dto.UserDTO;
 import com.example.bootcamp.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -13,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-    @RequestMapping("/api/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -24,14 +27,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getPersonById(@PathVariable Long id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @GetMapping("/username/{username}")
-    public ResponseEntity<String> getByUsername(@PathVariable String username) {
-        UserDTO userDTO = userService.getUserByUsername(username);
-        return ResponseEntity.ok("User" + userDTO.getUsername() + " is registered!");
+    public ResponseEntity<UserDTO> getByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getUserByUsername(username));
     }
 
     @GetMapping("/login")
@@ -54,4 +56,18 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UserDTO>> getAllUserPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(userService.getAllUserPaginated(pageable));
+    }
+
+//    @GetMapping("/status/{status}")
+//    public ResponseEntity<List<UserDTO>> getUserByStatus(@PathVariable Long status) {
+//        return ResponseEntity.ok(userService.getUserByStatus(status));
+//    }
+
 }

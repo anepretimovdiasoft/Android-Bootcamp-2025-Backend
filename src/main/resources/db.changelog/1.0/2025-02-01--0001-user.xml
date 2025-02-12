@@ -32,10 +32,7 @@
             </column>
             <column name="biography" type="VARCHAR(100)"/>
             <column name="photo" type="VARCHAR(200)"/>
-            <column name="status" type="VARCHAR(200)">
-                <constraints foreignKeyName="fk_volunteer_center" referencedTableName="volunteer_center"
-                             referencedColumnNames="id"/>
-            </column>
+            <column name="status" type="BIGINT"/>
         </createTable>
 
     </changeSet>

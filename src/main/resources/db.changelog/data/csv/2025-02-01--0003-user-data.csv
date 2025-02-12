@@ -1,3 +1,5 @@
 first_name;last_name;email;password;contact_info;biography;photo;status
 Иван;Иванов;ivan@gmail.com;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;88005553535;Описание профиля;https://funnyducks.ru/upload/iblock/bec/bec0e919e8568d5f55ae3713889926c6.jpg;null
 Андрей;Адреев;andry@gmail.com;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;81234567890;Волонтер;https://funnyducks.ru/upload/iblock/bec/bec0e919e8568d5f55ae3713889926c6.jpg;1
+Кирилл;Домашенко;kirill@mail.ru;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;89876543210;Я волонтер е;https://funnyducks.ru/upload/iblock/bec/bec0e919e8568d5f55ae3713889926c6.jpg;1
+Джеки;Плюшев;homak@yandex.ru;$2a$10$eObqG4zk7CbKPPTv0daHm.bcpK6zwyFPpjAVXOeDWrT/3TpVcxpia;+198237392;Хомяк е о да;https://funnyducks.ru/upload/iblock/bec/bec0e919e8568d5f55ae3713889926c6.jpg;2
